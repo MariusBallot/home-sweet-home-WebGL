@@ -19,14 +19,13 @@ class MainScene {
 
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.camera.position.set(0, 1, 0)
-        new CameraController(this.camera)
 
         this.scene = new THREE.Scene()
 
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-        this.controls.enabled = true
-        this.controls.maxDistance = 1500
-        this.controls.minDistance = 0
+        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        // this.controls.enabled = true
+        // this.controls.maxDistance = 1500
+        // this.controls.minDistance = 0
 
 
         let light = new THREE.AmbientLight()
@@ -38,8 +37,9 @@ class MainScene {
 
         SceneLoader.load(this.scene, () => {
             SceneLoader.show(0)
+            this.camera = SceneLoader.currentCam
+            new CameraController(this.camera)
         })
-
 
         RAF.subscribe("mainSceneUpdate", this.update)
     }
@@ -52,10 +52,20 @@ class MainScene {
         this.renderer.render(this.scene, this.camera)
     }
 
+    onWindowResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
     bind() {
         this.update = this.update.bind(this)
         this.start = this.start.bind(this)
         this.destroy = this.destroy.bind(this)
+        this.onWindowResize = this.onWindowResize.bind(this)
+
+        window.addEventListener('resize', this.onWindowResize)
     }
 }
 
