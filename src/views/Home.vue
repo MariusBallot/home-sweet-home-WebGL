@@ -1,17 +1,15 @@
 <template>
   <div class="home">
-    <MainScene />
+    <h1>Welcome</h1>
+    <router-link to="/InGame">Start button</router-link>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import MainScene from "@/components/MainScene.vue";
 
 export default {
   name: "Home",
-  components: {
-    MainScene
-  }
+  components: {}
 };
 </script>

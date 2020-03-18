@@ -5,9 +5,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import SceneLoader from './SceneLoader'
 import CameraController from '../controllers/CameraController'
+import Scenes from '../controllers/ScenesManager'
 
 class MainScene {
     constructor() {
+        this.currentSceneId
         this.bind()
     }
 
@@ -18,30 +20,28 @@ class MainScene {
         _container.appendChild(this.renderer.domElement)
 
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.camera.position.set(0, 1, 0)
+        this.camera.position.set(0, 5, 5)
+        this.camera.lookAt(0, 0, 0)
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.controls.update();
 
-        this.scene = new THREE.Scene()
-
-        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-        // this.controls.enabled = true
-        // this.controls.maxDistance = 1500
-        // this.controls.minDistance = 0
-
-
-        let light = new THREE.AmbientLight()
-        let pointLight = new THREE.PointLight()
-        pointLight.position.set(10, 10, 0)
+        this.currentSceneId = 0
+        this.scene = Scenes[this.currentSceneId].scene
 
         let cube = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial())
-        this.scene.add(light, pointLight, cube)
-
-        SceneLoader.load(this.scene, () => {
-            SceneLoader.show(0)
-            this.camera = SceneLoader.currentCam
-            new CameraController(this.camera)
-        })
+        let pointLight = new THREE.PointLight()
+        let ambient = new THREE.AmbientLight()
+        this.scene.add(pointLight, ambient, cube)
 
         RAF.subscribe("mainSceneUpdate", this.update)
+    }
+
+    switchScene() {
+        console.log(this.currentSceneId)
+        this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
+        console.log(this.currentSceneId)
+        this.scene = Scenes[this.currentSceneId].scene
+        console.log(this.scene)
     }
 
     destroy() {
@@ -50,6 +50,8 @@ class MainScene {
 
     update() {
         this.renderer.render(this.scene, this.camera)
+        this.controls.update();
+
     }
 
     onWindowResize() {
@@ -64,6 +66,7 @@ class MainScene {
         this.start = this.start.bind(this)
         this.destroy = this.destroy.bind(this)
         this.onWindowResize = this.onWindowResize.bind(this)
+        this.switchScene = this.switchScene.bind(this)
 
         window.addEventListener('resize', this.onWindowResize)
     }
