@@ -28,7 +28,7 @@ class MainScene {
         this.currentSceneId = 0
         this.scene = Scenes[this.currentSceneId].scene
 
-        let cube = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial())
+        let cube = new THREE.Mes(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial())
         let pointLight = new THREE.PointLight()
         let ambient = new THREE.AmbientLight()
         this.scene.add(pointLight, ambient, cube)
