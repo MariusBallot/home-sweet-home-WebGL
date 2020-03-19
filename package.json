@@ -8,6 +8,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "browser-detect": "^0.2.28",
     "core-js": "^3.6.4",
     "three": "^0.113.2",
     "vue": "^2.6.11",

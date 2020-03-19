@@ -27,11 +27,9 @@ class MainScene {
 
         this.currentSceneId = 0
         this.scene = Scenes[this.currentSceneId].scene
+        this.scene.background = new THREE.Color(0xFF0000)
 
-        let cube = new THREE.Mes(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial())
-        let pointLight = new THREE.PointLight()
-        let ambient = new THREE.AmbientLight()
-        this.scene.add(pointLight, ambient, cube)
+        this.scene.add(new THREE.AmbientLight())
 
         RAF.subscribe("mainSceneUpdate", this.update)
     }
@@ -49,6 +47,7 @@ class MainScene {
     }
 
     update() {
+        console.log("hey")
         this.renderer.render(this.scene, this.camera)
         this.controls.update();
 

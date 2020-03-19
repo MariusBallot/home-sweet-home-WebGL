@@ -4,7 +4,7 @@ class LoadingController {
     constructor() {
         this.bind()
         this.progress = 0
-        this.callbacks = []
+        this.onProgresses = []
         this.onLoads = []
         this.manager = new THREE.LoadingManager()
         this.manager.onProgress = this.onProgress
@@ -15,19 +15,19 @@ class LoadingController {
     }
     onProgress(item, loaded, total) {
         this.progress = (loaded / total * 100)
-        this.callbacks.forEach(callback => {
+        this.onProgresses.forEach(callback => {
             callback.fct(this.progress)
         });
 
     }
 
-    addCallback(name, fct) {
-        this.callbacks.push({ name: name, fct: fct })
+    addOnProgress(name, fct) {
+        this.onProgresses.push({ name: name, fct: fct })
     }
-    removeCallback(name) {
-        this.callbacks.forEach((callback, i) => {
+    removeOnProgress(name) {
+        this.onProgresses.forEach((callback, i) => {
             if (callback.name == name) {
-                this.callbacks.splice(i, i + 1)
+                this.onProgresses.splice(i, i + 1)
             }
         });
     }
@@ -53,8 +53,8 @@ class LoadingController {
     bind() {
         this.onProgress = this.onProgress.bind(this)
         this.onLoad = this.onLoad.bind(this)
-        this.addCallback = this.addCallback.bind(this)
-        this.removeCallback = this.removeCallback.bind(this)
+        this.addOnProgress = this.addOnProgress.bind(this)
+        this.removeOnProgress = this.removeOnProgress.bind(this)
         this.addOnLoad = this.addOnLoad.bind(this)
         this.removeOnLoad = this.removeOnLoad.bind(this)
         this.onStart = this.onStart.bind(this)

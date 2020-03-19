@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1>Welcome</h1>
-    <router-link to="/InGame">Start button</router-link>
+    <h1>Connect your device</h1>
+    <router-link to="/InGame">Device connected</router-link>
   </div>
 </template>
 
