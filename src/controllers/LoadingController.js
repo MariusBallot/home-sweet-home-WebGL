@@ -10,6 +10,9 @@ class LoadingController {
         this.manager.onProgress = this.onProgress
         this.manager.onLoad = this.onLoad
         this.manager.onStart = this.onStart
+        this.manager.onError = (error) => {
+            console.log(error)
+        }
     }
     onStart(url, itemsLoaded, itemsTotal) {
     }

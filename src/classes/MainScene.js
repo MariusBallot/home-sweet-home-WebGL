@@ -1,16 +1,20 @@
 import RAF from '@/utils/raf'
+import TestScene from '@/utils/TestScene'
 import * as THREE from 'three'
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls'
 
 import SceneLoader from './SceneLoader'
 import CameraController from '../controllers/CameraController'
 import Scenes from '../controllers/ScenesManager'
+import RaycastController from '../controllers/RaycastController'
+import { Scene } from 'three'
 
 class MainScene {
     constructor() {
-        this.currentSceneId
         this.bind()
+        this.currentSceneId
     }
 
     start(_container) {
@@ -19,19 +23,34 @@ class MainScene {
         this.renderer.debug.checkShaderErrors = true
         _container.appendChild(this.renderer.domElement)
 
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.camera.position.set(0, 5, 5)
-        this.camera.lookAt(0, 0, 0)
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.camera.position.set(0, 1, 0)
+        this.controls = new DeviceOrientationControls(this.camera);
         this.controls.update();
 
+
         this.currentSceneId = 0
-        this.scene = Scenes[this.currentSceneId].scene
-        this.scene.background = new THREE.Color(0xFF0000)
+        this.scene = Scenes[2].scene
+        this.scene.background = TestScene.background
+
+        this.camera.position.set(Scenes[2].camera.position.x, Scenes[2].camera.position.z, Scenes[2].camera.position.y)
+        this.camera.rotation.set(Scenes[2].camera.rotation.x, Scenes[2].camera.rotation.y, Scenes[2].camera.rotation.z)
+        console.log(Scenes[2].camera, Scenes[2].camera.rotation)
+        this.controls = new DeviceOrientationControls(this.camera);
+        this.controls.update();
+
+
+        RaycastController.setTarget({ camera: this.camera, scene: this.scene })
+        RaycastController.addOnShoots({ name: 'MainSceneOnShoot', callback: this.onShoot })
 
         this.scene.add(new THREE.AmbientLight())
 
         RAF.subscribe("mainSceneUpdate", this.update)
+    }
+
+    onShoot(int) {
+        console.log(int)
+        int.object.material = new THREE.MeshNormalMaterial()
     }
 
     switchScene() {
@@ -47,7 +66,6 @@ class MainScene {
     }
 
     update() {
-        console.log("hey")
         this.renderer.render(this.scene, this.camera)
         this.controls.update();
 
@@ -65,6 +83,7 @@ class MainScene {
         this.start = this.start.bind(this)
         this.destroy = this.destroy.bind(this)
         this.onWindowResize = this.onWindowResize.bind(this)
+        this.onShoot = this.onShoot.bind(this)
         this.switchScene = this.switchScene.bind(this)
 
         window.addEventListener('resize', this.onWindowResize)

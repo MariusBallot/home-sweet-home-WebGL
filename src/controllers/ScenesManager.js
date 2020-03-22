@@ -12,6 +12,12 @@ const scenes = [
         scene: null,
         url: "/models/Scenes/Metro/scene.glb"
     },
+    {
+        name: "TestScene",
+        camera: null,
+        scene: null,
+        url: "/models/Scenes/TestScene/scene.gltf"
+    },
 ]
 
 export default scenes
