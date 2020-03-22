@@ -130,6 +130,25 @@
                 0,
                 0
             ],
+            "name" : "Material.001",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
             "name" : "redMat",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
@@ -153,7 +172,8 @@
                         "NORMAL" : 1,
                         "TEXCOORD_0" : 2
                     },
-                    "indices" : 3
+                    "indices" : 3,
+                    "material" : 0
                 }
             ]
         },
@@ -167,7 +187,7 @@
                         "TEXCOORD_0" : 6
                     },
                     "indices" : 7,
-                    "material" : 0
+                    "material" : 1
                 }
             ]
         },
@@ -181,7 +201,7 @@
                         "TEXCOORD_0" : 10
                     },
                     "indices" : 7,
-                    "material" : 0
+                    "material" : 1
                 }
             ]
         },
@@ -195,7 +215,7 @@
                         "TEXCOORD_0" : 13
                     },
                     "indices" : 7,
-                    "material" : 0
+                    "material" : 1
                 }
             ]
         },
@@ -209,7 +229,7 @@
                         "TEXCOORD_0" : 16
                     },
                     "indices" : 7,
-                    "material" : 0
+                    "material" : 1
                 }
             ]
         }

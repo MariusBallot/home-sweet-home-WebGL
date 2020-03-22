@@ -14,7 +14,7 @@ class SocketServer {
 
     start() {
         this.HOST = location.origin.replace(/^https/, 'wss')
-        this.WEBSOCKET = new WebSocket(this.HOST)
+        this.WEBSOCKET = new WebSocket("wss://home-sweet-home--ws.herokuapp.com/")
         this.DEBUG_TIME = false
 
         this.WEBSOCKET.onopen = this.onServerOpen
@@ -47,21 +47,21 @@ class SocketServer {
         const data = JSON.parse(event.data)
         const message = JSON.parse(data.message)
         console.log(message)
-        switch (data.type) {
-            case 'time':
-                if (DEBUG_TIME) setNode('time-server', message.time)
-                break
-            case 'orientation':
-                setNode('alpha-server', message.alpha)
-                setNode('beta-server', message.beta)
-                setNode('gamma-server', message.gamma)
-                break
-            case 'notif':
-                alert(message.soundName)
+        // switch (data.type) {
+        //     case 'time':
+        //         if (DEBUG_TIME) setNode('time-server', message.time)
+        //         break
+        //     case 'orientation':
+        //         setNode('alpha-server', message.alpha)
+        //         setNode('beta-server', message.beta)
+        //         setNode('gamma-server', message.gamma)
+        //         break
+        //     case 'notif':
+        //         alert(message.soundName)
 
-            default:
-                break
-        }
+        //     default:
+        //         break
+        // }
     }
 
     handleOrientation(event) {

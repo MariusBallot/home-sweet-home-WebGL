@@ -35,9 +35,7 @@ class MainScene {
         this.scene = Scenes[2].scene
         this.scene.background = TestScene.background
 
-        this.camera.position.set(Scenes[2].camera.position.x, Scenes[2].camera.position.z, Scenes[2].camera.position.y)
-        this.camera.rotation.set(Scenes[2].camera.rotation.x, Scenes[2].camera.rotation.y, Scenes[2].camera.rotation.z)
-        console.log(Scenes[2].camera, Scenes[2].camera.rotation)
+
         this.controls = new DeviceOrientationControls(this.camera);
         this.controls.update();
 
