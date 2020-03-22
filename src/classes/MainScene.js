@@ -5,6 +5,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls'
 
+import SocketServer from '../SocketServer'
+
 import SceneLoader from './SceneLoader'
 import CameraController from '../controllers/CameraController'
 import Scenes from '../controllers/ScenesManager'
@@ -69,6 +71,8 @@ class MainScene {
         this.renderer.render(this.scene, this.camera)
         this.controls.update();
 
+        if (SocketServer.connected)
+            SocketServer.sendToServer('orientation', this.camera.rotation)
     }
 
     onWindowResize() {

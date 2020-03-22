@@ -10,6 +10,8 @@
 <script>
 import Desktop from "./components/Desktop";
 import Landscape from "./components/Landscape";
+import SocketServer from "./SocketServer";
+
 export default {
   name: "App",
   data() {
@@ -31,6 +33,8 @@ export default {
     );
     this.isLandscape = window.innerWidth > window.innerHeight;
     window.addEventListener("resize", this.resize);
+
+    SocketServer.start();
   },
   methods: {
     resize() {
