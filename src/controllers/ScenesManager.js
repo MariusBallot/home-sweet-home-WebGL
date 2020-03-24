@@ -1,5 +1,12 @@
 const scenes = [
     {
+        name: "Garden",
+        camera: null,
+        scene: null,
+        url: "/models/Scenes/Garden/scene.gltf",
+        scale: 0.01,
+    },
+    {
         name: "Street",
         camera: null,
         scene: null,

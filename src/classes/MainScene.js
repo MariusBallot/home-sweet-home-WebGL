@@ -31,8 +31,9 @@ class MainScene {
         this.controls.update();
 
 
+        console.log()
         this.currentSceneId = 0
-        this.scene = Scenes[2].scene
+        this.scene = Scenes[0].scene
         this.scene.background = TestScene.background
 
 

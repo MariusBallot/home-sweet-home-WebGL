@@ -46,7 +46,6 @@ class SocketServer {
     onServerMessage(event) {
         const data = JSON.parse(event.data)
         const message = JSON.parse(data.message)
-        console.log(message)
         // switch (data.type) {
         //     case 'time':
         //         if (DEBUG_TIME) setNode('time-server', message.time)

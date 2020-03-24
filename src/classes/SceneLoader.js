@@ -32,6 +32,17 @@ class SceneLoader {
 
         Scenes.forEach(scene => {
             this.loader.load(scene.url, (gltf) => {
+                if (scene.name == "Garden") {
+                    gltf.scene.traverse(child => {
+                        if (child instanceof THREE.Mesh) {
+                            console.log(child.material)
+                            child.material = new THREE.MeshBasicMaterial({
+                                map: child.material.map
+                            })
+                        }
+                    })
+                    console.log(gltf)
+                }
                 scene.scene = gltf.scene
                 if (scene.scale)
                     scene.scene.scale.set(scene.scale, scene.scale, scene.scale)
