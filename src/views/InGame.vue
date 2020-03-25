@@ -2,17 +2,18 @@
   <div class="inGame">
     <Loading v-if="!loaded" />
     <ThreeCanvas />
-    <!-- <div class="domContent">
+    <div class="domContent">
       <h1>Welcome</h1>
       <button ref="prevScene">pervious scene</button>
       <button v-on:click="onClick" ref="nextScene">next scene</button>
-    </div>-->
+    </div>
   </div>
 </template>
 
 <script>
 import Loading from "../components/InGame/Loading";
 import ThreeCanvas from "../components/InGame/ThreeCanvas";
+import SocketServer from "../SocketServer";
 
 import MainScene from "@/classes/MainScene";
 import LoadingController from "@/controllers/LoadingController";
@@ -34,6 +35,7 @@ export default {
   methods: {
     onClick() {
       MainScene.switchScene();
+      SocketServer.sendToServer("notif", "sardoche");
     },
     onLoad() {
       this.loaded = true;
@@ -56,6 +58,9 @@ export default {
 
      button {
        pointer-events: all;
+       font-size: 1em;
+       background: white;
+       border: none;
      }
    }
  }

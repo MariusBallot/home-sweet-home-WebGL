@@ -30,11 +30,12 @@ class MainScene {
         this.controls = new DeviceOrientationControls(this.camera);
         this.controls.update();
 
-
-        console.log()
-        this.currentSceneId = 0
-        this.scene = Scenes[0].scene
+        this.scene = new THREE.Scene()
         this.scene.background = TestScene.background
+
+
+        this.currentSceneId = 0
+        this.scene.add(Scenes[0].scene)
 
 
         this.controls = new DeviceOrientationControls(this.camera);
@@ -55,11 +56,12 @@ class MainScene {
     }
 
     switchScene() {
-        console.log(this.currentSceneId)
+        this.scene.remove(Scenes[this.currentSceneId].scene)
+
         this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
-        console.log(this.currentSceneId)
-        this.scene = Scenes[this.currentSceneId].scene
+        this.scene.add(Scenes[this.currentSceneId].scene)
         console.log(this.scene)
+
     }
 
     destroy() {

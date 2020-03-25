@@ -1,3 +1,5 @@
+import SoundController from "./controllers/SoundController"
+
 class SocketServer {
     constructor() {
         this.bind()
@@ -46,21 +48,21 @@ class SocketServer {
     onServerMessage(event) {
         const data = JSON.parse(event.data)
         const message = JSON.parse(data.message)
-        // switch (data.type) {
-        //     case 'time':
-        //         if (DEBUG_TIME) setNode('time-server', message.time)
-        //         break
-        //     case 'orientation':
-        //         setNode('alpha-server', message.alpha)
-        //         setNode('beta-server', message.beta)
-        //         setNode('gamma-server', message.gamma)
-        //         break
-        //     case 'notif':
-        //         alert(message.soundName)
-
-        //     default:
-        //         break
-        // }
+        switch (data.type) {
+            case 'time':
+                if (DEBUG_TIME) setNode('time-server', message.time)
+                break
+            case 'orientation':
+                // setNode('alpha-server', message.alpha)
+                // setNode('beta-server', message.beta)
+                // setNode('gamma-server', message.gamma)
+                break
+            case 'notif':
+                console.log('hey')
+                SoundController.onNotif()
+            default:
+                break
+        }
     }
 
     handleOrientation(event) {

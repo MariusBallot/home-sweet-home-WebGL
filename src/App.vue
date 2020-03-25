@@ -36,6 +36,13 @@ export default {
 
     SocketServer.start();
   },
+  mounted() {
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        window.scrollTo(0, 1);
+      }, 0);
+    });
+  },
   methods: {
     resize() {
       this.isLandscape = window.innerWidth > window.innerHeight;

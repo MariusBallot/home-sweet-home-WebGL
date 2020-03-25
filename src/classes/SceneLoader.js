@@ -12,30 +12,11 @@ class SceneLoader {
 
 
     start() {
-        // for (let i = 0; i < sceneCount; i++) {
-        //     this.loader.load('/models/Scene' + i + '.glb', (glb) => {
-        //         console.log(glb)
-        //         this.scenes.push(glb.scene)
-        //         this.cameras.push(glb.cameras[0])
-        //         glb.scene.traverse((child) => {
-        //             if (child.name == "Floor") {
-        //                 child.material = new THREE.MeshBasicMaterial({
-        //                     map: new THREE.TextureLoader().load('/Textures/FloorBaking.png')
-        //                 })
-        //             }
-        //         })
-        //         if (i == sceneCount - 1) {
-        //             onloaded()
-        //         }
-        //     })
-        // }
-
         Scenes.forEach(scene => {
             this.loader.load(scene.url, (gltf) => {
                 if (scene.name == "Garden") {
                     gltf.scene.traverse(child => {
                         if (child instanceof THREE.Mesh) {
-                            console.log(child.material)
                             child.material = new THREE.MeshBasicMaterial({
                                 map: child.material.map
                             })
@@ -46,10 +27,6 @@ class SceneLoader {
                 scene.scene = gltf.scene
                 if (scene.scale)
                     scene.scene.scale.set(scene.scale, scene.scale, scene.scale)
-                if (gltf.cameras[0] != undefined)
-                    scene.camera = gltf.cameras[0]
-
-
             })
         });
     }
