@@ -5,8 +5,8 @@ class SoundController {
 
 
     onNotif() {
-        var audio = new Audio('sur.mp3');
-        audio.play();
+        // var audio = new Audio('sur.mp3');
+        // audio.play();
     }
 
     bind() {

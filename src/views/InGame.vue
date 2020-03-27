@@ -4,7 +4,6 @@
     <ThreeCanvas />
     <div class="domContent">
       <h1>Welcome</h1>
-      <button ref="prevScene">pervious scene</button>
       <button v-on:click="onClick" ref="nextScene">next scene</button>
     </div>
   </div>

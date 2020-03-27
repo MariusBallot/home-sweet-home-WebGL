@@ -12,6 +12,7 @@ import CameraController from '../controllers/CameraController'
 import Scenes from '../controllers/ScenesManager'
 import RaycastController from '../controllers/RaycastController'
 import { Scene } from 'three'
+import config from '../config'
 
 class MainScene {
     constructor() {
@@ -39,6 +40,11 @@ class MainScene {
 
 
         this.controls = new DeviceOrientationControls(this.camera);
+        if (config.allowDesktop) {
+
+            this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+            this.camera.position.set(10, 10, 10)
+        }
         this.controls.update();
 
 
@@ -56,11 +62,24 @@ class MainScene {
     }
 
     switchScene() {
-        this.scene.remove(Scenes[this.currentSceneId].scene)
+        // this.scene.remove(Scenes[this.currentSceneId].scene)
+        // Scenes[this.currentSceneId].shader.out()
 
+        Scenes[this.currentSceneId].scene.traverse(child => {
+            if (child instanceof THREE.Mesh) {
+                console.log(child)
+                child._shader.out()
+            }
+        })
         this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
         this.scene.add(Scenes[this.currentSceneId].scene)
-        console.log(this.scene)
+
+        Scenes[this.currentSceneId].scene.traverse(child => {
+            if (child instanceof THREE.Mesh) {
+                console.log(child)
+                child._shader.in()
+            }
+        })
 
     }
 

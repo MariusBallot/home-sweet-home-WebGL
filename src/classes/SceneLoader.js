@@ -3,6 +3,9 @@ import LoadingController from "../controllers/LoadingController"
 import Scenes from "../controllers/ScenesManager"
 import * as THREE from 'three'
 
+import SceneShader from './SceneShader'
+import scenes from '../controllers/ScenesManager'
+
 
 class SceneLoader {
     constructor() {
@@ -14,16 +17,16 @@ class SceneLoader {
     start() {
         Scenes.forEach(scene => {
             this.loader.load(scene.url, (gltf) => {
-                if (scene.name == "Garden") {
-                    gltf.scene.traverse(child => {
-                        if (child instanceof THREE.Mesh) {
-                            child.material = new THREE.MeshBasicMaterial({
-                                map: child.material.map
-                            })
+                gltf.scene.traverse(child => {
+                    if (child instanceof THREE.Mesh) {
+                        if (child.material.map != undefined && child.material.map != null) {
+                            let sceneShader = new SceneShader(child.material.map)
+                            child._shader = sceneShader
+                            child.material = sceneShader.shader
                         }
-                    })
-                    console.log(gltf)
-                }
+                    }
+                })
+                console.log(gltf)
                 scene.scene = gltf.scene
                 if (scene.scale)
                     scene.scene.scale.set(scene.scale, scene.scale, scene.scale)

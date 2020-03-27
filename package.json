@@ -10,6 +10,10 @@
   "dependencies": {
     "browser-detect": "^0.2.28",
     "core-js": "^3.6.4",
+    "glsl-noise": "0.0.0",
+    "glslify-loader": "^2.0.0",
+    "gsap": "^3.2.6",
+    "raw-loader": "^4.0.0",
     "three": "^0.113.2",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5"
