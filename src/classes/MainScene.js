@@ -36,7 +36,14 @@ class MainScene {
 
 
         this.currentSceneId = 0
-        this.scene.add(Scenes[0].scene)
+        this.scene.add(Scenes[this.currentSceneId].scene)
+
+        Scenes[this.currentSceneId].scene.traverse(child => {
+            if (child instanceof THREE.Mesh) {
+                console.log(child)
+                child._shader.in()
+            }
+        })
 
 
         this.controls = new DeviceOrientationControls(this.camera);
@@ -71,15 +78,18 @@ class MainScene {
                 child._shader.out()
             }
         })
-        this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
-        this.scene.add(Scenes[this.currentSceneId].scene)
+        setTimeout(() => {
+            this.scene.remove(Scenes[this.currentSceneId].scene)
+            this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
+            this.scene.add(Scenes[this.currentSceneId].scene)
 
-        Scenes[this.currentSceneId].scene.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                console.log(child)
-                child._shader.in()
-            }
-        })
+            Scenes[this.currentSceneId].scene.traverse(child => {
+                if (child instanceof THREE.Mesh) {
+                    console.log(child)
+                    child._shader.in()
+                }
+            })
+        }, 1000)
 
     }
 

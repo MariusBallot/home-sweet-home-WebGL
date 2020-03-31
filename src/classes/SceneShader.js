@@ -26,7 +26,7 @@ export default class SceneShader {
             },
             u_th: {
                 type: 'f',
-                value: 1 + this.border
+                value: -1 + this.border
             },
         }
 
