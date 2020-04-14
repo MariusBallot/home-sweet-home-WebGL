@@ -8,6 +8,8 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 import SocketServer from '../SocketServer'
 
 import SceneLoader from './SceneLoader'
+import BlackTrans from './BlackTrans'
+
 import CameraController from '../controllers/CameraController'
 import Scenes from '../controllers/ScenesManager'
 import RaycastController from '../controllers/RaycastController'
@@ -21,7 +23,7 @@ class MainScene {
     }
 
     start(_container) {
-        this.renderer = new THREE.WebGLRenderer({ antialias: true })
+        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.renderer.debug.checkShaderErrors = true
         _container.appendChild(this.renderer.domElement)
@@ -40,7 +42,6 @@ class MainScene {
 
         Scenes[this.currentSceneId].scene.traverse(child => {
             if (child instanceof THREE.Mesh) {
-                console.log(child)
                 child._shader.in()
             }
         })
@@ -58,6 +59,8 @@ class MainScene {
         RaycastController.setTarget({ camera: this.camera, scene: this.scene })
         RaycastController.addOnShoots({ name: 'MainSceneOnShoot', callback: this.onShoot })
 
+        BlackTrans.init({ renderer: this.renderer })
+
         this.scene.add(new THREE.AmbientLight())
 
         RAF.subscribe("mainSceneUpdate", this.update)
@@ -69,12 +72,11 @@ class MainScene {
     }
 
     switchScene() {
-        // this.scene.remove(Scenes[this.currentSceneId].scene)
-        // Scenes[this.currentSceneId].shader.out()
+        BlackTrans.play()
+        SocketServer.sendToServer('changeScene', { from: this.currentSceneId, to: (this.currentSceneId + 1) % Scenes.length })
 
         Scenes[this.currentSceneId].scene.traverse(child => {
             if (child instanceof THREE.Mesh) {
-                console.log(child)
                 child._shader.out()
             }
         })
@@ -85,7 +87,6 @@ class MainScene {
 
             Scenes[this.currentSceneId].scene.traverse(child => {
                 if (child instanceof THREE.Mesh) {
-                    console.log(child)
                     child._shader.in()
                 }
             })
@@ -98,7 +99,9 @@ class MainScene {
     }
 
     update() {
+        this.renderer.autoClear = false
         this.renderer.render(this.scene, this.camera)
+        BlackTrans.update()
         this.controls.update();
 
         if (SocketServer.connected)

@@ -5,7 +5,6 @@ import Browser from 'browser-detect'
 
 Vue.config.productionTip = false
 window.browser = Browser()
-console.log(window.browser)
 
 new Vue({
   router,

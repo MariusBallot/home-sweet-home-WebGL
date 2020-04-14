@@ -26,7 +26,6 @@ class SceneLoader {
                         }
                     }
                 })
-                console.log(gltf)
                 scene.scene = gltf.scene
                 if (scene.scale)
                     scene.scene.scale.set(scene.scale, scene.scale, scene.scale)

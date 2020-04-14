@@ -28,11 +28,7 @@ export default {
   created() {
     this.isMobile = window.browser.mobile;
     if (config.allowDesktop) this.isMobile = true;
-    console.log(
-      window.innerWidth,
-      window.innerHeight,
-      window.innerWidth > window.innerHeight
-    );
+
     this.isLandscape = window.innerWidth > window.innerHeight;
     if (config.allowDesktop) this.isLandscape = true;
 

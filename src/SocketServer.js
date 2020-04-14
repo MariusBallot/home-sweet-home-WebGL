@@ -38,10 +38,12 @@ class SocketServer {
         const message = { type: type, message: JSON.stringify(value) }
         const string = JSON.stringify(message)
         this.WEBSOCKET.send(string)
+
+        if (type == "changeScene")
+            console.log(message)
     }
 
     onServerOpen() {
-        console.log('hey')
         this.connected = true
     }
 
