@@ -1,5 +1,5 @@
 import RAF from '@/utils/raf'
-import TestScene from '@/utils/TestScene'
+// import TestScene from '@/utils/TestScene'
 import * as THREE from 'three'
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -30,11 +30,10 @@ class MainScene {
 
         this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.camera.position.set(0, 1, 0)
-        this.controls = new DeviceOrientationControls(this.camera);
-        this.controls.update();
 
         this.scene = new THREE.Scene()
-        this.scene.background = TestScene.background
+        // this.scene.background = TestScene.background
+        this.scene.background = new THREE.Color(0xAAAAFF)
 
 
         this.currentSceneId = 0
@@ -50,7 +49,7 @@ class MainScene {
         this.controls = new DeviceOrientationControls(this.camera);
         if (config.allowDesktop) {
 
-            this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+            this.controls = new OrbitControls(this.camera, document.body)
             this.camera.position.set(10, 10, 10)
         }
         this.controls.update();

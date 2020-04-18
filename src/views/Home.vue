@@ -1,8 +1,9 @@
 <template>
   <div class="home">
-    <h1>Welcome</h1>
-    <h1>Connect your device</h1>
-    <router-link to="/InGame">Device connected</router-link>
+    <h1>Home Sweet Home</h1>
+    <h2>Connect your device</h2>
+    <input type="text" placeholder="Access key" />
+    <router-link to="/InGame">Connect Custom Server</router-link>
   </div>
 </template>
 
@@ -16,7 +17,29 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../utils/mixins.styl';
+
 .home {
-  height: 200vh;
+  width: 100vw;
+  height: 100vh;
+  background: $darkGrey;
+  color: $lightGrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: white;
+  }
+
+  input {
+    padding: 10px;
+    font-size: inherit;
+    margin-top: 20px;
+    background: none;
+    border: solid $lightGrey 1px;
+    border-radius: 2px;
+  }
 }
 </style>

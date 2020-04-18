@@ -32,6 +32,7 @@ export default {
   color: white;
   z-index: -1;
   position: absolute;
+  pointer-events: all;
   top: 0;
   left: 0;
 }

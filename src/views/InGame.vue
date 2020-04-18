@@ -3,8 +3,7 @@
     <Loading v-if="!loaded" />
     <ThreeCanvas />
     <div class="domContent">
-      <h1>Welcome</h1>
-      <button v-on:click="onClick" ref="nextScene">next scene</button>
+      <button v-on:click="onClick" ref="nextScene">Next Scene</button>
     </div>
   </div>
 </template>
@@ -44,22 +43,27 @@ export default {
 </script>
  <style lang="stylus" scoped>
  .inGame {
+   width: 100vw;
+   height: 100vh;
+   overflow: hidden;
+
    .domContent {
-     width: 100vw;
-     height: 100vh;
      position: absolute;
-     z-index: -1;
      overflow: hidden;
-     pointer-events: none;
-     top: 0;
-     left: 0;
+     top: 10px;
+     left: 10px;
      color: white;
 
      button {
        pointer-events: all;
        font-size: 1em;
        background: white;
+       color: white;
        border: none;
+       font-weight: 900;
+       background: none;
+       padding: 20px;
+       border: solid white 1px;
      }
    }
  }

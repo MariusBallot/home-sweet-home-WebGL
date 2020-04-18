@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <button class="fs" v-on:click="toggleFS">Toggle FS</button>
     <Desktop v-if="!isMobile" />
     <Landscape v-if="!isLandscape" />
     <router-view />
@@ -46,6 +47,35 @@ export default {
   methods: {
     resize() {
       this.isLandscape = window.innerWidth > window.innerHeight;
+    },
+    toggleFS: function() {
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          /* Firefox */
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          /* Chrome, Safari and Opera */
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          /* IE/Edge */
+          document.documentElement.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          /* Chrome, Safari and Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          /* IE/Edge */
+          document.msExitFullscreen();
+        }
+      }
     }
   }
 };
@@ -53,9 +83,40 @@ export default {
 
 
 <style lang="stylus">
+@font-face {
+  font-family: 'Grotesk';
+  src: url('/fonts/DarkerGrotesque-Black.ttf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Grotesk';
+  src: url('/fonts/DarkerGrotesque-Regular.ttf');
+  font-weight: 400;
+}
+
 * {
+  font-family: 'Grotesk';
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+button.fs {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 1em;
+  background: white;
+  color: white;
+  border: none;
+  font-weight: 900;
+  background: none;
+  padding: 20px;
+  border: solid white 1px;
 }
 </style>
