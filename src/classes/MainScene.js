@@ -12,8 +12,9 @@ import BlackTrans from './BlackTrans'
 
 import CameraController from '../controllers/CameraController'
 import Scenes from '../controllers/ScenesManager'
+import Characters from '../controllers/CharactersManager'
 import RaycastController from '../controllers/RaycastController'
-import { Scene } from 'three'
+
 import config from '../config'
 
 class MainScene {
@@ -28,8 +29,15 @@ class MainScene {
         this.renderer.debug.checkShaderErrors = true
         _container.appendChild(this.renderer.domElement)
 
-        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.camera.position.set(0, 1, 0)
+        this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.debugControls = new OrbitControls(this.debugCamera, document.body)
+        this.debugCamera.position.set(10, 10, 10)
+        this.debugControls.update();
+
+        this.orCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.orCamera.position.set(0, 1, 0)
+        this.orControls = new DeviceOrientationControls(this.orCamera);
+        this.orControls.update();
 
         this.scene = new THREE.Scene()
         // this.scene.background = TestScene.background
@@ -37,6 +45,8 @@ class MainScene {
 
 
         this.currentSceneId = 0
+        this.scene.add(Characters[0].model.scene)
+        Characters[0].model.scene.position.set(1, 0, 3)
         this.scene.add(Scenes[this.currentSceneId].scene)
 
         Scenes[this.currentSceneId].scene.traverse(child => {
@@ -44,15 +54,6 @@ class MainScene {
                 child._shader.in()
             }
         })
-
-
-        this.controls = new DeviceOrientationControls(this.camera);
-        if (config.allowDesktop) {
-
-            this.controls = new OrbitControls(this.camera, document.body)
-            this.camera.position.set(10, 10, 10)
-        }
-        this.controls.update();
 
 
         RaycastController.setTarget({ camera: this.camera, scene: this.scene })
@@ -98,18 +99,29 @@ class MainScene {
     }
 
     update() {
+
+        let currCam = this.debugCamera
+        if (config.orCam)
+            currCam = this.orCamera
         this.renderer.autoClear = false
-        this.renderer.render(this.scene, this.camera)
+        this.renderer.render(this.scene, currCam)
         BlackTrans.update()
-        this.controls.update();
+
+        if (config.orCam)
+            this.orControls.update();
+        else
+            this.debugControls.update()
 
         if (SocketServer.connected)
-            SocketServer.sendToServer('orientation', this.camera.rotation)
+            SocketServer.sendToServer('orientation', this.orCamera.rotation)
     }
 
     onWindowResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
+        this.orCamera.aspect = window.innerWidth / window.innerHeight;
+        this.orCamera.updateProjectionMatrix();
+
+        this.de.aspect = window.innerWidth / window.innerHeight;
+        this.de.updateProjectionMatrix();
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }

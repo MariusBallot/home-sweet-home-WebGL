@@ -4,6 +4,7 @@
 
 <script>
 import SceneLoader from "@/classes/SceneLoader";
+import CharacterLoader from "@/classes/CharacterLoader";
 import MainScene from "@/classes/MainScene";
 import LoadingController from "@/controllers/LoadingController";
 
@@ -12,6 +13,7 @@ export default {
 
   mounted() {
     SceneLoader.start();
+    CharacterLoader.start();
     LoadingController.addOnLoad("allScenesLoaded", this.onScenesLoaded);
   },
   methods: {

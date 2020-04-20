@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <button class="fs" v-on:click="toggleFS">Toggle FS</button>
+    <div class="GUI">
+      <button class="fs" v-on:click="toggleFS">Toggle FS</button>
+      <button class="cam" v-on:click="toggleCam">Toggle Cam</button>
+    </div>
     <Desktop v-if="!isMobile" />
     <Landscape v-if="!isLandscape" />
     <router-view />
@@ -76,6 +79,12 @@ export default {
           document.msExitFullscreen();
         }
       }
+    },
+    toggleCam: function() {
+      if (config.orCam) config.orCam = false;
+      else config.orCam = true;
+      localStorage.setItem("camType", config.orCam);
+      console.log(localStorage.getItem("camType"));
     }
   }
 };
@@ -106,17 +115,23 @@ a {
   color: inherit;
 }
 
-button.fs {
+.GUI {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  font-size: 1em;
-  background: white;
-  color: white;
-  border: none;
-  font-weight: 900;
-  background: none;
-  padding: 20px;
-  border: solid white 1px;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    font-size: 1em;
+    background: white;
+    color: white;
+    border: none;
+    font-weight: 900;
+    background: none;
+    padding: 20px;
+    border: solid white 1px;
+    margin-top: 10px;
+  }
 }
 </style>
