@@ -17,9 +17,12 @@ class CharacterLoader {
             this.loader.load(character.url, (obj) => {
                 console.log(obj)
                 character.model = obj
+                if (character.scale != undefined)
+                    character.model.scene.scale.set(character.scale, character.scale, character.scale)
                 character.mixer = new THREE.AnimationMixer(character.model.scene)
                 character.actions = []
                 obj.animations.forEach((animation, i) => {
+                    console.log(animation.name, animation.duration)
                     character.actions.push(character.mixer.clipAction(animation))
                     character.actions[i].play()
                 });

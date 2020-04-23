@@ -24,7 +24,7 @@ class MainScene {
     }
 
     start(_container) {
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+        this.renderer = new THREE.WebGLRenderer({ antialias: true })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.renderer.debug.checkShaderErrors = true
         _container.appendChild(this.renderer.domElement)
@@ -46,7 +46,8 @@ class MainScene {
 
         this.currentSceneId = 0
         this.scene.add(Characters[0].model.scene)
-        Characters[0].model.scene.position.set(1, 0, 3)
+        console.log(Characters[0].model.scene)
+        // Characters[0].model.scene.position.set(1, 0, 3)
         this.scene.add(Scenes[this.currentSceneId].scene)
 
         Scenes[this.currentSceneId].scene.traverse(child => {
@@ -62,6 +63,10 @@ class MainScene {
         BlackTrans.init({ renderer: this.renderer })
 
         this.scene.add(new THREE.AmbientLight())
+
+        let pL = new THREE.PointLight()
+        pL.position.set(1, 1, 1)
+        this.scene.add(pL)
 
         RAF.subscribe("mainSceneUpdate", this.update)
     }
@@ -120,8 +125,8 @@ class MainScene {
         this.orCamera.aspect = window.innerWidth / window.innerHeight;
         this.orCamera.updateProjectionMatrix();
 
-        this.de.aspect = window.innerWidth / window.innerHeight;
-        this.de.updateProjectionMatrix();
+        this.debugCamera.aspect = window.innerWidth / window.innerHeight;
+        this.debugCamera.updateProjectionMatrix();
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }

@@ -6,6 +6,7 @@
     </div>
     <Desktop v-if="!isMobile" />
     <Landscape v-if="!isLandscape" />
+    <OrRequest v-if="isSafari" />
     <router-view />
   </div>
 </template>
@@ -22,7 +23,8 @@ export default {
   data() {
     return {
       isMobile: false,
-      isLandscape: null
+      isLandscape: null,
+      isSafari: false
     };
   },
   components: {
