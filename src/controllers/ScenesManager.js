@@ -9,24 +9,24 @@ const scenes = [
         url: "/models/Scenes/Garden/scene.gltf",
         scale: 0.01,
     },
-    {
-        name: "Street",
-        camera: null,
-        scene: null,
-        shader: null,
-        url: "/models/Scenes/Street/scene.gltf",
-        scale: 0.01,
+    // {
+    //     name: "Street",
+    //     camera: null,
+    //     scene: null,
+    //     shader: null,
+    //     url: "/models/Scenes/Street/scene.gltf",
+    //     scale: 0.01,
 
-    },
-    {
-        name: "Rooftops",
-        camera: null,
-        scene: null,
-        shader: null,
-        url: "/models/Scenes/Rooftop/scene.gltf",
-        scale: 0.01,
+    // },
+    // {
+    //     name: "Rooftops",
+    //     camera: null,
+    //     scene: null,
+    //     shader: null,
+    //     url: "/models/Scenes/Rooftop/scene.gltf",
+    //     scale: 0.01,
 
-    },
+    // },
 ]
 if (config.testScene)
     scenes.push({

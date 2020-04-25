@@ -16,6 +16,9 @@ class CharacterLoader {
             console.log(character)
             this.loader.load(character.url, (obj) => {
                 console.log(obj)
+                obj.scene.traverse(function (object) {
+                    object.frustumCulled = false;
+                });
                 character.model = obj
                 if (character.scale != undefined)
                     character.model.scene.scale.set(character.scale, character.scale, character.scale)

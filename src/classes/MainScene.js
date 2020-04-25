@@ -29,7 +29,9 @@ class MainScene {
         this.renderer.debug.checkShaderErrors = true
         _container.appendChild(this.renderer.domElement)
 
-        this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.scene = new THREE.Scene()
+
+        this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.001, 1000)
         this.debugControls = new OrbitControls(this.debugCamera, document.body)
         this.debugCamera.position.set(10, 10, 10)
         this.debugControls.update();
@@ -38,16 +40,16 @@ class MainScene {
         this.orCamera.position.set(0, 1, 0)
         this.orControls = new DeviceOrientationControls(this.orCamera);
         this.orControls.update();
+        var helper = new THREE.CameraHelper(this.orCamera);
+        // this.scene.add(helper);
 
-        this.scene = new THREE.Scene()
         // this.scene.background = TestScene.background
         this.scene.background = new THREE.Color(0xAAAAFF)
 
 
         this.currentSceneId = 0
         this.scene.add(Characters[0].model.scene)
-        console.log(Characters[0].model.scene)
-        // Characters[0].model.scene.position.set(1, 0, 3)
+        this.orCamera.position.y = 2
         this.scene.add(Scenes[this.currentSceneId].scene)
 
         Scenes[this.currentSceneId].scene.traverse(child => {
@@ -57,8 +59,8 @@ class MainScene {
         })
 
 
-        RaycastController.setTarget({ camera: this.camera, scene: this.scene })
-        RaycastController.addOnShoots({ name: 'MainSceneOnShoot', callback: this.onShoot })
+        // RaycastController.setTarget({ camera: this.camera, scene: this.scene })
+        // RaycastController.addOnShoots({ name: 'MainSceneOnShoot', callback: this.onShoot })
 
         BlackTrans.init({ renderer: this.renderer })
 
@@ -112,10 +114,11 @@ class MainScene {
         this.renderer.render(this.scene, currCam)
         BlackTrans.update()
 
-        if (config.orCam)
-            this.orControls.update();
-        else
-            this.debugControls.update()
+        this.orControls.update();
+        this.debugControls.update()
+
+
+
 
         if (SocketServer.connected)
             SocketServer.sendToServer('orientation', this.orCamera.rotation)

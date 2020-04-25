@@ -44,7 +44,7 @@ class RaycastController {
         this.shoot = this.shoot.bind(this)
         this.addOnShoots = this.addOnShoots.bind(this)
 
-        window.addEventListener('click', this.shoot)
+        // window.addEventListener('click', this.shoot)
     }
 }
 
