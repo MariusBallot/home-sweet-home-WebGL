@@ -36,20 +36,23 @@ class MainScene {
         this.debugCamera.position.set(10, 10, 10)
         this.debugControls.update();
 
-        this.orCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.orCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.orCamera.position.set(0, 1, 0)
         this.orControls = new DeviceOrientationControls(this.orCamera);
         this.orControls.update();
         var helper = new THREE.CameraHelper(this.orCamera);
-        // this.scene.add(helper);
+        this.scene.add(helper);
 
         // this.scene.background = TestScene.background
-        this.scene.background = new THREE.Color(0xAAAAFF)
+        this.scene.background = new THREE.Color(0xCCCCCC)
 
 
         this.currentSceneId = 0
         this.scene.add(Characters[0].model.scene)
         this.orCamera.position.y = 2
+
+        Characters[0].model.scene.position.copy(this.orCamera.position)
+
         this.scene.add(Scenes[this.currentSceneId].scene)
 
         Scenes[this.currentSceneId].scene.traverse(child => {
@@ -67,7 +70,7 @@ class MainScene {
         this.scene.add(new THREE.AmbientLight())
 
         let pL = new THREE.PointLight()
-        pL.position.set(1, 1, 1)
+        pL.position.set(1, 3, 1)
         this.scene.add(pL)
 
         RAF.subscribe("mainSceneUpdate", this.update)
@@ -118,7 +121,7 @@ class MainScene {
         this.debugControls.update()
 
 
-
+        Characters[0].model.scene.rotation.y = this.orCamera.rotation.y + Math.PI / 2
 
         if (SocketServer.connected)
             SocketServer.sendToServer('orientation', this.orCamera.rotation)

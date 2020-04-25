@@ -1,5 +1,5 @@
 <template>
-  <div class="landscape">Only in landscape mode</div>
+  <div class="landscape">Only in portrait mode</div>
 </template>
 
 <script>

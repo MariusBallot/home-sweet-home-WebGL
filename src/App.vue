@@ -5,7 +5,7 @@
       <button class="cam" v-on:click="toggleCam">Toggle Cam</button>
     </div>
     <Desktop v-if="!isMobile" />
-    <Landscape v-if="!isLandscape" />
+    <Landscape v-if="isLandscape" />
     <OrRequest v-if="isSafari" />
     <router-view />
   </div>
@@ -36,7 +36,6 @@ export default {
     if (config.allowDesktop) this.isMobile = true;
 
     this.isLandscape = window.innerWidth > window.innerHeight;
-    if (config.allowDesktop) this.isLandscape = true;
 
     window.addEventListener("resize", this.resize);
 
