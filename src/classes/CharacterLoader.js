@@ -13,9 +13,7 @@ class CharacterLoader {
 
     start() {
         Characters.forEach(character => {
-            console.log(character)
             this.loader.load(character.url, (obj) => {
-                console.log(obj)
                 obj.scene.traverse(function (object) {
                     object.frustumCulled = false;
                 });
@@ -25,9 +23,7 @@ class CharacterLoader {
                 character.mixer = new THREE.AnimationMixer(character.model.scene)
                 character.actions = []
                 obj.animations.forEach((animation, i) => {
-                    console.log(animation.name, animation.duration)
                     character.actions.push(character.mixer.clipAction(animation))
-                    character.actions[i].play()
                 });
             })
         })

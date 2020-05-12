@@ -7,13 +7,12 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 import SocketServer from '../SocketServer'
 
-import SceneLoader from './SceneLoader'
 import BlackTrans from './BlackTrans'
+import PhysicsEngine from './PhysicsEngine'
 
-import CameraController from '../controllers/CameraController'
 import Scenes from '../controllers/ScenesManager'
-import Characters from '../controllers/CharactersManager'
-import RaycastController from '../controllers/RaycastController'
+
+import Scene0 from './SceneClasses/Scene0'
 
 import config from '../config'
 
@@ -37,22 +36,20 @@ class MainScene {
         this.debugControls.update();
 
         this.orCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.orCamera.position.set(0, 1, 0)
+        this.orCamera.position.set(0, 2, 0)
         this.orControls = new DeviceOrientationControls(this.orCamera);
         this.orControls.update();
-        var helper = new THREE.CameraHelper(this.orCamera);
-        this.scene.add(helper);
 
-        // this.scene.background = TestScene.background
+
         this.scene.background = new THREE.Color(0xCCCCCC)
 
 
+        Scene0.start({
+            camera: this.orCamera,
+            scene: this.scene
+        })
+
         this.currentSceneId = 0
-        this.scene.add(Characters[0].model.scene)
-        this.orCamera.position.y = 2
-
-        Characters[0].model.scene.position.copy(this.orCamera.position)
-
         this.scene.add(Scenes[this.currentSceneId].scene)
 
         Scenes[this.currentSceneId].scene.traverse(child => {
@@ -61,9 +58,6 @@ class MainScene {
             }
         })
 
-
-        // RaycastController.setTarget({ camera: this.camera, scene: this.scene })
-        // RaycastController.addOnShoots({ name: 'MainSceneOnShoot', callback: this.onShoot })
 
         BlackTrans.init({ renderer: this.renderer })
 
@@ -74,6 +68,7 @@ class MainScene {
         this.scene.add(pL)
 
         RAF.subscribe("mainSceneUpdate", this.update)
+        PhysicsEngine.start()
     }
 
     onShoot(int) {
@@ -121,7 +116,6 @@ class MainScene {
         this.debugControls.update()
 
 
-        Characters[0].model.scene.rotation.y = this.orCamera.rotation.y + Math.PI / 2
 
         if (SocketServer.connected)
             SocketServer.sendToServer('orientation', this.orCamera.rotation)
