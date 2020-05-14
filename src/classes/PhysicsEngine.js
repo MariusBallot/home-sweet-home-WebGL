@@ -84,7 +84,6 @@ class PhysicsEngine {
     attachTo({ mesh, parentName }) {
         this.bodyObjs.forEach((bodyObj, i) => {
             if (bodyObj.name == parentName) {
-                console.log(mesh)
                 bodyObj.children.push(mesh)
             }
         });
@@ -95,7 +94,6 @@ class PhysicsEngine {
         this.bodyObjs.forEach((bodyObj, i) => {
             if (bodyObj.name == bodyName) {
                 this.world.add(bodyObj.body);
-                console.log(bodyObj.active)
                 bodyObj.active = true
 
             }

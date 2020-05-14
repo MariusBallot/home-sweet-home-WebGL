@@ -26,7 +26,6 @@ class Scene0 {
             child.frustumCulled = false;
             if (child instanceof THREE.Object3D && child.name == "balle_main") {
                 this.handBall = child
-                console.log(this.handBall)
             }
         });
 
@@ -67,8 +66,36 @@ class Scene0 {
             mesh: this.wall
         })
 
+        //Displays Dog
+        this.dog = Characters[2].model.scene
+        this.dogActions = Characters[2].actions
+        this.scene.add(this.dog)
+        this.dog.position.y = .2
+
+        //starts dog Idle
+        this.dogActions[0].play()
+        this.dogActions[1].play()
+        this.dogActions[1].enabled = false
+        this.dogRunning = false
+
 
         RAF.subscribe("scene0", this.update)
+    }
+
+    runDogToggle() {
+        if (this.dogRunning) {
+            console.log("wue")
+            this.dogRunning = false
+            this.dogActions[0].enabled = true
+            this.dogActions[0].fadeIn(1)
+            this.dogActions[1].fadeOut(1)
+            console.log(this.dogActions[0])
+        } else {
+            this.dogRunning = true
+            this.dogActions[1].enabled = true
+            this.dogActions[1].fadeIn(1)
+            this.dogActions[0].fadeOut(1)
+        }
     }
 
     throw() {
@@ -92,6 +119,7 @@ class Scene0 {
                 mesh: this.ballModel,
                 parentName: this.sphereBod.name
             })
+            setTimeout(this.runDogToggle, 800)
         }, 800)
     }
 
@@ -105,8 +133,14 @@ class Scene0 {
 
         this.handBall.getWorldPosition(this.ballPosition)
         if (this.sphereBod.active == false) {
-            console.log('huzai')
             this.sphereCol.position.copy(this.ballPosition)
+        }
+
+        if (this.dogRunning) {
+            this.dog.position.x += (this.ballModel.position.x - this.dog.position.x) * 0.05
+            this.dog.position.z += (this.ballModel.position.z - this.dog.position.z) * 0.05
+            var angle = Math.atan2(this.ballModel.position.x - this.dog.position.x, - (this.ballModel.position.z - this.dog.position.z)) * (180 / Math.PI) + Math.PI;
+            this.dog.rotation.y = angle
         }
     }
 
@@ -115,6 +149,7 @@ class Scene0 {
         this.stop = this.stop.bind(this)
         this.update = this.update.bind(this)
         this.throw = this.throw.bind(this)
+        this.runDogToggle = this.runDogToggle.bind(this)
 
         window.addEventListener('click', this.throw)
     }

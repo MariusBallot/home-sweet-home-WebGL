@@ -30,7 +30,7 @@ class MainScene {
 
         this.scene = new THREE.Scene()
 
-        this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.001, 1000)
+        this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.debugControls = new OrbitControls(this.debugCamera, document.body)
         this.debugCamera.position.set(10, 10, 10)
         this.debugControls.update();
@@ -72,7 +72,6 @@ class MainScene {
     }
 
     onShoot(int) {
-        console.log(int)
         int.object.material = new THREE.MeshNormalMaterial()
     }
 

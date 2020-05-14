@@ -15,6 +15,14 @@ const characters = [
         actions: null,
         scale: 0.01,
     },
+    {
+        name: "dog",
+        url: "/models/Characters/dog.glb",
+        model: null,
+        mixer: null,
+        actions: null,
+        scale: 0.01,
+    },
 
 ]
 
