@@ -1986,10 +1986,10 @@
     "extras": {
       "author": "Luc.Miramont (https://sketchfab.com/Luc.Miramont)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/rooftop-s-baked-6d40c7b54d1945b89ba5c682c1e1e2aa",
+      "source": "https://sketchfab.com/3d-models/rooftop-s-baked-843f877c572e4f04ab92571e62649fdf",
       "title": "Rooftop S baked"
     },
-    "generator": "Sketchfab-8.22.0",
+    "generator": "Sketchfab-8.50.0",
     "version": "2.0"
   },
   "bufferViews": [
@@ -2046,7 +2046,7 @@
       "uri": "textures/Lumiere_baseColor.jpeg"
     },
     {
-      "uri": "textures/Rebords.2_baseColor.jpeg"
+      "uri": "textures/Rebords.1_baseColor.jpeg"
     },
     {
       "uri": "textures/Route_baseColor.jpeg"
@@ -2250,7 +2250,7 @@
       "extensions": {
         "KHR_materials_unlit": {}
       },
-      "name": "Rebords.2",
+      "name": "Rebords.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -2882,7 +2882,7 @@
       ]
     },
     {
-      "name": "Rebords_1_Rebords.2_0",
+      "name": "Rebords_Rebords.1_0",
       "primitives": [
         {
           "attributes": {
@@ -3283,7 +3283,7 @@
         0,
         1
       ],
-      "name": "2976528704934e91b5185cadf61748ea.fbx"
+      "name": "6079cfe5ef3446fb80119443451970e2.fbx"
     },
     {
       "children": [
@@ -3520,11 +3520,11 @@
         115.11985015869141,
         1
       ],
-      "name": "Rebords_1"
+      "name": "Rebords"
     },
     {
       "mesh": 8,
-      "name": "Rebords_1_Rebords.2_0"
+      "name": "Rebords_Rebords.1_0"
     },
     {
       "children": [
@@ -3908,7 +3908,7 @@
         1,
         0,
         11676.8203125,
-        -1058.6572265625,
+        -851.47882080078125,
         22946.171875,
         1
       ],
@@ -3936,7 +3936,7 @@
         1,
         0,
         7868.40576171875,
-        -178.26708984375,
+        28.911310195922852,
         7369.0283203125,
         1
       ],
@@ -3964,7 +3964,7 @@
         1,
         0,
         2990.6123046875,
-        46.313129425048828,
+        253.49153137207031,
         9403.703125,
         1
       ],
@@ -3992,7 +3992,7 @@
         1,
         0,
         -19413.041015625,
-        -248.21900939941406,
+        -41.040607452392578,
         9472.6474609375,
         1
       ],

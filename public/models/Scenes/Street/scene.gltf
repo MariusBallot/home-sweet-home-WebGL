@@ -1490,10 +1490,10 @@
     "extras": {
       "author": "Luc.Miramont (https://sketchfab.com/Luc.Miramont)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/rue-s-baked-30ed5dbeef0d420baa0fb36eeb52fb7e",
+      "source": "https://sketchfab.com/3d-models/rue-s-baked-0da87bf4c16e4278821a3bfc5969d891",
       "title": "Rue S_BAked"
     },
-    "generator": "Sketchfab-8.6.0",
+    "generator": "Sketchfab-8.51.0",
     "version": "2.0"
   },
   "bufferViews": [
@@ -1980,9 +1980,9 @@
     {
       "doubleSided": true,
       "emissiveFactor": [
-        0,
-        0,
-        0
+        1,
+        1,
+        1
       ],
       "extensions": {
         "KHR_materials_unlit": {}
@@ -2533,7 +2533,7 @@
         0,
         1
       ],
-      "name": "dbad0d07932546938f1eb6ee1824e1f8.fbx"
+      "name": "f2caf6099dba4941b35997513ca2f863.fbx"
     },
     {
       "children": [

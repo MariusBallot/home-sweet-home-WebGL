@@ -81,7 +81,8 @@ class MainScene {
 
         Scenes[this.currentSceneId].scene.traverse(child => {
             if (child instanceof THREE.Mesh) {
-                child._shader.out()
+                if (child._shader != undefined)
+                    child._shader.out()
             }
         })
         setTimeout(() => {
@@ -91,7 +92,8 @@ class MainScene {
 
             Scenes[this.currentSceneId].scene.traverse(child => {
                 if (child instanceof THREE.Mesh) {
-                    child._shader.in()
+                    if (child._shader != undefined)
+                        child._shader.in()
                 }
             })
         }, 1000)

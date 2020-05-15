@@ -3784,10 +3784,10 @@
     "extras": {
       "author": "Luc.Miramont (https://sketchfab.com/Luc.Miramont)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/appt-subjectif-0a9d83ed70c84fb08c26b2e49cff69b8",
-      "title": "Appt Subjectif"
+      "source": "https://sketchfab.com/3d-models/appt-subjectif-opti-c862c16a23d542d8b61f811aba2ae180",
+      "title": "Appt Subjectif Opti"
     },
-    "generator": "Sketchfab-8.2.1",
+    "generator": "Sketchfab-8.51.0",
     "version": "2.0"
   },
   "bufferViews": [
@@ -3821,300 +3821,156 @@
       "uri": "scene.bin"
     }
   ],
+  "extensionsUsed": [
+    "KHR_materials_unlit"
+  ],
   "images": [
     {
       "uri": "textures/Feuille_arbre.2_baseColor.jpeg"
     },
     {
-      "uri": "textures/Feuille_arbre.2_metallicRoughness.png"
-    },
-    {
       "uri": "textures/haie.2_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/haie.2_metallicRoughness.png"
     },
     {
       "uri": "textures/Poign_tiroir_baseColor.jpeg"
     },
     {
-      "uri": "textures/Poign_tiroir_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Table_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Table_metallicRoughness.png"
     },
     {
       "uri": "textures/material_baseColor.jpeg"
     },
     {
-      "uri": "textures/material_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Mur_gauche_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Mur_gauche_metallicRoughness.png"
     },
     {
       "uri": "textures/Mur_Droit_baseColor.jpeg"
     },
     {
-      "uri": "textures/Mur_Droit_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Tapis_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Tapis_metallicRoughness.png"
     },
     {
       "uri": "textures/Matelas_baseColor.jpeg"
     },
     {
-      "uri": "textures/Matelas_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Oreiller.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Oreiller.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Couverture_baseColor.jpeg"
     },
     {
-      "uri": "textures/Couverture_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Pieds.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Pieds.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Frigo_baseColor.jpeg"
     },
     {
-      "uri": "textures/Frigo_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Porte_frigo_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Porte_frigo_metallicRoughness.png"
     },
     {
       "uri": "textures/Poignet_frigo_baseColor.jpeg"
     },
     {
-      "uri": "textures/Poignet_frigo_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Marque_frigo_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Marque_frigo_metallicRoughness.png"
     },
     {
       "uri": "textures/Capuchon_lampe_baseColor.jpeg"
     },
     {
-      "uri": "textures/Capuchon_lampe_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Corps_lampe_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Corps_lampe_metallicRoughness.png"
     },
     {
       "uri": "textures/Etagere.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Etagere.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Attaches_tagre.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Attaches_tagre.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Table.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Table.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Pieds_table.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Pieds_table.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Poster_baseColor.jpeg"
     },
     {
-      "uri": "textures/Poster_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Poster_2_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Poster_2_metallicRoughness.png"
     },
     {
       "uri": "textures/Poster_3_baseColor.jpeg"
     },
     {
-      "uri": "textures/Poster_3_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Evier_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Evier_metallicRoughness.png"
     },
     {
       "uri": "textures/Tuyau_EVider_baseColor.jpeg"
     },
     {
-      "uri": "textures/Tuyau_EVider_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Canalisation_Evier_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Canalisation_Evier_metallicRoughness.png"
     },
     {
       "uri": "textures/CAnalisation_Evier_2_baseColor.jpeg"
     },
     {
-      "uri": "textures/CAnalisation_Evier_2_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Robinet.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Robinet.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Livre_3.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Livre_3.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Livre_2.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Livre_2.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Livre_1.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Livre_1.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Barre_Vetements.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Barre_Vetements.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Fenetre_2.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Fenetre_2.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Boole.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Boole.1_metallicRoughness.png"
     },
     {
       "uri": "textures/Disc_baseColor.jpeg"
     },
     {
-      "uri": "textures/Disc_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Cadre_Horloge_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Cadre_Horloge_metallicRoughness.png"
     },
     {
       "uri": "textures/VItre_baseColor.jpeg"
     },
     {
-      "uri": "textures/VItre_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Vtement_11_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Vtement_11_metallicRoughness.png"
     },
     {
       "uri": "textures/Vtement_10_baseColor.jpeg"
     },
     {
-      "uri": "textures/Vtement_10_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Vtement_9_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Vtement_9_metallicRoughness.png"
     },
     {
       "uri": "textures/Vtement_8_baseColor.jpeg"
     },
     {
-      "uri": "textures/Vtement_8_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Vtement_7_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Vtement_7_metallicRoughness.png"
     },
     {
       "uri": "textures/Vtement_6_baseColor.jpeg"
     },
     {
-      "uri": "textures/Vtement_6_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Vtement_5_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Vtement_5_metallicRoughness.png"
     },
     {
       "uri": "textures/Vtement_4.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Vtement_4.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Vtement_3_baseColor.jpeg"
     },
     {
-      "uri": "textures/Vtement_3_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Chaussure_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Chaussure_metallicRoughness.png"
     },
     {
       "uri": "textures/Chaussons_baseColor.jpeg"
@@ -4123,72 +3979,40 @@
       "uri": "textures/Ceintre.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Ceintre.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/cadre_baseColor.jpeg"
     },
     {
       "uri": "textures/Sol_Jardin_baseColor.jpeg"
     },
     {
-      "uri": "textures/Sol_Jardin_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Attache_balancoire.1_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Assises_Balancoire_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Assises_Balancoire_metallicRoughness.png"
     },
     {
       "uri": "textures/fer_Balancoire_baseColor.jpeg"
     },
     {
-      "uri": "textures/fer_Balancoire_metallicRoughness.png"
-    },
-    {
       "uri": "textures/herbe_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/herbe_metallicRoughness.png"
     },
     {
       "uri": "textures/Pierre.1_baseColor.jpeg"
     },
     {
-      "uri": "textures/Pierre.1_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Lianes_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Lianes_metallicRoughness.png"
     },
     {
       "uri": "textures/Bois_scene_baseColor.jpeg"
     },
     {
-      "uri": "textures/Bois_scene_metallicRoughness.png"
-    },
-    {
       "uri": "textures/Blanc_fenetre_baseColor.jpeg"
-    },
-    {
-      "uri": "textures/Blanc_fenetre_metallicRoughness.png"
     }
   ],
   "materials": [
     {
       "doubleSided": true,
-      "name": "Feuille_arbre.2",
-      "occlusionTexture": {
-        "index": 1,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Feuille_arbre.2",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4201,21 +4025,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 1,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "haie.2",
-      "occlusionTexture": {
-        "index": 3,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "haie.2",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 1,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Poign_tiroir",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4228,21 +4067,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 3,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Poign_tiroir",
-      "occlusionTexture": {
-        "index": 5,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Table",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 3,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "material",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4255,21 +4109,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 5,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Table",
-      "occlusionTexture": {
-        "index": 7,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Mur_gauche",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 5,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Mur_Droit",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4282,21 +4151,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 7,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "material",
-      "occlusionTexture": {
-        "index": 9,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Tapis",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 7,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Matelas",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4309,21 +4193,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 9,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Mur_gauche",
-      "occlusionTexture": {
-        "index": 11,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Oreiller.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 9,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Couverture",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4336,21 +4235,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 11,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Mur_Droit",
-      "occlusionTexture": {
-        "index": 13,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Pieds.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 11,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Frigo",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4363,21 +4277,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 13,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Tapis",
-      "occlusionTexture": {
-        "index": 15,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Porte_frigo",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 13,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Poignet_frigo",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4390,21 +4319,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 15,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Matelas",
-      "occlusionTexture": {
-        "index": 17,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Marque_frigo",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 15,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Capuchon_lampe",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4417,21 +4361,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 17,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Oreiller.1",
-      "occlusionTexture": {
-        "index": 19,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Corps_lampe",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 17,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Etagere.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4444,21 +4403,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 19,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Couverture",
-      "occlusionTexture": {
-        "index": 21,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Attaches_tagre.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 19,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Table.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4471,21 +4445,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 21,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Pieds.1",
-      "occlusionTexture": {
-        "index": 23,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Pieds_table.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 21,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Poster",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4498,21 +4487,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 23,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Frigo",
-      "occlusionTexture": {
-        "index": 25,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Poster_2",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 23,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Poster_3",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4525,21 +4529,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 25,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Porte_frigo",
-      "occlusionTexture": {
-        "index": 27,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Evier",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 25,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Tuyau_EVider",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4552,21 +4571,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 27,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Poignet_frigo",
-      "occlusionTexture": {
-        "index": 29,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Canalisation_Evier",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 27,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "CAnalisation_Evier_2",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4579,21 +4613,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 29,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Marque_frigo",
-      "occlusionTexture": {
-        "index": 31,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Robinet.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 29,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Livre_3.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4606,21 +4655,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 31,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Capuchon_lampe",
-      "occlusionTexture": {
-        "index": 33,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Livre_2.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 31,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Livre_1.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4633,21 +4697,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 33,
-          "texCoord": 0
-        },
         "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Corps_lampe",
-      "occlusionTexture": {
-        "index": 35,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Barre_Vetements.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 33,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Fenetre_2.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4660,21 +4739,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 35,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Etagere.1",
-      "occlusionTexture": {
-        "index": 37,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Boole.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 35,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Disc",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4687,26 +4781,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 37,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "emissiveFactor": [
-        0,
-        0,
-        0
-      ],
-      "name": "Attaches_tagre.1",
-      "occlusionTexture": {
-        "index": 39,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Cadre_Horloge",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 37,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "VItre",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4719,21 +4823,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 39,
-          "texCoord": 0
-        },
         "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Table.1",
-      "occlusionTexture": {
-        "index": 41,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Vtement_11",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 39,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Vtement_10",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4746,21 +4865,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 41,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Pieds_table.1",
-      "occlusionTexture": {
-        "index": 43,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Vtement_9",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 41,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Vtement_8",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4773,21 +4907,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 43,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Poster",
-      "occlusionTexture": {
-        "index": 45,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Vtement_7",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 43,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Vtement_6",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4800,21 +4949,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 45,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Poster_2",
-      "occlusionTexture": {
-        "index": 47,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Vtement_5",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 45,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Vtement_4.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4827,21 +4991,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 47,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Poster_3",
-      "occlusionTexture": {
-        "index": 49,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Vtement_3",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 47,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Chaussure",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4854,21 +5033,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 49,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Evier",
-      "occlusionTexture": {
-        "index": 51,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Chaussons",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 49,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Ceintre.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4881,21 +5075,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 51,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Tuyau_EVider",
-      "occlusionTexture": {
-        "index": 53,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "cadre",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 51,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Sol_Jardin",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4908,21 +5117,67 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 53,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
+        "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Canalisation_Evier",
-      "occlusionTexture": {
-        "index": 55,
-        "strength": 1,
-        "texCoord": 0
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Attache_balancoire.1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 53,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Assises_Balancoire",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 53,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "fer_Balancoire",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4935,21 +5190,36 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 55,
-          "texCoord": 0
-        },
         "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "CAnalisation_Evier_2",
-      "occlusionTexture": {
-        "index": 57,
-        "strength": 1,
-        "texCoord": 0
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "herbe",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 55,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Pierre.1",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4962,21 +5232,41 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 57,
-          "texCoord": 0
-        },
         "roughnessFactor": 1
       }
     },
     {
       "doubleSided": true,
-      "name": "Robinet.1",
-      "occlusionTexture": {
-        "index": 59,
-        "strength": 1,
-        "texCoord": 0
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "extensions": {
+        "KHR_materials_unlit": {}
       },
+      "name": "Lianes",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 57,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Bois_scene",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
           1,
@@ -4989,858 +5279,32 @@
           "texCoord": 0
         },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "Blanc_fenetre",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
           "index": 59,
           "texCoord": 0
         },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Livre_3.1",
-      "occlusionTexture": {
-        "index": 61,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 60,
-          "texCoord": 0
-        },
         "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 61,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Livre_2.1",
-      "occlusionTexture": {
-        "index": 63,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 62,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 63,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Livre_1.1",
-      "occlusionTexture": {
-        "index": 65,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 64,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 65,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Barre_Vetements.1",
-      "occlusionTexture": {
-        "index": 67,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 66,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 67,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Fenetre_2.1",
-      "occlusionTexture": {
-        "index": 69,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 68,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 69,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Boole.1",
-      "occlusionTexture": {
-        "index": 71,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 70,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 71,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Disc",
-      "occlusionTexture": {
-        "index": 73,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 72,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 73,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Cadre_Horloge",
-      "occlusionTexture": {
-        "index": 75,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 74,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 75,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "VItre",
-      "occlusionTexture": {
-        "index": 77,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 76,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 77,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_11",
-      "occlusionTexture": {
-        "index": 79,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 78,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 79,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_10",
-      "occlusionTexture": {
-        "index": 81,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 80,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 81,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_9",
-      "occlusionTexture": {
-        "index": 83,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 82,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 83,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_8",
-      "occlusionTexture": {
-        "index": 85,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 84,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 85,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_7",
-      "occlusionTexture": {
-        "index": 87,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 86,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 87,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_6",
-      "occlusionTexture": {
-        "index": 89,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 88,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 89,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_5",
-      "occlusionTexture": {
-        "index": 91,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 90,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 91,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_4.1",
-      "occlusionTexture": {
-        "index": 93,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 92,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 93,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Vtement_3",
-      "occlusionTexture": {
-        "index": 95,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 94,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 95,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Chaussure",
-      "occlusionTexture": {
-        "index": 97,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 96,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 97,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Chaussons",
-      "occlusionTexture": {
-        "index": 97,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 98,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 97,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Ceintre.1",
-      "occlusionTexture": {
-        "index": 100,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 99,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 100,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "cadre",
-      "occlusionTexture": {
-        "index": 75,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 101,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 75,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Sol_Jardin",
-      "occlusionTexture": {
-        "index": 103,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 102,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 103,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "emissiveFactor": [
-        0,
-        0,
-        0
-      ],
-      "name": "Attache_balancoire.1",
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 104,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "emissiveFactor": [
-        1,
-        1,
-        1
-      ],
-      "name": "Assises_Balancoire",
-      "occlusionTexture": {
-        "index": 106,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 105,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 106,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "fer_Balancoire",
-      "occlusionTexture": {
-        "index": 108,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 107,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 108,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "herbe",
-      "occlusionTexture": {
-        "index": 110,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 109,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 110,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Pierre.1",
-      "occlusionTexture": {
-        "index": 112,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 111,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 112,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "emissiveFactor": [
-        1,
-        1,
-        1
-      ],
-      "name": "Lianes",
-      "occlusionTexture": {
-        "index": 114,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 113,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 114,
-          "texCoord": 0
-        },
-        "roughnessFactor": 0.95243171539989113
-      }
-    },
-    {
-      "doubleSided": true,
-      "name": "Bois_scene",
-      "occlusionTexture": {
-        "index": 116,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 115,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 116,
-          "texCoord": 0
-        },
-        "roughnessFactor": 1
-      }
-    },
-    {
-      "doubleSided": true,
-      "emissiveFactor": [
-        1,
-        1,
-        1
-      ],
-      "name": "Blanc_fenetre",
-      "occlusionTexture": {
-        "index": 118,
-        "strength": 1,
-        "texCoord": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "baseColorTexture": {
-          "index": 117,
-          "texCoord": 0
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 118,
-          "texCoord": 0
-        },
         "roughnessFactor": 1
       }
     }
@@ -6803,7 +6267,7 @@
         0,
         1
       ],
-      "name": "f36619fee58640aeb1e69613256eabe0.fbx"
+      "name": "6862a599b8c94911a549961f803d3213.fbx"
     },
     {
       "children": [
@@ -8843,242 +8307,6 @@
     {
       "sampler": 0,
       "source": 59
-    },
-    {
-      "sampler": 0,
-      "source": 60
-    },
-    {
-      "sampler": 0,
-      "source": 61
-    },
-    {
-      "sampler": 0,
-      "source": 62
-    },
-    {
-      "sampler": 0,
-      "source": 63
-    },
-    {
-      "sampler": 0,
-      "source": 64
-    },
-    {
-      "sampler": 0,
-      "source": 65
-    },
-    {
-      "sampler": 0,
-      "source": 66
-    },
-    {
-      "sampler": 0,
-      "source": 67
-    },
-    {
-      "sampler": 0,
-      "source": 68
-    },
-    {
-      "sampler": 0,
-      "source": 69
-    },
-    {
-      "sampler": 0,
-      "source": 70
-    },
-    {
-      "sampler": 0,
-      "source": 71
-    },
-    {
-      "sampler": 0,
-      "source": 72
-    },
-    {
-      "sampler": 0,
-      "source": 73
-    },
-    {
-      "sampler": 0,
-      "source": 74
-    },
-    {
-      "sampler": 0,
-      "source": 75
-    },
-    {
-      "sampler": 0,
-      "source": 76
-    },
-    {
-      "sampler": 0,
-      "source": 77
-    },
-    {
-      "sampler": 0,
-      "source": 78
-    },
-    {
-      "sampler": 0,
-      "source": 79
-    },
-    {
-      "sampler": 0,
-      "source": 80
-    },
-    {
-      "sampler": 0,
-      "source": 81
-    },
-    {
-      "sampler": 0,
-      "source": 82
-    },
-    {
-      "sampler": 0,
-      "source": 83
-    },
-    {
-      "sampler": 0,
-      "source": 84
-    },
-    {
-      "sampler": 0,
-      "source": 85
-    },
-    {
-      "sampler": 0,
-      "source": 86
-    },
-    {
-      "sampler": 0,
-      "source": 87
-    },
-    {
-      "sampler": 0,
-      "source": 88
-    },
-    {
-      "sampler": 0,
-      "source": 89
-    },
-    {
-      "sampler": 0,
-      "source": 90
-    },
-    {
-      "sampler": 0,
-      "source": 91
-    },
-    {
-      "sampler": 0,
-      "source": 92
-    },
-    {
-      "sampler": 0,
-      "source": 93
-    },
-    {
-      "sampler": 0,
-      "source": 94
-    },
-    {
-      "sampler": 0,
-      "source": 95
-    },
-    {
-      "sampler": 0,
-      "source": 96
-    },
-    {
-      "sampler": 0,
-      "source": 97
-    },
-    {
-      "sampler": 0,
-      "source": 98
-    },
-    {
-      "sampler": 0,
-      "source": 99
-    },
-    {
-      "sampler": 0,
-      "source": 100
-    },
-    {
-      "sampler": 0,
-      "source": 101
-    },
-    {
-      "sampler": 0,
-      "source": 102
-    },
-    {
-      "sampler": 0,
-      "source": 103
-    },
-    {
-      "sampler": 0,
-      "source": 104
-    },
-    {
-      "sampler": 0,
-      "source": 105
-    },
-    {
-      "sampler": 0,
-      "source": 106
-    },
-    {
-      "sampler": 0,
-      "source": 107
-    },
-    {
-      "sampler": 0,
-      "source": 108
-    },
-    {
-      "sampler": 0,
-      "source": 109
-    },
-    {
-      "sampler": 0,
-      "source": 110
-    },
-    {
-      "sampler": 0,
-      "source": 111
-    },
-    {
-      "sampler": 0,
-      "source": 112
-    },
-    {
-      "sampler": 0,
-      "source": 113
-    },
-    {
-      "sampler": 0,
-      "source": 114
-    },
-    {
-      "sampler": 0,
-      "source": 115
-    },
-    {
-      "sampler": 0,
-      "source": 116
-    },
-    {
-      "sampler": 0,
-      "source": 117
-    },
-    {
-      "sampler": 0,
-      "source": 118
     }
   ]
 }
