@@ -3,10 +3,12 @@ import RAF from "../../utils/raf"
 import PhysicsEngine from '../PhysicsEngine'
 import Scenes from '../../controllers/ScenesManager'
 import Characters from '../../controllers/CharactersManager'
+import SocketServer from '../../SocketServer'
 
 class Scene0 {
     constructor() {
         this.bind()
+        this.touchPos = new THREE.Vector2()
     }
     start({ camera, scene }) {
         this.camera = camera
@@ -16,9 +18,23 @@ class Scene0 {
         this.handModel = Characters[0].model.scene
         this.scene.add(this.handModel)
         Characters[0].actions.forEach((action, i) => {
-            action.setLoop(THREE.LoopOnce);
-            action.clampWhenFinished = true;
+            if (action._clip.name == "main_balle_idle")
+                this.handIdle = action
+            if (action._clip.name == "balle_idle_baked")
+                this.ballIdle = action
+            if (action._clip.name == "main_balle_throw") {
+                action.clampWhenFinished = true
+                action.loop = THREE.LoopOnce
+                this.handThrow = action
+            }
+            if (action._clip.name == "balle_throw_baked") {
+                action.clampWhenFinished = true
+                action.loop = THREE.LoopOnce
+                this.ballThrow = action
+            }
         });
+        this.handIdle.play()
+        this.ballIdle.play()
 
         //gets ball in hand
         this.ballPosition = new THREE.Vector3()
@@ -78,30 +94,38 @@ class Scene0 {
         this.dogActions[1].enabled = false
         this.dogRunning = false
 
+        this.dogDir = new THREE.Vector3()
+        this.dogForward = new THREE.Vector3(0, 0, 1)
+        this.runningBack = false
+        this.ballLaunched = false
 
         RAF.subscribe("scene0", this.update)
     }
 
     runDogToggle() {
+        let transiSpeed = .5
+
         if (this.dogRunning) {
-            console.log("wue")
             this.dogRunning = false
             this.dogActions[0].enabled = true
-            this.dogActions[0].fadeIn(1)
-            this.dogActions[1].fadeOut(1)
-            console.log(this.dogActions[0])
+            this.dogActions[0].fadeIn(transiSpeed)
+            this.dogActions[1].fadeOut(transiSpeed)
         } else {
             this.dogRunning = true
             this.dogActions[1].enabled = true
-            this.dogActions[1].fadeIn(1)
-            this.dogActions[0].fadeOut(1)
+            this.dogActions[1].fadeIn(transiSpeed)
+            this.dogActions[0].fadeOut(transiSpeed)
         }
     }
 
     throw() {
-        Characters[0].actions.forEach((action, i) => {
-            action.play()
-        });
+        if (this.ballLaunched)
+            return
+        this.ballLaunched = true
+        this.handIdle.enabled = false
+        this.ballIdle.enabled = false
+        this.handThrow.play()
+        this.ballThrow.play()
         setTimeout(() => {
             PhysicsEngine.activate(this.sphereBod.name)
             let camF = new THREE.Vector3(0, 0, -1)
@@ -119,12 +143,43 @@ class Scene0 {
                 mesh: this.ballModel,
                 parentName: this.sphereBod.name
             })
-            setTimeout(this.runDogToggle, 800)
+            setTimeout(() => {
+                this.runDogToggle()
+                this.dogDir.subVectors(this.ballModel.position, this.dog.position).normalize()
+
+            }, 800)
         }, 800)
+    }
+
+    onTStart(e) {
+        this.touchPos.x = e.touches[0].clientX
+        this.touchPos.y = e.touches[0].clientY
+    }
+    onTEnd(e) {
+        let d = this.touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY))
+        if (d >= 200 && this.touchPos.y > e.changedTouches[0].clientY) {
+            this.throw()
+        }
+    }
+
+    ballReached() {
+        this.runDogToggle()
+        this.dogDir.subVectors(new THREE.Vector3(0, 0, 0), this.dog.position).normalize()
+
+        setTimeout(() => {
+            this.runDogToggle()
+            this.runningBack = true
+        }, 1000)
     }
 
     stop() {
         RAF.unsubscribe("scene0")
+    }
+
+    dogCameBack() {
+        this.runDogToggle()
+        this.dogRunning = false
+        SocketServer.sendToServer("finishedScene", "Scene0")
     }
 
     update() {
@@ -137,11 +192,21 @@ class Scene0 {
         }
 
         if (this.dogRunning) {
-            this.dog.position.x += (this.ballModel.position.x - this.dog.position.x) * 0.05
-            this.dog.position.z += (this.ballModel.position.z - this.dog.position.z) * 0.05
-            var angle = Math.atan2(this.ballModel.position.x - this.dog.position.x, - (this.ballModel.position.z - this.dog.position.z)) * (180 / Math.PI) + Math.PI;
-            this.dog.rotation.y = angle
+            this.dog.position.x += this.dogDir.x / 10
+            this.dog.position.z += this.dogDir.z / 10
+            let dDogBall = this.dog.position.distanceTo(this.ballModel.position)
+            if (dDogBall <= 1)
+                this.ballReached()
+
+            this.dog.quaternion.setFromUnitVectors(this.dogForward, new THREE.Vector3(this.dogDir.x, 0, this.dogDir.z));
+            if (this.runningBack) {
+                let dDog0 = this.dog.position.distanceTo(this.scene.position)
+                if (dDog0 <= 1)
+                    this.dogCameBack()
+            }
         }
+
+
     }
 
     bind() {
@@ -150,8 +215,14 @@ class Scene0 {
         this.update = this.update.bind(this)
         this.throw = this.throw.bind(this)
         this.runDogToggle = this.runDogToggle.bind(this)
+        this.onTStart = this.onTStart.bind(this)
+        this.onTEnd = this.onTEnd.bind(this)
+        this.ballReached = this.ballReached.bind(this)
+        this.dogCameBack = this.dogCameBack.bind(this)
 
         window.addEventListener('click', this.throw)
+        // window.addEventListener('touchstart', this.onTStart)
+        // window.addEventListener('touchend', this.onTEnd)
     }
 }
 

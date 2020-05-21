@@ -32,7 +32,7 @@ class MainScene {
 
         this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.debugControls = new OrbitControls(this.debugCamera, document.body)
-        this.debugCamera.position.set(10, 10, 10)
+        this.debugCamera.position.set(0, 1, 10)
         this.debugControls.update();
 
         this.orCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)

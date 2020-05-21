@@ -1,7 +1,7 @@
 const characters = [
     {
         name: "hand",
-        url: "/models/Characters/hand.glb",
+        url: "/models/Characters/handFull.glb",
         model: null,
         mixer: null,
         actions: null,
