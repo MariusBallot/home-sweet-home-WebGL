@@ -1,20 +1,15 @@
 import RAF from '@/utils/raf'
-// import TestScene from '@/utils/TestScene'
 import * as THREE from 'three'
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls'
-
 import SocketServer from '../SocketServer'
-
-import BlackTrans from './BlackTrans'
 import PhysicsEngine from './PhysicsEngine'
-
 import Scenes from '../controllers/ScenesManager'
-
+import SceneSwitcher from '../controllers/SceneSwitcher'
 import Scene0 from './SceneClasses/Scene0'
-
 import config from '../config'
+import BlackTrans from './BlackTrans'
+
 
 class MainScene {
     constructor() {
@@ -40,65 +35,52 @@ class MainScene {
         this.orControls = new DeviceOrientationControls(this.orCamera);
         this.orControls.update();
 
+        SceneSwitcher.init({
+            scene: this.scene
+        })
+        SceneSwitcher.showScene(0)
 
         this.scene.background = new THREE.Color(0xCCCCCC)
-
-
         Scene0.start({
             camera: this.orCamera,
             scene: this.scene
         })
 
-        this.currentSceneId = 0
-        this.scene.add(Scenes[this.currentSceneId].scene)
-
-        Scenes[this.currentSceneId].scene.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                child._shader.in()
-            }
-        })
-
-
-        BlackTrans.init({ renderer: this.renderer })
-
         this.scene.add(new THREE.AmbientLight())
-
         let pL = new THREE.PointLight()
         pL.position.set(1, 3, 1)
         this.scene.add(pL)
 
         RAF.subscribe("mainSceneUpdate", this.update)
+        BlackTrans.init({ renderer: this.renderer })
         PhysicsEngine.start()
     }
 
-    onShoot(int) {
-        int.object.material = new THREE.MeshNormalMaterial()
-    }
 
-    switchScene() {
-        BlackTrans.play()
-        SocketServer.sendToServer('changeScene', { from: this.currentSceneId, to: (this.currentSceneId + 1) % Scenes.length })
+    // switchScene() {
+    //     BlackTrans.play()
+    //     SocketServer.sendToServer('changeScene', { from: this.currentSceneId, to: (this.currentSceneId + 1) % Scenes.length })
 
-        Scenes[this.currentSceneId].scene.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                if (child._shader != undefined)
-                    child._shader.out()
-            }
-        })
-        setTimeout(() => {
-            this.scene.remove(Scenes[this.currentSceneId].scene)
-            this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
-            this.scene.add(Scenes[this.currentSceneId].scene)
+    //     Scenes[this.currentSceneId].scene.traverse(child => {
+    //         if (child instanceof THREE.Mesh) {
+    //             if (child._shader != undefined)
+    //                 child._shader.out()
+    //         }
+    //     })
+    //     setTimeout(() => {
+    //         this.scene.remove(Scenes[this.currentSceneId].scene)
+    //         this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
+    //         this.scene.add(Scenes[this.currentSceneId].scene)
 
-            Scenes[this.currentSceneId].scene.traverse(child => {
-                if (child instanceof THREE.Mesh) {
-                    if (child._shader != undefined)
-                        child._shader.in()
-                }
-            })
-        }, 1000)
+    //         Scenes[this.currentSceneId].scene.traverse(child => {
+    //             if (child instanceof THREE.Mesh) {
+    //                 if (child._shader != undefined)
+    //                     child._shader.in()
+    //             }
+    //         })
+    //     }, 1000)
 
-    }
+    // }
 
     destroy() {
         RAF.unsubscribe("mainSceneUpdate", this.update)
@@ -111,8 +93,6 @@ class MainScene {
             currCam = this.orCamera
         this.renderer.autoClear = false
         this.renderer.render(this.scene, currCam)
-        BlackTrans.update()
-
         this.orControls.update();
         this.debugControls.update()
 
@@ -137,8 +117,7 @@ class MainScene {
         this.start = this.start.bind(this)
         this.destroy = this.destroy.bind(this)
         this.onWindowResize = this.onWindowResize.bind(this)
-        this.onShoot = this.onShoot.bind(this)
-        this.switchScene = this.switchScene.bind(this)
+        // this.switchScene = this.switchScene.bind(this)
 
         window.addEventListener('resize', this.onWindowResize)
     }

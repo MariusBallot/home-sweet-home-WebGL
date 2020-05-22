@@ -1,18 +1,8 @@
-//allooooow ?
-//allooooow ?
-//allooooow ?
-//allooooow ?
-//allooooow ?
-//allooooow ?
-//allooooow ?
-
-
-
 import * as THREE from "three"
 import { TweenLite } from "gsap/gsap-core";
-
 import blackTransVert from '../shaders/blackTrans.vert'
 import blackTransFrag from '../shaders/blackTrans.frag'
+import RAF from "../utils/raf"
 
 const ANIMTIME = 2;
 
@@ -42,6 +32,7 @@ class BlackTrans {
             vertexShader: blackTransVert,
             fragmentShader: blackTransFrag
         })
+        // this.material = new THREE.MeshNormalMaterial()
 
 
         this.plane = new THREE.Mesh(new THREE.PlaneGeometry(2, window.innerHeight / window.innerWidth * 2),
@@ -50,17 +41,27 @@ class BlackTrans {
 
     }
 
-    play() {
-        TweenLite.to(this.uniforms.u_height, ANIMTIME / 2, {
-            value: -0.5,
-        })
+    out() {
         TweenLite.to(this.uniforms.u_height, ANIMTIME / 2, {
             value: 1.1,
-            delay: ANIMTIME / 2
+            onComplete: () => {
+                RAF.unsubscribe('blackTransupdate')
+
+            }
+        })
+    }
+
+    in() {
+        TweenLite.to(this.uniforms.u_height, ANIMTIME / 2, {
+            value: -0.5,
+            onStart: () => {
+                RAF.subscribe('blackTransupdate', this.update)
+            }
         })
     }
 
     update() {
+        console.log('yeh')
         this.renderer.render(this.scene, this.camera)
         this.uniforms.u_time.value++
     }
@@ -68,7 +69,8 @@ class BlackTrans {
     bind() {
         this.init = this.init.bind(this)
         this.update = this.update.bind(this)
-        this.play = this.play.bind(this)
+        this.out = this.out.bind(this)
+        this.in = this.in.bind(this)
     }
 }
 

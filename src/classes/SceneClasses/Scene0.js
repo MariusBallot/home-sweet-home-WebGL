@@ -4,6 +4,8 @@ import PhysicsEngine from '../PhysicsEngine'
 import Scenes from '../../controllers/ScenesManager'
 import Characters from '../../controllers/CharactersManager'
 import SocketServer from '../../SocketServer'
+import SceneSwitcher from '../../controllers/SceneSwitcher'
+import BlackTrans from "../BlackTrans"
 
 class Scene0 {
     constructor() {
@@ -13,10 +15,10 @@ class Scene0 {
     start({ camera, scene }) {
         this.camera = camera
         this.scene = scene
-
+        this.scene0Mods = new THREE.Group()
         //DisplaysHand
         this.handModel = Characters[0].model.scene
-        this.scene.add(this.handModel)
+        this.scene0Mods.add(this.handModel)
         Characters[0].actions.forEach((action, i) => {
             if (action._clip.name == "main_balle_idle")
                 this.handIdle = action
@@ -48,12 +50,12 @@ class Scene0 {
         //displays true ball
         this.ballModel = Characters[1].model.scene
         this.rad = this.ballModel.children[0].children[0].geometry.boundingSphere.radius * Characters[1].scale
-        this.scene.add(this.ballModel)
+        this.scene0Mods.add(this.ballModel)
 
 
         //displays true ball collider
         this.sphereCol = new THREE.Mesh(new THREE.SphereGeometry(this.rad), new THREE.MeshBasicMaterial({ wireframe: true }))
-        // this.scene.add(this.sphereCol)
+        // this.scene0Mods.add(this.sphereCol)
         this.sphereBod = PhysicsEngine.addBody({
             name: "Scene0Ball",
             type: "sphere",
@@ -65,7 +67,7 @@ class Scene0 {
         this.ground = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.MeshNormalMaterial())
         this.ground.rotateX(-Math.PI / 2)
         this.ground.position.y = 0.2
-        // this.scene.add(this.ground)
+        // this.scene0Mods.add(this.ground)
         PhysicsEngine.addBody({
             name: "Scene0Ground",
             type: "ground",
@@ -75,7 +77,7 @@ class Scene0 {
         this.wall = new THREE.Mesh(new THREE.PlaneGeometry(50, 10, 50, 10), new THREE.MeshBasicMaterial({ wireframe: true }))
         this.wall.rotateY(-Math.PI / 2)
         this.wall.position.x = 12
-        this.scene.add(this.wall)
+        this.scene0Mods.add(this.wall)
         PhysicsEngine.addBody({
             name: "Scene0Wall",
             type: "ground",
@@ -85,7 +87,7 @@ class Scene0 {
         //Displays Dog
         this.dog = Characters[2].model.scene
         this.dogActions = Characters[2].actions
-        this.scene.add(this.dog)
+        this.scene0Mods.add(this.dog)
         this.dog.position.y = .2
 
         //starts dog Idle
@@ -98,7 +100,9 @@ class Scene0 {
         this.dogForward = new THREE.Vector3(0, 0, 1)
         this.runningBack = false
         this.ballLaunched = false
+        this.finished = false
 
+        this.scene.add(this.scene0Mods)
         RAF.subscribe("scene0", this.update)
     }
 
@@ -165,6 +169,7 @@ class Scene0 {
     ballReached() {
         this.runDogToggle()
         this.dogDir.subVectors(new THREE.Vector3(0, 0, 0), this.dog.position).normalize()
+        this.ballModel.visible = false
 
         setTimeout(() => {
             this.runDogToggle()
@@ -177,12 +182,24 @@ class Scene0 {
     }
 
     dogCameBack() {
+        if (this.finished)
+            return
+        this.finished = true
         this.runDogToggle()
         this.dogRunning = false
         SocketServer.sendToServer("finishedScene", "Scene0")
+        SceneSwitcher.hideScene(0)
+        BlackTrans.in()
+        setTimeout(() => {
+            BlackTrans.out()
+            this.scene.remove(this.scene0Mods)
+            SceneSwitcher.showScene(1)
+        }, 2000)
     }
 
     update() {
+        if (this.finished)
+            return
         this.handModel.position.copy(this.camera.position)
         this.handModel.quaternion.copy(this.camera.quaternion)
 
@@ -220,9 +237,9 @@ class Scene0 {
         this.ballReached = this.ballReached.bind(this)
         this.dogCameBack = this.dogCameBack.bind(this)
 
-        window.addEventListener('click', this.throw)
-        // window.addEventListener('touchstart', this.onTStart)
-        // window.addEventListener('touchend', this.onTEnd)
+        // window.addEventListener('click', this.throw)
+        window.addEventListener('touchstart', this.onTStart)
+        window.addEventListener('touchend', this.onTEnd)
     }
 }
 

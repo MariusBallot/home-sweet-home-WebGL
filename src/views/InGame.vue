@@ -46,9 +46,11 @@ export default {
    width: 100vw;
    height: 100vh;
    overflow: hidden;
+   top: 0;
+   left: 0;
 
    .domContent {
-     position: absolute;
+     position: fixed;
      overflow: hidden;
      top: 10px;
      left: 10px;
