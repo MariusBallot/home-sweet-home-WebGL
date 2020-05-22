@@ -245,3 +245,4 @@ class Scene0 {
 
 const _instance = new Scene0()
 export default _instance
+
