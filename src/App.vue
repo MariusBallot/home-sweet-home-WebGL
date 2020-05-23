@@ -7,7 +7,7 @@
     <Desktop v-if="!isMobile" />
     <Landscape v-if="isLandscape" />
     <OrRequest v-if="isSafari" />
-    <router-view />
+    <router-view @updateAcessKey="setAccessKey" />
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     return {
       isMobile: false,
       isLandscape: null,
-      isSafari: false
+      isSafari: false,
     };
   },
   components: {
@@ -46,7 +46,7 @@ export default {
       setTimeout(function() {
         window.scrollTo(0, 1);
       }, 0);
-    });
+    }); 
   },
   methods: {
     resize() {
@@ -86,6 +86,10 @@ export default {
       else config.orCam = true;
       localStorage.setItem("camType", config.orCam);
       console.log(localStorage.getItem("camType"));
+    },
+    setAccessKey: (accessKey)=>{
+      console.log(accessKey);
+      sessionStorage.setItem('accessKey', accessKey);
     }
   }
 };

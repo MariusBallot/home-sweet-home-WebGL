@@ -4,39 +4,25 @@ class SocketServer {
     constructor() {
         this.bind()
 
-        this.HOST
         this.WEBSOCKET
-        this.DEBUG_TIME
-
-        this.WEBSOCKET
-        this.WEBSOCKET
-
         this.connected
+        this.DEBUG_MODE = true;
     }
 
     start() {
-        this.HOST = location.origin.replace(/^https/, 'wss')
-        this.WEBSOCKET = new WebSocket("wss://home-sweet-home--ws.herokuapp.com/")
-        this.DEBUG_TIME = false
+        const url = this.DEBUG_MODE ? "ws://localhost:1234" : "wss://home-sweet-home--ws.herokuapp.com/"
+
+        this.WEBSOCKET = new WebSocket(url)
 
         this.WEBSOCKET.onopen = this.onServerOpen
         this.WEBSOCKET.onmessage = this.onServerMessage
     }
 
-    getClientTime() {
-        const hours = now.getHours()
-        const minutes = now.getMinutes()
-        const seconds = now.getSeconds()
-        const milliseconds = now.getMilliseconds()
-
-        const dateString = `${hours}:${minutes}:${seconds}:${milliseconds}`
-
-        return dateString
-    }
-
     sendToServer(type, value) {
-        const message = { type: type, message: JSON.stringify(value) }
+        const id = sessionStorage.getItem('accessKey') ? sessionStorage.getItem('accessKey') : "";
+        const message = { id: id, type, message: JSON.stringify(value) }
         const string = JSON.stringify(message)
+        
         this.WEBSOCKET.send(string)
 
         if (type == "changeScene")
@@ -48,24 +34,67 @@ class SocketServer {
     }
 
     onServerMessage(event) {
-        const data = JSON.parse(event.data)
-        const message = JSON.parse(data.message)
-        switch (data.type) {
-            case 'time':
-                if (DEBUG_TIME) setNode('time-server', message.time)
-                break
-            case 'orientation':
-                // setNode('alpha-server', message.alpha)
-                // setNode('beta-server', message.beta)
-                // setNode('gamma-server', message.gamma)
-                break
-            case 'notif':
-                console.log('hey')
-                SoundController.onNotif()
-            default:
-                break
+        let data
+        let message
+
+        if (event.data instanceof Blob) {
+            event.data.text().then(text => {
+                data = this.getWebSocketDataFromBlobText(text) //{id:..., type:...,message:{...}}
+                message = JSON.parse(data.message)
+                // console.log(data.id, data.type, message)
+            })
+        } else {
+            data = JSON.parse(event.data)
+            message = JSON.parse(data.message)
+
+            switch (data.type) {
+                case 'notif':
+                    console.log('hey')
+                    SoundController.onNotif()
+                    break
+
+                default:
+                    break
+            }
         }
     }
+
+    getWebSocketDataFromBlobText(text) {
+        const regex = /.*(type)(\W)(.*)(\W)(message)(\W)(.*)(\W)(id)(\W)(.*).*/gm
+        let matches
+        let data = {
+            id: '',
+            type: '',
+            message: {},
+        }
+
+        while ((matches = regex.exec(text)) !== null) {
+            // This is necessary to avoid infinite loops with zero-width matches
+            if (matches.index === regex.lastIndex) {
+                regex.lastIndex++
+            }
+
+            // The result can be accessed through the `matches`-variable.
+            matches.forEach((match, groupIndex) => {
+                switch (groupIndex) {
+                    case 3:
+                        data.type = match
+                        break
+                    case 7:
+                        data.message = match
+                        break
+                    case 11:
+                        data.id = match
+                        break
+                    default:
+                        break
+                }
+            })
+        }
+
+        return data
+    }
+
 
     handleOrientation(event) {
         sendToServer('orientation', {
@@ -76,7 +105,6 @@ class SocketServer {
     }
 
     bind() {
-        this.getClientTime = this.getClientTime.bind(this)
         this.sendToServer = this.sendToServer.bind(this)
         this.onServerOpen = this.onServerOpen.bind(this)
         this.onServerMessage = this.onServerMessage.bind(this)
