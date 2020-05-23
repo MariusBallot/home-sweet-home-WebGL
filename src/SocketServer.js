@@ -19,10 +19,12 @@ class SocketServer {
     }
 
     sendToServer(type, value) {
+        if(this.WEBSOCKET.readyState === this.WEBSOCKET.CLOSED) return
+        
         const id = sessionStorage.getItem('accessKey') ? sessionStorage.getItem('accessKey') : "";
         const message = { id: id, type, message: JSON.stringify(value) }
         const string = JSON.stringify(message)
-        
+
         this.WEBSOCKET.send(string)
 
         if (type == "changeScene")
@@ -41,21 +43,16 @@ class SocketServer {
             event.data.text().then(text => {
                 data = this.getWebSocketDataFromBlobText(text) //{id:..., type:...,message:{...}}
                 message = JSON.parse(data.message)
-                // console.log(data.id, data.type, message)
+                console.log(data.id, data.type, message)
+                switch (data.type) {
+                    case 'sound':
+                        SoundController.onNotif();
+                        break;
+                
+                    default:
+                        break;
+                }
             })
-        } else {
-            data = JSON.parse(event.data)
-            message = JSON.parse(data.message)
-
-            switch (data.type) {
-                case 'notif':
-                    console.log('hey')
-                    SoundController.onNotif()
-                    break
-
-                default:
-                    break
-            }
         }
     }
 
