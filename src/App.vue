@@ -46,7 +46,16 @@ export default {
       setTimeout(function() {
         window.scrollTo(0, 1);
       }, 0);
-    }); 
+    });
+    window.addEventListener("touchend", e => {
+      if (typeof DeviceOrientationEvent.requestPermission === "function") {
+        DeviceOrientationEvent.requestPermission()
+          .then(permissionState => {
+            console.log("permission state: ", permissionState);
+          })
+          .catch(console.error);
+      }
+    });
   },
   methods: {
     resize() {
