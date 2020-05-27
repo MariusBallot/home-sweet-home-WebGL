@@ -39,8 +39,7 @@ class SocketServer {
         const string = JSON.stringify(message)
         this.WEBSOCKET.send(string)
 
-        if (type == "changeScene")
-            console.log(message)
+
     }
 
     onServerOpen() {
@@ -60,7 +59,6 @@ class SocketServer {
                 // setNode('gamma-server', message.gamma)
                 break
             case 'notif':
-                console.log('hey')
                 SoundController.onNotif()
             default:
                 break

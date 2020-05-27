@@ -17,6 +17,10 @@ class PhysicsEngine {
         RAF.subscribe('physicsUpdate', this.update)
     }
 
+    stop() {
+        RAF.unsubscribe('physicsUpdate')
+    }
+
     addBody({ name, mesh, type, active, mass }) {
         let bodyObj = {
             name: name,
@@ -121,6 +125,7 @@ class PhysicsEngine {
 
     bind() {
         this.start = this.start.bind(this)
+        this.stop = this.stop.bind(this)
         this.update = this.update.bind(this)
         this.addBody = this.addBody.bind(this)
         this.addForce = this.addForce.bind(this)

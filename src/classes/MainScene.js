@@ -7,6 +7,7 @@ import PhysicsEngine from './PhysicsEngine'
 import Scenes from '../controllers/ScenesManager'
 import SceneSwitcher from '../controllers/SceneSwitcher'
 import Scene0 from './SceneClasses/Scene0'
+import Scene1 from './SceneClasses/Scene1'
 import config from '../config'
 import BlackTrans from './BlackTrans'
 
@@ -38,10 +39,10 @@ class MainScene {
         SceneSwitcher.init({
             scene: this.scene
         })
-        SceneSwitcher.showScene(0)
+        SceneSwitcher.showScene(1)
 
         this.scene.background = new THREE.Color(0xCCCCCC)
-        Scene0.start({
+        Scene1.start({
             camera: this.orCamera,
             scene: this.scene
         })
@@ -56,31 +57,6 @@ class MainScene {
         PhysicsEngine.start()
     }
 
-
-    // switchScene() {
-    //     BlackTrans.play()
-    //     SocketServer.sendToServer('changeScene', { from: this.currentSceneId, to: (this.currentSceneId + 1) % Scenes.length })
-
-    //     Scenes[this.currentSceneId].scene.traverse(child => {
-    //         if (child instanceof THREE.Mesh) {
-    //             if (child._shader != undefined)
-    //                 child._shader.out()
-    //         }
-    //     })
-    //     setTimeout(() => {
-    //         this.scene.remove(Scenes[this.currentSceneId].scene)
-    //         this.currentSceneId = (this.currentSceneId + 1) % Scenes.length
-    //         this.scene.add(Scenes[this.currentSceneId].scene)
-
-    //         Scenes[this.currentSceneId].scene.traverse(child => {
-    //             if (child instanceof THREE.Mesh) {
-    //                 if (child._shader != undefined)
-    //                     child._shader.in()
-    //             }
-    //         })
-    //     }, 1000)
-
-    // }
 
     destroy() {
         RAF.unsubscribe("mainSceneUpdate", this.update)

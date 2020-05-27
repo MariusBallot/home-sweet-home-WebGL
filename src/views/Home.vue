@@ -23,7 +23,6 @@ export default {
         })
         .catch(console.error);
     } else {
-      console.log("other device");
     }
   }
 };

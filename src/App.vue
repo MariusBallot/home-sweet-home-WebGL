@@ -94,7 +94,6 @@ export default {
       if (config.orCam) config.orCam = false;
       else config.orCam = true;
       localStorage.setItem("camType", config.orCam);
-      console.log(localStorage.getItem("camType"));
     }
   }
 };

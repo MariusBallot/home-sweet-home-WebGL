@@ -194,6 +194,8 @@ class Scene0 {
             BlackTrans.out()
             this.scene.remove(this.scene0Mods)
             SceneSwitcher.showScene(1)
+            this.stop()
+            PhysicsEngine.stop()
         }, 2000)
     }
 

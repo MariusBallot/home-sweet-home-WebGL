@@ -61,7 +61,6 @@ class BlackTrans {
     }
 
     update() {
-        console.log('yeh')
         this.renderer.render(this.scene, this.camera)
         this.uniforms.u_time.value++
     }
