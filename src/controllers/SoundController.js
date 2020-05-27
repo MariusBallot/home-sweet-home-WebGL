@@ -3,10 +3,10 @@ class SoundController {
         this.bind()
     }
 
-
     onNotif() {
-        // var audio = new Audio('sur.mp3');
-        // audio.play();
+        var audio = new Audio('notif.mp3');
+        window.navigator.vibrate(250);
+        audio.play();
     }
 
     bind() {
