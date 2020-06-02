@@ -18,16 +18,14 @@ class SocketServer {
         this.WEBSOCKET.onmessage = this.onServerMessage
     }
 
-    sendToServer(type, value) {
+    sendToServer(typeString, value) {
         if (this.WEBSOCKET.readyState === this.WEBSOCKET.CLOSED) return
 
         const id = sessionStorage.getItem('accessKey') ? sessionStorage.getItem('accessKey') : "";
-        const message = { id: id, type, message: JSON.stringify(value) }
+        const message = { id: id, type: typeString, message: JSON.stringify(value) }
         const string = JSON.stringify(message)
 
         this.WEBSOCKET.send(string)
-
-
     }
 
     onServerOpen() {
