@@ -6,6 +6,7 @@
         "dropPhone": "null",
         "liftPhone": "null",
         "jump": "float, total jumps",
-        "startCredit": "null"
+        "startCredit": "null",
+        "sound": "Object soundName"
     }
 }
