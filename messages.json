@@ -1,3 +1,15 @@
+/*
+    this is a list of all Websocket messages
+
+    example message:
+    message = { 
+        id: "id", //is set automatically from localStorage, example: "SnowFlakeSmasher86"
+        type: "type", //example: "sound"
+        message: {
+            value: "value" //example: soundName: "notif"
+        }
+    }
+*/
 {
     "messages": {
         "orientation": "objVector3",
