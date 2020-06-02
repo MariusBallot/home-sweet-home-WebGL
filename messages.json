@@ -3,10 +3,10 @@
 
     example message:
     message = { 
-        id: "id", //is set automatically from localStorage, example: "SnowFlakeSmasher86"
-        type: "type", //example: "sound"
+        id: "id", is set automatically from localStorage, example: "SnowFlakeSmasher86"
+        type: "type", example: "sound"
         message: {
-            value: "value" //example: soundName: "notif"
+            value: "value" example: soundName: "notif"
         }
     }
 */
