@@ -2,6 +2,7 @@
     "messages": {
         "orientation": "objVector3",
         "changeScene": "object from to",
+        "interaction": "object scene interactionIndex",
         "readyForNextScene": "object from to",
         "dropPhone": "null",
         "liftPhone": "null",
