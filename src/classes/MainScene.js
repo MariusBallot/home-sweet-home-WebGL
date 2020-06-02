@@ -4,12 +4,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls'
 import SocketServer from '../SocketServer'
 import PhysicsEngine from './PhysicsEngine'
-import Scenes from '../controllers/ScenesManager'
 import SceneSwitcher from '../controllers/SceneSwitcher'
-import Scene0 from './SceneClasses/Scene0'
 import Scene1 from './SceneClasses/Scene1'
 import config from '../config'
 import BlackTrans from './BlackTrans'
+import PostProcess from './PostProcess'
 
 
 class MainScene {
@@ -52,6 +51,12 @@ class MainScene {
         pL.position.set(1, 3, 1)
         this.scene.add(pL)
 
+        PostProcess.init({
+            renderer: this.renderer,
+            scene: this.scene,
+            camera: this.orCamera
+        })
+
         RAF.subscribe("mainSceneUpdate", this.update)
         BlackTrans.init({ renderer: this.renderer })
         PhysicsEngine.start()
@@ -68,7 +73,8 @@ class MainScene {
         if (config.orCam)
             currCam = this.orCamera
         this.renderer.autoClear = false
-        this.renderer.render(this.scene, currCam)
+        // this.renderer.render(this.scene, currCam)
+        PostProcess.composer.render(RAF.dt * 0.001)
         this.orControls.update();
         this.debugControls.update()
 

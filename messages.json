@@ -1,0 +1,11 @@
+{
+    "messages": {
+        "orientation": "objVector3",
+        "changeScene": "object from to",
+        "readyForNextScene": "object from to",
+        "dropPhone": "null",
+        "liftPhone": "null",
+        "jump": "float, total jumps",
+        "startCredit": "null"
+    }
+}

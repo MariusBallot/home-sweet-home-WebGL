@@ -17,6 +17,7 @@
     "gsap": "^3.2.6",
     "raw-loader": "^4.0.0",
     "three": "^0.113.2",
+    "three-shader-fxaa": "^5.1.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5"
   },

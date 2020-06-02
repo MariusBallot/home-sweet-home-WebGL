@@ -4,6 +4,7 @@ class GUIManager {
     constructor() {
         this.bind()
         this.gui = new DAT.GUI()
+        this.gui.hide()
     }
 
     addParam({

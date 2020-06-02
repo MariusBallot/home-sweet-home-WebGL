@@ -19,8 +19,8 @@ class SocketServer {
     }
 
     sendToServer(type, value) {
-        if(this.WEBSOCKET.readyState === this.WEBSOCKET.CLOSED) return
-        
+        if (this.WEBSOCKET.readyState === this.WEBSOCKET.CLOSED) return
+
         const id = sessionStorage.getItem('accessKey') ? sessionStorage.getItem('accessKey') : "";
         const message = { id: id, type, message: JSON.stringify(value) }
         const string = JSON.stringify(message)
@@ -35,23 +35,6 @@ class SocketServer {
     }
 
     onServerMessage(event) {
-<<<<<<< HEAD
-        const data = JSON.parse(event.data)
-        const message = JSON.parse(data.message)
-        switch (data.type) {
-            case 'time':
-                if (DEBUG_TIME) setNode('time-server', message.time)
-                break
-            case 'orientation':
-                // setNode('alpha-server', message.alpha)
-                // setNode('beta-server', message.beta)
-                // setNode('gamma-server', message.gamma)
-                break
-            case 'notif':
-                SoundController.onNotif()
-            default:
-                break
-=======
         let data
         let message
 
@@ -64,7 +47,7 @@ class SocketServer {
                     case 'sound':
                         SoundController.onNotif();
                         break;
-                
+
                     default:
                         break;
                 }
@@ -79,7 +62,6 @@ class SocketServer {
             id: '',
             type: '',
             message: {},
->>>>>>> cf8ca4c1e3c6d9d329a295f07cffa3ba0955ecdf
         }
 
         while ((matches = regex.exec(text)) !== null) {

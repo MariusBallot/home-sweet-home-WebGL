@@ -1,15 +1,17 @@
 <template>
   <div class="inGame">
     <Loading v-if="!loaded" />
+    <OverlayUI />
     <ThreeCanvas />
-    <div class="domContent">
+    <!-- <div class="domContent">
       <button v-on:click="onClick" ref="nextScene">Next Scene</button>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
 import Loading from "../components/InGame/Loading";
+import OverlayUI from "../components/InGame/OverlayUI";
 import ThreeCanvas from "../components/InGame/ThreeCanvas";
 import SocketServer from "../SocketServer";
 
@@ -25,7 +27,8 @@ export default {
   },
   components: {
     Loading,
-    ThreeCanvas
+    ThreeCanvas,
+    OverlayUI
   },
   created() {
     LoadingController.addOnLoad("loadingFinished", this.onLoad);

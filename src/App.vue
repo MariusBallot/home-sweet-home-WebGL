@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div class="GUI">
+    <!-- <div class="GUI">
       <button class="fs" v-on:click="toggleFS">Toggle FS</button>
       <button class="cam" v-on:click="toggleCam">Toggle Cam</button>
-    </div>
+    </div>-->
     <Desktop v-if="!isMobile" />
     <Landscape v-if="isLandscape" />
     <OrRequest v-if="isSafari" />
@@ -24,7 +24,7 @@ export default {
     return {
       isMobile: false,
       isLandscape: null,
-      isSafari: false,
+      isSafari: false
     };
   },
   components: {
@@ -94,14 +94,11 @@ export default {
       if (config.orCam) config.orCam = false;
       else config.orCam = true;
       localStorage.setItem("camType", config.orCam);
-<<<<<<< HEAD
-=======
       console.log(localStorage.getItem("camType"));
     },
-    setAccessKey: (accessKey)=>{
+    setAccessKey: accessKey => {
       console.log(accessKey);
-      sessionStorage.setItem('accessKey', accessKey);
->>>>>>> cf8ca4c1e3c6d9d329a295f07cffa3ba0955ecdf
+      sessionStorage.setItem("accessKey", accessKey);
     }
   }
 };
