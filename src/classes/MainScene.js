@@ -60,6 +60,8 @@ class MainScene {
         RAF.subscribe("mainSceneUpdate", this.update)
         BlackTrans.init({ renderer: this.renderer })
         PhysicsEngine.start()
+        
+        this.initEventListeners();
     }
 
 
@@ -68,7 +70,6 @@ class MainScene {
     }
 
     update() {
-
         let currCam = this.debugCamera
         if (config.orCam)
             currCam = this.orCamera
@@ -92,14 +93,22 @@ class MainScene {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
+    onReadyForNextScene(message) {
+        console.log(message); //'{"from":"0","to":"0"}'
+    }
+
+    initEventListeners(){
+        window.addEventListener('resize', this.onWindowResize)
+        window.EM.on('readyForNextScene', this.onReadyForNextScene)
+    }
+
     bind() {
         this.update = this.update.bind(this)
         this.start = this.start.bind(this)
         this.destroy = this.destroy.bind(this)
         this.onWindowResize = this.onWindowResize.bind(this)
+        this.onReadyForNextScene = this.onReadyForNextScene.bind(this)
         // this.switchScene = this.switchScene.bind(this)
-
-        window.addEventListener('resize', this.onWindowResize)
     }
 }
 

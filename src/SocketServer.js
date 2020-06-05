@@ -35,15 +35,17 @@ class SocketServer {
     onServerMessage(event) {
         let data
         let message
-
         if (event.data instanceof Blob) {
             event.data.text().then(text => {
                 data = this.getWebSocketDataFromBlobText(text) //{id:..., type:...,message:{...}}
                 message = JSON.parse(data.message)
-                console.log(data.id, data.type, message)
+                // if(this.DEBUG_MODE) console.log(data.id, data.type, message)
                 switch (data.type) {
                     case 'sound':
                         SoundController.onNotif();
+                        break;
+                    case 'readyForNextScene':
+                        window.EM.emit('readyForNextScene', JSON.stringify(message));
                         break;
 
                     default:
