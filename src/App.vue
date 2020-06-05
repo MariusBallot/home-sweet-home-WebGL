@@ -17,6 +17,7 @@ import Desktop from "./components/Desktop";
 import Landscape from "./components/Landscape";
 import SocketServer from "./SocketServer";
 import config from "./config";
+import EventEmitter from 'EventEmitter';
 
 export default {
   name: "App",
@@ -38,6 +39,7 @@ export default {
     this.isLandscape = window.innerWidth > window.innerHeight;
 
     window.addEventListener("resize", this.resize);
+    window.EM = new EventEmitter();
 
     SocketServer.start();
   },

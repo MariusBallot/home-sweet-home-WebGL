@@ -78,9 +78,7 @@ class MainScene {
         this.orControls.update();
         this.debugControls.update()
 
-
-
-        if (SocketServer.connected)
+        if (SocketServer.connected && this.orCamera && this.orCamera.rotation)
             SocketServer.sendToServer('orientation', this.orCamera.rotation)
     }
 
