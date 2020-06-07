@@ -5,6 +5,7 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 import SocketServer from '../SocketServer'
 import PhysicsEngine from './PhysicsEngine'
 import SceneSwitcher from '../controllers/SceneSwitcher'
+import Scene0 from './SceneClasses/Scene0'
 import Scene1 from './SceneClasses/Scene1'
 import config from '../config'
 import BlackTrans from './BlackTrans'
@@ -38,14 +39,23 @@ class MainScene {
         SceneSwitcher.init({
             scene: this.scene
         })
-        SceneSwitcher.showScene(1)
+        this.scene.background = new THREE.Color(0xCCCCCC)
+
+        if(config.devMode) { 
+            SceneSwitcher.showScene(1) 
+            Scene1.start({
+                camera: this.orCamera,
+                scene: this.scene
+            })
+        }else{ 
+            SceneSwitcher.showScene(0)
+            Scene0.start({
+                camera: this.orCamera,
+                scene: this.scene
+            })
+        }
 
         this.scene.background = new THREE.Color(0xCCCCCC)
-        Scene1.start({
-            camera: this.orCamera,
-            scene: this.scene
-        })
-
         this.scene.add(new THREE.AmbientLight())
         let pL = new THREE.PointLight()
         pL.position.set(1, 3, 1)
