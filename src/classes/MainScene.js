@@ -19,7 +19,7 @@ class MainScene {
     }
 
     start(_container) {
-        this.renderer = new THREE.WebGLRenderer({ antialias: true })
+        this.renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.renderer.debug.checkShaderErrors = true
         _container.appendChild(this.renderer.domElement)
