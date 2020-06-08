@@ -220,14 +220,14 @@ class Scene0 {
         BlackTrans.in()
         window.removeEventListener('touchstart', this.onTStart)
         window.removeEventListener('touchend', this.onTEnd)
-        setTimeout(() => {
-            BlackTrans.out()
-            this.scene.remove(this.scene0Mods)
-            SceneSwitcher.showScene(this.sceneId+1)
-            Scene1.start({camera: this.camera, scene: this.scene})
-            PhysicsEngine.stop()
-            this.stop()
-        }, 2000)
+        // setTimeout(() => {
+        //     BlackTrans.out()
+        //     this.scene.remove(this.scene0Mods)
+        //     SceneSwitcher.showScene(this.sceneId+1)
+        //     Scene1.start({camera: this.camera, scene: this.scene})
+        //     PhysicsEngine.stop()
+        //     this.stop()
+        // }, 2000)
     }
 
     update() {
