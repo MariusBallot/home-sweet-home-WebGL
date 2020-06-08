@@ -4,9 +4,9 @@
       <button class="fs" v-on:click="toggleFS">Toggle FS</button>
       <button class="cam" v-on:click="toggleCam">Toggle Cam</button>
     </div>-->
-    <Desktop v-if="!isMobile" />
+    <!-- <Desktop v-if="!isMobile" />
     <Landscape v-if="isLandscape" />
-    <OrRequest v-if="isSafari" />
+    <OrRequest v-if="isSafari" />-->
     <router-view @updateAcessKey="setAccessKey" />
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     this.isLandscape = window.innerWidth > window.innerHeight;
 
     window.addEventListener("resize", this.resize);
-    
+
     SocketServer.start();
   },
   mounted() {

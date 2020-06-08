@@ -144,6 +144,11 @@ class Boids {
         }
     }
 
+    stop() {
+        RAF.unsubscribe('boidsUpdate')
+        this.scene.remove(this.group)
+    }
+
 
     update() {
         this.boidClasses.forEach((boidClass, i) => {
@@ -190,6 +195,7 @@ class Boids {
         this.repell = this.repell.bind(this)
         this.targetTo = this.targetTo.bind(this)
         this.center = this.center.bind(this)
+        this.stop = this.stop.bind(this)
         this.checkBounding = this.checkBounding.bind(this)
     }
 }
