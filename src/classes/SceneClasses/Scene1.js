@@ -52,6 +52,7 @@ class Scene1 {
         SceneSwitcher.hideScene(this.sceneId)
         BlackTrans.in()
         window.removeEventListener('touchstart', this.onTStart)
+        Boids.stop();
         setTimeout(() => {
             BlackTrans.out()
             SceneSwitcher.showScene(this.sceneId+1)

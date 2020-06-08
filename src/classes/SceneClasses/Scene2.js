@@ -3,6 +3,7 @@ import RAF from "../../utils/raf"
 import SceneSwitcher from '../../controllers/SceneSwitcher'
 import BlackTrans from "../BlackTrans"
 import Scene3 from '../SceneClasses/Scene3'
+// import MainScene from '../MainScene'
 
 class Scene2 {
     constructor() {
@@ -16,9 +17,8 @@ class Scene2 {
     start({ camera, scene }) {
         this.camera = camera
 		this.scene = scene
-		
 
-
+		// MainScene.scene.background = new THREE.Color(0xCCA770);
         RAF.subscribe("scene2", this.update)
         
         window.addEventListener('touchstart', this.onTStart)
@@ -29,7 +29,7 @@ class Scene2 {
     }
 
     update() {
-		// this.scene.background = new THREE.Color(0x000000);
+		
     }
 
     onTStart(){

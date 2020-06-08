@@ -15,7 +15,6 @@ import PostProcess from './PostProcess'
 class MainScene {
     constructor() {
         this.bind()
-        this.currentSceneId
     }
 
     start(_container) {
