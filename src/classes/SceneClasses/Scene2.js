@@ -15,7 +15,9 @@ class Scene2 {
 	
     start({ camera, scene }) {
         this.camera = camera
-        this.scene = scene
+		this.scene = scene
+		
+
 
         RAF.subscribe("scene2", this.update)
         
@@ -27,7 +29,7 @@ class Scene2 {
     }
 
     update() {
-
+		// this.scene.background = new THREE.Color(0x000000);
     }
 
     onTStart(){
@@ -50,7 +52,7 @@ class Scene2 {
         window.removeEventListener('touchstart', this.onTStart)
         setTimeout(() => {
             BlackTrans.out()
-			SceneSwitcher.showScene(this.sceneId)
+			SceneSwitcher.showScene(this.sceneId+1)
 			Scene3.start({camera: this.camera, scene: this.camera})
             this.stop()
         }, 2000)

@@ -2,6 +2,7 @@ import * as THREE from "three"
 import RAF from "../../utils/raf"
 import SceneSwitcher from '../../controllers/SceneSwitcher'
 import BlackTrans from "../BlackTrans"
+import Scene5 from '../SceneClasses/Scene5'
 
 class Scene4 {
     constructor() {
@@ -49,7 +50,8 @@ class Scene4 {
         window.removeEventListener('touchstart', this.onTStart)
         setTimeout(() => {
             BlackTrans.out()
-            SceneSwitcher.showScene(this.sceneId+1)
+			SceneSwitcher.showScene(this.sceneId+1)
+			Scene5.start({camera: this.camera, scene: this.scene})
             this.stop()
         }, 2000)
     }
@@ -60,9 +62,6 @@ class Scene4 {
         this.update = this.update.bind(this)
         this.loadNextScene = this.loadNextScene.bind(this)
         this.onTStart = this.onTStart.bind(this)
-
-        // window.addEventListener('touchstart', this.onTStart)
-        // window.addEventListener('touchend', this.onTEnd)
     }
 }
 

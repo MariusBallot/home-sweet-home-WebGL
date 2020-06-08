@@ -39,7 +39,6 @@ class MainScene {
         SceneSwitcher.init({
             scene: this.scene
         })
-        this.scene.background = new THREE.Color(0xCCCCCC)
 
         if(config.devMode) { 
             SceneSwitcher.showScene(1) 
@@ -47,7 +46,7 @@ class MainScene {
                 camera: this.orCamera,
                 scene: this.scene
             })
-        }else{ 
+        }else{
             SceneSwitcher.showScene(0)
             Scene0.start({
                 camera: this.orCamera,
@@ -55,7 +54,7 @@ class MainScene {
             })
         }
 
-        this.scene.background = new THREE.Color(0xCCCCCC)
+        this.scene.background = new THREE.Color(0xB8C6D1)
         this.scene.add(new THREE.AmbientLight())
         let pL = new THREE.PointLight()
         pL.position.set(1, 3, 1)

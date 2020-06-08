@@ -16,24 +16,38 @@ const scenes = [
         shader: null,
         url: "/models/Scenes/Street/scene.gltf",
         scale: 0.01,
-
     },
     {
-        name: "Metro",
+        name: "Abstract",
         camera: null,
         scene: null,
         shader: null,
-        url: "/models/Scenes/Metro/scene.gltf",
+        url: "/models/Scenes/TestScene/scene.gltf",
         scale: 0.01,
     },
     {
-        name: "Rooftops",
+        name: "Desert",
         camera: null,
         scene: null,
         shader: null,
-        url: "/models/Scenes/Rooftop/scene.gltf",
+        url: "/models/Scenes/Desert/scene.gltf",
         scale: 0.01,
-
+    },
+    {
+        name: "Mountain",
+        camera: null,
+        scene: null,
+        shader: null,
+        url: "/models/Scenes/Mountain/scene.gltf",
+        scale: 0.01,
+    },
+    {
+        name: "Moon",
+        camera: null,
+        scene: null,
+        shader: null,
+        url: "/models/Scenes/Moon/scene.gltf",
+        scale: 0.01,
     },
 ]
 if (config.testScene)

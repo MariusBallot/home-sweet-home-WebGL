@@ -1,4 +1,3 @@
-import BlackTrans from '../classes/BlackTrans'
 import SocketServer from '../SocketServer'
 import Scenes from './ScenesManager'
 import * as THREE from "three"
@@ -25,6 +24,7 @@ class SceneSwitcher {
     }
 
     showScene(sceneId) {
+        console.log(Scenes[sceneId].name)
         this.scene.add(Scenes[sceneId].scene)
         Scenes[sceneId].scene.traverse(child => {
             if (child instanceof THREE.Mesh) {
