@@ -14,12 +14,12 @@ class Scene0 {
         Boids.init({
             scene: this.scene,
         })
-        RAF.subscribe("scene0", this.update)
+        RAF.subscribe("scene1", this.update)
     }
 
 
     stop() {
-        RAF.unsubscribe("scene0")
+        RAF.unsubscribe("scene1")
     }
 
 

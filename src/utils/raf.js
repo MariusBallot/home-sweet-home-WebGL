@@ -17,8 +17,9 @@ class RAF {
 
     unsubscribe(name) {
         this.callbacks.forEach((item, i) => {
-            if (item.name == name)
-                this.callbacks.splice(i, i + 1)
+            if (item.name == name) {
+                this.callbacks.splice(i, 1)
+            }
         });
     }
 
