@@ -1,16 +1,17 @@
 import * as THREE from "three"
 import RAF from "../../utils/raf"
 import PhysicsEngine from '../PhysicsEngine'
-import Scenes from '../../controllers/ScenesManager'
 import Characters from '../../controllers/CharactersManager'
-import SocketServer from '../../SocketServer'
 import SceneSwitcher from '../../controllers/SceneSwitcher'
 import BlackTrans from "../BlackTrans"
+import Scene1 from '../SceneClasses/Scene1'
 
 class Scene0 {
     constructor() {
         this.bind()
         this.touchPos = new THREE.Vector2()
+        this.scene
+        this.sceneId = 0
     }
     start({ camera, scene }) {
         this.camera = camera
@@ -74,15 +75,43 @@ class Scene0 {
             mesh: this.ground
         })
 
-        this.wall = new THREE.Mesh(new THREE.PlaneGeometry(50, 10, 50, 10), new THREE.MeshBasicMaterial({ wireframe: true }))
-        this.wall.rotateY(-Math.PI / 2)
-        this.wall.position.x = 12
-        this.scene0Mods.add(this.wall)
+        //add walls
+        this.wallMat = new THREE.MeshBasicMaterial({ wireframe: true })
+        this.wallMat.visible = false
+        this.wallGeo = new THREE.PlaneGeometry(50, 10, 50, 10)
+        
+        //wall at gate
+        this.wallGate = new THREE.Mesh(this.wallGeo, this.wallMat)
+        this.wallGate.rotateY(-Math.PI / 2)
+        this.wallGate.position.x = 12
+        this.scene0Mods.add(this.wallGate)
         PhysicsEngine.addBody({
-            name: "Scene0Wall",
+            name: "Scene0WallGate",
             type: "ground",
-            mesh: this.wall
+            mesh: this.wallGate
         })
+
+        //wall at apartment window
+        this.wallWindow = new THREE.Mesh(this.wallGeo, this.wallMat)
+        this.wallWindow.position.z = -2.2
+        this.scene0Mods.add(this.wallWindow)
+        PhysicsEngine.addBody({
+            name: "Scene0WallWindow",
+            type: "ground",
+            mesh: this.wallWindow
+        })
+
+        //add wall at other apartment wall
+        //BUG: adding this breaks ball throwing
+        // this.wallAppartment = new THREE.Mesh(this.wallGeo, this.wallMat)
+        // this.wallAppartment.rotateY(-Math.PI / 2)
+        // this.wallAppartment.position.x = -2.3
+        // this.scene0Mods.add(this.wallAppartment)
+        // PhysicsEngine.addBody({
+        //     name: "Scene0WallWAppartment",
+        //     type: "ground",
+        //     mesh: this.wallAppartment
+        // })
 
         //Displays Dog
         this.dog = Characters[2].model.scene
@@ -187,15 +216,16 @@ class Scene0 {
         this.finished = true
         this.runDogToggle()
         this.dogRunning = false
-        SocketServer.sendToServer("finishedScene", "Scene0")
-        SceneSwitcher.hideScene(0)
+        SceneSwitcher.hideScene(this.sceneId)
         BlackTrans.in()
+        window.removeEventListener('touchstart', this.onTStart)
+        window.removeEventListener('touchend', this.onTEnd)
         setTimeout(() => {
             BlackTrans.out()
             this.scene.remove(this.scene0Mods)
-            SceneSwitcher.showScene(1)
+            SceneSwitcher.showScene(this.sceneId+1)
+            Scene1.start({camera: this.camera, scene: this.scene})
             PhysicsEngine.stop()
-            console.log('it works')
             this.stop()
         }, 2000)
     }
@@ -240,7 +270,6 @@ class Scene0 {
         this.ballReached = this.ballReached.bind(this)
         this.dogCameBack = this.dogCameBack.bind(this)
 
-        // window.addEventListener('click', this.throw)
         window.addEventListener('touchstart', this.onTStart)
         window.addEventListener('touchend', this.onTEnd)
     }
