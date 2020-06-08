@@ -148,4 +148,10 @@ a {
     margin-top: 10px;
   }
 }
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 </style>

@@ -1,12 +1,13 @@
 <template>
   <div class="home-page">
+    <ThreeBackground />
     <Title />
-    <router-link to="connection">connection page</router-link>
   </div>
 </template>
 
 <script>
 import Title from "@/components/Home/Title";
+import ThreeBackground from "@/components/Home/ThreeBackground";
 
 export default {
   name: "Home",
@@ -14,7 +15,8 @@ export default {
     return {};
   },
   components: {
-    Title
+    Title,
+    ThreeBackground
   },
   created() {},
   methods: {}
