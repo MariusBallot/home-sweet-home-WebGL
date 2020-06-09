@@ -120,7 +120,7 @@ class Scene0 {
         this.scene0Mods.add(this.dog)
         this.dog.position.y = .2
         this.dog.position.z = 0
-        this.dog.position.x = 1.5
+        this.dog.position.x = 2.7
         this.dog.rotateY(-Math.PI/2)
 
         //starts dog Idle
@@ -194,6 +194,7 @@ class Scene0 {
         this.touchPos.x = e.touches[0].clientX
         this.touchPos.y = e.touches[0].clientY
     }
+    
     onTEnd(e) {
         let d = this.touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY))
         if (d >= 200 && this.touchPos.y > e.changedTouches[0].clientY) {
