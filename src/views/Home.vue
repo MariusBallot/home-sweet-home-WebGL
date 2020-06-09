@@ -1,13 +1,18 @@
 <template>
   <div class="home-page">
+    <Header />
     <ThreeBackground />
     <Title />
+    <!-- <TheStory /> -->
   </div>
 </template>
 
 <script>
 import Title from "@/components/Home/Title";
 import ThreeBackground from "@/components/Home/ThreeBackground";
+import Header from "@/components/Home/Header";
+import TheStory from "@/components/Home/TheStory";
+import ScrollController from "@/classes/HomeClasses/ScrollController";
 
 export default {
   name: "Home",
@@ -16,10 +21,19 @@ export default {
   },
   components: {
     Title,
-    ThreeBackground
+    ThreeBackground,
+    Header,
+    TheStory
   },
-  created() {},
-  methods: {}
+  created() {
+    ScrollController.init();
+  },
+  mounted() {
+    window.EM.on("tScroll", this.onTScroll);
+  },
+  methods: {
+    onTScroll: function() {}
+  }
 };
 </script>
  <style lang="stylus" scoped>

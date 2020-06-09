@@ -2,6 +2,7 @@ import RAF from '@/utils/raf'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as THREE from 'three'
 import Scene0 from './SceneClasses/Scene0'
+import Scene1 from './SceneClasses/Scene1'
 import CamParallax from './CamParallax'
 
 class HomeThree {
@@ -22,20 +23,19 @@ class HomeThree {
         this.debugControls = new OrbitControls(this.debugCamera, document.body)
         this.debugCamera.position.set(0, 1, 10)
         this.debugControls.update();
+        this.debugControls.enabled = false
 
         this.homeCamera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.homeCamera.position.set(0, 0, 10)
         this.camParallax = new CamParallax(this.homeCamera)
 
-        let cube = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial())
-        this.scene.add(cube)
+
 
         this.scene.add(new THREE.AmbientLight())
-        let pL = new THREE.PointLight()
-        pL.position.set(1, 3, 1)
-        this.scene.add(pL)
+
 
         Scene0.start()
+        Scene1.start()
 
         RAF.subscribe("HomeThreeUpdate", this.update)
     }
@@ -47,7 +47,8 @@ class HomeThree {
 
     update() {
         let currCam = this.debugCamera
-        currCam = this.homeCamera
+        if (this.debugControls.enabled != true)
+            currCam = this.homeCamera
         this.renderer.autoClear = false
         this.renderer.render(this.scene, currCam)
         this.debugControls.update()

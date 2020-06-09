@@ -7,3 +7,20 @@ full-screen()
 
 $darkGrey = #2e2e2e
 $lightGrey=#b2b2b2
+
+@keyframes appearUp {
+  from {
+    transform: translate3d(0, 10px, 0);
+    opacity: 0
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}
+
+off(del)
+    transition: all .5s del
+    transform: translate3d(0, 10px, 0);
+    opacity: 0
+    pointer-events: none

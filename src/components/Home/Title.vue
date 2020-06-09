@@ -1,9 +1,9 @@
 <template>
   <div class="title">
     <div class="content">
-      <img src="ui/logo.svg" alt />
-      <h1>Home sweet home.</h1>
-      <div class="bottom-title">
+      <img src="ui/logo.svg" class="logo animate" alt />
+      <h1 class="animate">Home sweet home.</h1>
+      <div class="animate bottom-title">
         <div class="scroll-more">
           <img src="ui/arrowUp.svg" alt />
           <p>Scroll to see more</p>
@@ -23,6 +23,19 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    let animates = document.querySelectorAll(".title .animate");
+    animates.forEach(el => {
+      el.classList.add("on-up");
+    });
+
+    window.EM.on("tScroll", ind => {
+      animates.forEach(el => {
+        if (ind == 0) el.classList.add("on-up");
+        if (ind == 1) el.classList.remove("on-up");
+      });
+    });
+  },
   components: {},
   created() {},
   methods: {}
@@ -39,8 +52,23 @@ export default {
    justify-content: center;
    position: relative;
 
+   .logo {
+     off(0.2s);
+
+     &.on-up {
+       transform: translate3d(0, 0, 0);
+       opacity: 1;
+     }
+   }
+
    h1 {
      font-size: 7em;
+     off(0s);
+
+     &.on-up {
+       transform: translate3d(0, 0, 0);
+       opacity: 1;
+     }
    }
 
    .bottom-title {
@@ -49,6 +77,12 @@ export default {
      justify-content: space-between;
      font-weight: bold;
      font-size: 1.4em;
+     off(0.1s);
+
+     &.on-up {
+       transform: translate3d(0, 0, 0);
+       opacity: 1;
+     }
    }
 
    .scroll-more {
