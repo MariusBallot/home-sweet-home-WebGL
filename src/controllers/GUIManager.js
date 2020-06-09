@@ -11,7 +11,6 @@ class GUIManager {
     addParam({
         object,
         prop,
-        value,
         fromTo = [null, null],
         step = null,
         name = null
