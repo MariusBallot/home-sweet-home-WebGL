@@ -10,10 +10,10 @@ window.THREE = require('three')
 const fxaa = require('three-shader-fxaa')
 
 class PostProcess {
-    constructor(){
+    constructor() {
         this.bind()
         this.parameters = {
-            vignetteIntensity: 1.0
+            vignetteIntensity: .8
         }
     }
 
@@ -38,19 +38,19 @@ class PostProcess {
         this.shaderPass.renderToScreen = true
         this.composer.addPass(this.shaderPass)
 
-        MYGUI.addParam({ 
-            object: this.parameters, 
-            prop: "vignetteIntensity", 
-            fromTo: [1.0, 1000.0], 
-            step: 10.0, 
-            name: "Vignette Intensity" 
+        MYGUI.addParam({
+            object: this.parameters,
+            prop: "vignetteIntensity",
+            fromTo: [1.0, 1000.0],
+            step: 10.0,
+            name: "Vignette Intensity"
         })
 
         RAF.subscribe('postProcessUpdate', this.update)
     }
 
     update() {
-        this.shader.uniforms.u_vignetteIntensity.value += 1
+        this.shaderPass.material.uniforms.u_vignetteIntensity.value -= .01
     }
 
     bind() {
