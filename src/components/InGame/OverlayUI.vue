@@ -1,8 +1,8 @@
 <template>
   <div class="overlay-ui">
     <div class="head">
-      <img src="ui/logo.svg" class="logo" alt />
-      <img src="ui/empty-screen.svg" class="desk-ind" alt />
+      <img src="ui/grey/grey-logo.svg" class="grey-logo" alt />
+      <img src="ui/grey/grey-empty-screen.svg" class="grey-empty-screen" alt />
     </div>
   </div>
 </template>
@@ -29,9 +29,8 @@ export default {
     display: flex;
     justify-content: space-between;
 
-    .logo {
-      width: 20px;
-      height: auto;
+    .grey-logo, .grey-empty-screen {
+      height: 30px;
     }
   }
 }
