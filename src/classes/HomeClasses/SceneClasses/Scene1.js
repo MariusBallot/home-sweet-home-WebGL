@@ -19,7 +19,7 @@ class Scene0 {
         this.street.scale.multiplyScalar(.005)
         this.street.position.set(7, -.7, 0)
         this.street.rotateY(-.8)
-        this.animTime = 2
+        this.animTime = 1
 
 
         this.isActive = false
@@ -36,12 +36,18 @@ class Scene0 {
             }
         })
 
-        window.addEventListener('click', this.inFace)
     }
 
     inFace() {
         this.tweens.push(TweenLite.to(this.street.rotation, this.animTime, {
             y: -Math.PI / 2,
+            ease: Power3.easeInOut
+        }))
+    }
+
+    outFace() {
+        this.tweens.push(TweenLite.to(this.street.rotation, this.animTime, {
+            y: -.8,
             ease: Power3.easeInOut
         }))
     }
@@ -68,6 +74,7 @@ class Scene0 {
         this.leave = this.leave.bind(this)
         this.enter = this.enter.bind(this)
         this.inFace = this.inFace.bind(this)
+        this.outFace = this.outFace.bind(this)
 
     }
 }

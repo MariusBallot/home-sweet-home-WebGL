@@ -1,18 +1,21 @@
 <template>
   <div class="home-page">
+    <Loader />
     <Header />
     <ThreeBackground />
     <Title />
-    <!-- <TheStory /> -->
+    <TheStory />
   </div>
 </template>
 
 <script>
-import Title from "@/components/Home/Title";
+import ScrollController from "@/classes/HomeClasses/ScrollController";
+
+import Loader from "@/components/Home/Loader";
 import ThreeBackground from "@/components/Home/ThreeBackground";
 import Header from "@/components/Home/Header";
+import Title from "@/components/Home/Title";
 import TheStory from "@/components/Home/TheStory";
-import ScrollController from "@/classes/HomeClasses/ScrollController";
 
 export default {
   name: "Home",
@@ -23,7 +26,8 @@ export default {
     Title,
     ThreeBackground,
     Header,
-    TheStory
+    TheStory,
+    Loader
   },
   created() {
     ScrollController.init();

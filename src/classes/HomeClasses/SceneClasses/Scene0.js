@@ -33,7 +33,7 @@ class Scene0 {
     }
 
     enter() {
-        this.animTime = 2
+        this.animTime = 1
 
         TweenLite.to(this.boy.position, this.animTime, {
             z: 0,
