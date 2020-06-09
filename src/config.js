@@ -5,7 +5,7 @@ const config = {
     devMode: true,
     devModeScene: 0,
     devModeLocalSocketServer: false,
-    devModeShowGUI: true
+    devModeShowGUI: false
 }
 
 
