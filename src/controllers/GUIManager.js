@@ -1,10 +1,11 @@
 import * as DAT from "dat.gui"
+import config from '../config'
 
 class GUIManager {
     constructor() {
         this.bind()
         this.gui = new DAT.GUI()
-        this.gui.hide()
+        if(!config.devMode || config.devMode && !config.devModeShowGUI) this.gui.hide()
     }
 
     addParam({
@@ -12,10 +13,10 @@ class GUIManager {
         prop,
         value,
         fromTo = [null, null],
-        step = null
+        step = null,
+        name = null
     }) {
-        this.gui.add(object, prop, fromTo[0], fromTo[1], step)
-
+        !name ? this.gui.add(object, prop, fromTo[0], fromTo[1], step) : this.gui.add(object, prop, fromTo[0], fromTo[1], step).name(name)
     }
 
     bind() {

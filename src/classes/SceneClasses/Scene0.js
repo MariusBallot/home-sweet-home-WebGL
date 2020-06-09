@@ -17,6 +17,7 @@ class Scene0 {
         this.camera = camera
         this.scene = scene
         this.scene0Mods = new THREE.Group()
+        
         //DisplaysHand
         this.handModel = Characters[0].model.scene
         this.scene0Mods.add(this.handModel)
@@ -53,9 +54,9 @@ class Scene0 {
         this.rad = this.ballModel.children[0].children[0].geometry.boundingSphere.radius * Characters[1].scale
         this.scene0Mods.add(this.ballModel)
 
-
         //displays true ball collider
         this.sphereCol = new THREE.Mesh(new THREE.SphereGeometry(this.rad), new THREE.MeshBasicMaterial({ wireframe: true }))
+
         // this.scene0Mods.add(this.sphereCol)
         this.sphereBod = PhysicsEngine.addBody({
             name: "Scene0Ball",
@@ -118,6 +119,9 @@ class Scene0 {
         this.dogActions = Characters[2].actions
         this.scene0Mods.add(this.dog)
         this.dog.position.y = .2
+        this.dog.position.z = 0
+        this.dog.position.x = 1.5
+        this.dog.rotateY(-Math.PI/2)
 
         //starts dog Idle
         this.dogActions[0].play()
@@ -133,6 +137,8 @@ class Scene0 {
 
         this.scene.add(this.scene0Mods)
         RAF.subscribe("scene0", this.update)
+
+        this.addEventListeners()
     }
 
     runDogToggle() {
@@ -211,23 +217,43 @@ class Scene0 {
     }
 
     dogCameBack() {
-        if (this.finished)
-            return
-        this.finished = true
         this.runDogToggle()
         this.dogRunning = false
+        this.endScene()
+
+        //BUG: several issues
+        // if(this.numberOfThrows === 1){
+        //     this.endScene()
+        // }else{
+        //     this.numberOfThrows += 1
+        //     //reset bools
+        //     this.sphereBod.active = false
+        //     this.ballModel.visible = true
+        //     this.ballLaunched = false
+        //     this.handIdle.enabled = true
+        //     this.ballIdle.enabled = true
+        //     //play anims
+        //     this.handIdle.play()
+        //     this.ballIdle.play()
+        // }
+    }
+
+    endScene() {
+        if (this.finished) return
+        this.finished = true
         SceneSwitcher.hideScene(this.sceneId)
         BlackTrans.in()
         window.removeEventListener('touchstart', this.onTStart)
         window.removeEventListener('touchend', this.onTEnd)
-        // setTimeout(() => {
-        //     BlackTrans.out()
-        //     this.scene.remove(this.scene0Mods)
-        //     SceneSwitcher.showScene(this.sceneId+1)
-        //     Scene1.start({camera: this.camera, scene: this.scene})
-        //     PhysicsEngine.stop()
-        //     this.stop()
-        // }, 2000)
+    }
+
+    loadNextScene() {
+        BlackTrans.out()
+        this.scene.remove(this.scene0Mods)
+        SceneSwitcher.showScene(this.sceneId+1)
+        Scene1.start({camera: this.camera, scene: this.scene})
+        PhysicsEngine.stop()
+        this.stop()
     }
 
     update() {
@@ -251,12 +277,24 @@ class Scene0 {
             this.dog.quaternion.setFromUnitVectors(this.dogForward, new THREE.Vector3(this.dogDir.x, 0, this.dogDir.z));
             if (this.runningBack) {
                 let dDog0 = this.dog.position.distanceTo(this.scene.position)
-                if (dDog0 <= 1)
+                if (dDog0 <= 1){
                     this.dogCameBack()
+                }
             }
         }
+    }
 
-
+    addEventListeners(){
+        const onReadyForNextScene = (message) => {
+            console.log(JSON.parse(message));
+            if(this.finished){
+                this.loadNextScene()
+                window.EM.off('readyForNextScene', onReadyForNextScene)
+            }
+        }
+        window.addEventListener('touchstart', this.onTStart)
+        window.addEventListener('touchend', this.onTEnd)
+        window.EM.on('readyForNextScene', onReadyForNextScene)
     }
 
     bind() {
@@ -269,9 +307,9 @@ class Scene0 {
         this.onTEnd = this.onTEnd.bind(this)
         this.ballReached = this.ballReached.bind(this)
         this.dogCameBack = this.dogCameBack.bind(this)
-
-        window.addEventListener('touchstart', this.onTStart)
-        window.addEventListener('touchend', this.onTEnd)
+        this.endScene = this.endScene.bind(this)
+        this.loadNextScene = this.loadNextScene.bind(this)
+        this.addEventListeners = this.addEventListeners.bind(this)
     }
 }
 

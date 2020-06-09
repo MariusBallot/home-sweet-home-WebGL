@@ -4,6 +4,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import postShaderVert from "../shaders/postProcess.vert"
 import postShaderFrag from "../shaders/postProcess.frag"
+import MYGUI from '../controllers/GUIManager'
 
 window.THREE = require('three')
 const fxaa = require('three-shader-fxaa')
@@ -24,6 +25,7 @@ class PostProcess {
         this.shader = {
             uniforms: {
                 tDiffuse: { value: null },
+                u_vignetteIntensity: { value: 1.0 } //float : 1 = default, 1000 = max
             },
             vertexShader: postShaderVert,
             fragmentShader: postShaderFrag,
@@ -32,6 +34,8 @@ class PostProcess {
         this.shaderPass = new ShaderPass(this.shader)
         this.shaderPass.renderToScreen = true
         this.composer.addPass(this.shaderPass)
+
+        MYGUI.addParam({ object: this.shader.uniforms.u_vignetteIntensity, prop: "value", fromTo: [1, 1000], step: 10, name: "Vignette" })
     }
 }
 

@@ -2,7 +2,10 @@ const config = {
     allowDesktop: true,
     orCam: eval(localStorage.getItem("camType") || true),
     testScene: false,
-    devMode: false
+    devMode: true,
+    devModeScene: 0,
+    devModeLocalSocketServer: false,
+    devModeShowGUI: true
 }
 
 
