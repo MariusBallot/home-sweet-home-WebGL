@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as THREE from 'three'
 import Scene0 from './SceneClasses/Scene0'
 import Scene1 from './SceneClasses/Scene1'
+import Scene2 from './SceneClasses/Scene2'
 import CamParallax from './CamParallax'
 
 class HomeThree {
@@ -19,23 +20,26 @@ class HomeThree {
 
         this.scene = new THREE.Scene()
 
-        this.debugCamera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.debugCamera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.debugControls = new OrbitControls(this.debugCamera, document.body)
-        this.debugCamera.position.set(0, 1, 10)
+        this.debugCamera.position.set(0, 0, 10)
         this.debugControls.update();
         this.debugControls.enabled = false
 
-        this.homeCamera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.homeCamera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000)
         this.homeCamera.position.set(0, 0, 10)
         this.camParallax = new CamParallax(this.homeCamera)
 
 
 
-        this.scene.add(new THREE.AmbientLight())
+        let aLight = new THREE.AmbientLight()
+        aLight.intensity = 3
+        // this.scene.add(aLight)
 
 
         Scene0.start()
         Scene1.start()
+        Scene2.start()
 
         RAF.subscribe("HomeThreeUpdate", this.update)
     }

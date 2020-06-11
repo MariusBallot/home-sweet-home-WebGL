@@ -12,6 +12,9 @@ class ModelLoader {
             {
                 url: "models/Home/1/scene.gltf"
             },
+            {
+                url: "models/Home/2/scene.gltf"
+            },
         ]
     }
     start() {

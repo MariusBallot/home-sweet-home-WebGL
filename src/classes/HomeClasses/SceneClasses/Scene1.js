@@ -17,7 +17,7 @@ class Scene0 {
         this.scene.add(this.street)
 
         this.street.scale.multiplyScalar(.005)
-        this.street.position.set(7, -.7, 0)
+        this.street.position.set(8, -.7, 0)
         this.street.rotateY(-.8)
         this.animTime = 1
 
@@ -25,7 +25,8 @@ class Scene0 {
         this.isActive = false
         window.EM.on('tScroll', (ind) => {
             if (ind == 1) {
-                this.street.position.x = 7
+                console.log('kdops')
+                this.street.position.x = 8
                 this.street.rotation.y = -.8
                 this.enter()
                 this.isActive = true
@@ -57,7 +58,7 @@ class Scene0 {
         this.tweens.push(TweenLite.to(this.street.position, this.animTime, {
             x: 0,
             ease: Power3.easeInOut,
-            delay: .5
+
         }))
 
     }

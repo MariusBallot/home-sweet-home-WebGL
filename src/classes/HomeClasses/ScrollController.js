@@ -4,7 +4,7 @@ class ScrollController {
         this.timer = null
         this.wheelFlag = true
         this.scrollIndex = 0
-        this.maxIndex = 3
+        this.maxIndex = 4
     }
 
     init() {
