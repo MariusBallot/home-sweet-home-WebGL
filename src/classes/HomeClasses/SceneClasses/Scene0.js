@@ -13,16 +13,19 @@ class Scene0 {
         this.scene = HomeThree.scene
 
         this.boy = ModelLoader.models[0].scene.scene
-        this.scene.add(this.boy)
-        this.boy.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                child.material.transparent = true
-                child.material.opacity = 0
-            }
-        })
+
 
         this.boy.position.set(0, -5, -2)
         this.boy.scale.multiplyScalar(.04)
+        this.boy.updateMatrix()
+
+        this.plane = new THREE.Mesh(new THREE.PlaneGeometry(70, 300), new THREE.MeshBasicMaterial({
+            transparent: true,
+            color: 0x000000,
+            opacity: 1
+        }))
+        this.plane.position.set(0, 50, 50)
+        this.boy.add(this.plane)
 
         this.enter()
 
@@ -40,30 +43,29 @@ class Scene0 {
             ease: Power3.easeInOut
         })
 
-        this.boy.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                TweenLite.to(child.material, this.animTime, {
-                    opacity: 1,
-                    ease: Power3.easeInOut
-                })
-            }
+
+        TweenLite.to(this.plane.material, this.animTime, {
+            opacity: 0,
+            onStart: () => {
+                this.scene.add(this.boy)
+            },
+            ease: Power3.easeInOut
         })
+
     }
 
     leave(ind) {
         TweenLite.to(this.boy.position, this.animTime, {
-            z: -2,
+            z: -6,
             ease: Power3.easeInOut
         })
 
-        this.boy.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                child.material.transparent = true
-                TweenLite.to(child.material, this.animTime, {
-                    opacity: 0,
-                    ease: Power3.easeInOut
-                })
-            }
+        TweenLite.to(this.plane.material, this.animTime, {
+            opacity: 1,
+            onComplete: () => {
+                this.scene.remove(this.boy)
+            },
+            ease: Power3.easeInOut
         })
     }
 

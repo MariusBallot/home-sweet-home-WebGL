@@ -5,6 +5,7 @@
     <ThreeBackground />
     <Title />
     <TheStory />
+    <Trailer />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import ThreeBackground from "@/components/Home/ThreeBackground";
 import Header from "@/components/Home/Header";
 import Title from "@/components/Home/Title";
 import TheStory from "@/components/Home/TheStory";
+import Trailer from "@/components/Home/Trailer";
 
 export default {
   name: "Home",
@@ -27,7 +29,8 @@ export default {
     ThreeBackground,
     Header,
     TheStory,
-    Loader
+    Loader,
+    Trailer
   },
   created() {
     ScrollController.init();
