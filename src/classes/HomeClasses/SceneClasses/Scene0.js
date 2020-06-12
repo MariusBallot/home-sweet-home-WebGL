@@ -88,6 +88,7 @@ class Scene0 {
     }
 
     enter() {
+        this.isActive = true
         this.enterAnim.invalidate().progress(0).pause();
         this.leaveAnim.invalidate().progress(0).pause();
         this.enterAnim.play()
