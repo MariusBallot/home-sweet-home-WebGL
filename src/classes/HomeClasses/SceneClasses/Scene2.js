@@ -3,7 +3,7 @@ import ModelLoader from "../ModelLoader"
 import { TweenLite, Power3 } from 'gsap'
 import * as THREE from "three"
 
-class Scene0 {
+class Scene2 {
     constructor() {
         this.bind()
         this.tweens = []
@@ -33,7 +33,6 @@ class Scene0 {
         this.scene = HomeThree.scene
 
         this.room = ModelLoader.models[2].scene.scene
-        this.scene.add(this.room)
 
         this.room.scale.multiplyScalar(.1)
         this.room.position.copy(this.positions.origin.pos)
@@ -65,26 +64,15 @@ class Scene0 {
 
     }
 
-    inFace() {
-        TweenLite.to(this.room.rotation, this.animTime, {
-            y: -Math.PI / 2,
-            ease: Power3.easeInOut
-        })
-    }
-
-    outFace() {
-        TweenLite.to(this.room.rotation, this.animTime, {
-            y: -.8,
-            ease: Power3.easeInOut
-        })
-    }
-
     toOrigin() {
         TweenLite.to(this.room.position, this.animTime, {
             x: this.positions.origin.pos.x,
             y: this.positions.origin.pos.y,
             z: this.positions.origin.pos.z,
             ease: Power3.easeInOut,
+            onComplete: () => {
+                this.scene.remove(this.room)
+            }
 
         })
         TweenLite.to(this.room.rotation, this.animTime, {
@@ -95,6 +83,8 @@ class Scene0 {
     }
 
     toBooks() {
+        if (!this.isActive)
+            this.scene.add(this.room)
         TweenLite.to(this.room.position, this.animTime, {
             x: this.positions.books.pos.x,
             y: this.positions.books.pos.y,
@@ -110,6 +100,9 @@ class Scene0 {
     }
 
     toTable() {
+        if (!this.isActive)
+            this.scene.add(this.room)
+
         TweenLite.to(this.room.position, this.animTime, {
             x: this.positions.table.pos.x,
             y: this.positions.table.pos.y,
@@ -130,6 +123,9 @@ class Scene0 {
             y: this.positions.leave.pos.y,
             z: this.positions.leave.pos.z,
             ease: Power3.easeInOut,
+            onComplete: () => {
+                this.scene.remove(this.room)
+            }
 
         })
         TweenLite.to(this.room.rotation, this.animTime, {
@@ -144,12 +140,11 @@ class Scene0 {
         this.toOrigin = this.toOrigin.bind(this)
         this.toBooks = this.toBooks.bind(this)
         this.toTable = this.toTable.bind(this)
-        this.inFace = this.inFace.bind(this)
-        this.outFace = this.outFace.bind(this)
         this.leave = this.leave.bind(this)
 
     }
 }
 
-const _instance = new Scene0()
+const _instance = new Scene2
+    ()
 export default _instance

@@ -104,7 +104,7 @@ export default {
        font-size: 9em;
 
        &.story {
-         margin-top: -100px;
+         margin-top: -70px;
        }
      }
 

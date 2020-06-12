@@ -13,16 +13,16 @@ export default class CameraController {
     }
 
     mouseMove(e) {
-        this.cursor[0] = -(e.clientX - window.innerWidth / 2) * this.sensitivity
-        this.cursor[1] = (e.clientY - window.innerHeight / 2) * this.sensitivity
+        this.cursor[0] = -(e.clientX - window.innerWidth / 2)
+        this.cursor[1] = (e.clientY - window.innerHeight / 2)
     }
 
 
     update() {
         if (!this.enabled)
             return
-        this.camera.position.x += (this.cursor[0] - this.camera.position.x) * this.ease
-        this.camera.position.y += (this.cursor[1] - this.camera.position.y) * this.ease
+        this.camera.position.x += (this.cursor[0] * this.sensitivity - this.camera.position.x) * this.ease
+        this.camera.position.y += (this.cursor[1] * this.sensitivity - this.camera.position.y) * this.ease
 
         this.camera.lookAt(0, 0, 0)
     }

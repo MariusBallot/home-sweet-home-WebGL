@@ -107,19 +107,19 @@ export default {
 
 <style lang="stylus">
 @font-face {
-  font-family: 'Grotesk';
-  src: url('/fonts/DarkerGrotesque-Black.ttf');
-  font-weight: 900;
+  font-family: 'Grotesk', sans-serif;
+  src: url('/fonts/DarkerGrotesque-Extrabold.ttf');
+  font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Grotesk';
+  font-family: 'Grotesk', sans-serif;
   src: url('/fonts/DarkerGrotesque-Regular.ttf');
   font-weight: 400;
 }
 
 * {
-  font-family: 'Grotesk';
+  font-family: 'Grotesk', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -153,5 +153,9 @@ a {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+}
+
+h1, h2 {
+  font-weight: 700;
 }
 </style>

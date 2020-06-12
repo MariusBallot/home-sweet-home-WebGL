@@ -6,6 +6,8 @@
     <Title />
     <TheStory />
     <Trailer />
+    <Tuto />
+    <TryNow />
   </div>
 </template>
 
@@ -18,6 +20,8 @@ import Header from "@/components/Home/Header";
 import Title from "@/components/Home/Title";
 import TheStory from "@/components/Home/TheStory";
 import Trailer from "@/components/Home/Trailer";
+import Tuto from "@/components/Home/Tuto";
+import TryNow from "@/components/Home/TryNow";
 
 export default {
   name: "Home",
@@ -30,7 +34,9 @@ export default {
     Header,
     TheStory,
     Loader,
-    Trailer
+    Trailer,
+    Tuto,
+    TryNow
   },
   created() {
     ScrollController.init();

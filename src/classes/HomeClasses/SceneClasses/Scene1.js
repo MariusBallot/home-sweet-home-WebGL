@@ -3,7 +3,7 @@ import ModelLoader from "../ModelLoader"
 import { TweenLite, Power3 } from 'gsap'
 import * as THREE from "three"
 
-class Scene0 {
+class Scene1 {
     constructor() {
         this.bind()
         this.tweens = []
@@ -14,7 +14,6 @@ class Scene0 {
         this.scene = HomeThree.scene
 
         this.street = ModelLoader.models[1].scene.scene
-        this.scene.add(this.street)
 
         this.street.scale.multiplyScalar(.005)
         this.street.position.set(8, -.7, 0)
@@ -54,6 +53,7 @@ class Scene0 {
     }
 
     enter() {
+        this.scene.add(this.street)
 
         this.tweens.push(TweenLite.to(this.street.position, this.animTime, {
             x: 0,
@@ -65,8 +65,11 @@ class Scene0 {
 
     leave() {
         this.tweens.push(TweenLite.to(this.street.position, this.animTime, {
-            x: -7,
-            ease: Power3.easeInOut
+            x: -8,
+            ease: Power3.easeInOut,
+            onComplete: () => {
+                this.scene.remove(this.street)
+            }
         }))
     }
 
@@ -80,5 +83,5 @@ class Scene0 {
     }
 }
 
-const _instance = new Scene0()
+const _instance = new Scene1()
 export default _instance
