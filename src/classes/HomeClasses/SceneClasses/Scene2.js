@@ -1,6 +1,6 @@
 import HomeThree from "../HomeThree"
 import ModelLoader from "../ModelLoader"
-import { TweenLite, Power3 } from 'gsap'
+import { TimelineMax, Power3 } from 'gsap'
 import * as THREE from "three"
 
 class Scene2 {
@@ -39,6 +39,7 @@ class Scene2 {
         this.room.rotation.y = this.positions.origin.rot.y
         this.animTime = 1
 
+        this.initAnims()
 
         this.isActive = false
         window.EM.on('tScroll', (ind) => {
@@ -64,8 +65,11 @@ class Scene2 {
 
     }
 
-    toOrigin() {
-        TweenLite.to(this.room.position, this.animTime, {
+    initAnims() {
+        this.toOriginAnim = new TimelineMax({
+            paused: true
+        })
+        this.toOriginAnim.to(this.room.position, this.animTime, {
             x: this.positions.origin.pos.x,
             y: this.positions.origin.pos.y,
             z: this.positions.origin.pos.z,
@@ -74,51 +78,47 @@ class Scene2 {
                 this.scene.remove(this.room)
             }
 
-        })
-        TweenLite.to(this.room.rotation, this.animTime, {
+        }, 0)
+        this.toOriginAnim.to(this.room.rotation, this.animTime, {
             y: this.positions.origin.rot.y,
             ease: Power3.easeInOut,
+        }, 0)
 
+        this.toBooksAnim = new TimelineMax({
+            paused: true
         })
-    }
-
-    toBooks() {
-        if (!this.isActive)
-            this.scene.add(this.room)
-        TweenLite.to(this.room.position, this.animTime, {
+        this.toBooksAnim.to(this.room.position, this.animTime, {
             x: this.positions.books.pos.x,
             y: this.positions.books.pos.y,
             z: this.positions.books.pos.z,
             ease: Power3.easeInOut,
-
-        })
-        TweenLite.to(this.room.rotation, this.animTime, {
+        }, 0)
+        this.toBooksAnim.to(this.room.rotation, this.animTime, {
             y: this.positions.books.rot.y,
             ease: Power3.easeInOut,
 
+        }, 0)
+
+        this.toTableAnim = new TimelineMax({
+            paused: true
         })
-    }
-
-    toTable() {
-        if (!this.isActive)
-            this.scene.add(this.room)
-
-        TweenLite.to(this.room.position, this.animTime, {
+        this.toTableAnim.to(this.room.position, this.animTime, {
             x: this.positions.table.pos.x,
             y: this.positions.table.pos.y,
             z: this.positions.table.pos.z,
             ease: Power3.easeInOut,
 
-        })
-        TweenLite.to(this.room.rotation, this.animTime, {
+        }, 0)
+        this.toTableAnim.to(this.room.rotation, this.animTime, {
             y: this.positions.table.rot.y,
             ease: Power3.easeInOut,
 
-        })
-    }
+        }, 0)
 
-    leave() {
-        TweenLite.to(this.room.position, this.animTime, {
+        this.leaveAnim = new TimelineMax({
+            paused: true
+        })
+        this.leaveAnim.to(this.room.position, this.animTime, {
             x: this.positions.leave.pos.x,
             y: this.positions.leave.pos.y,
             z: this.positions.leave.pos.z,
@@ -127,12 +127,50 @@ class Scene2 {
                 this.scene.remove(this.room)
             }
 
-        })
-        TweenLite.to(this.room.rotation, this.animTime, {
+        }, 0)
+        this.leaveAnim.to(this.room.rotation, this.animTime, {
             y: this.positions.leave.rot.y,
             ease: Power3.easeInOut,
 
-        })
+        }, 0)
+
+    }
+
+    toOrigin() {
+        this.toOriginAnim.invalidate().progress(0).pause();
+        this.toTableAnim.invalidate().progress(0).pause();
+        this.toBooksAnim.invalidate().progress(0).pause();
+        this.leaveAnim.invalidate().progress(0).pause();
+        this.toOriginAnim.play()
+    }
+
+    toBooks() {
+        if (!this.isActive)
+            this.scene.add(this.room)
+        this.toOriginAnim.invalidate().progress(0).pause();
+        this.toTableAnim.invalidate().progress(0).pause();
+        this.toBooksAnim.invalidate().progress(0).pause();
+        this.leaveAnim.invalidate().progress(0).pause();
+        this.toBooksAnim.play()
+
+    }
+
+    toTable() {
+        if (!this.isActive)
+            this.scene.add(this.room)
+        this.toOriginAnim.invalidate().progress(0).pause();
+        this.toTableAnim.invalidate().progress(0).pause();
+        this.toBooksAnim.invalidate().progress(0).pause();
+        this.leaveAnim.invalidate().progress(0).pause();
+        this.toTableAnim.play()
+    }
+
+    leave() {
+        this.toOriginAnim.invalidate().progress(0).pause();
+        this.toTableAnim.invalidate().progress(0).pause();
+        this.toBooksAnim.invalidate().progress(0).pause();
+        this.leaveAnim.invalidate().progress(0).pause();
+        this.leaveAnim.play()
     }
 
     bind() {
