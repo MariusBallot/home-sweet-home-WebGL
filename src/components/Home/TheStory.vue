@@ -33,28 +33,50 @@ export default {
   name: "TheStory",
   data() {
     return {
-      animates: null
+      animates: null,
+      ind: null,
+      isActive: null
     };
   },
   mounted() {
     this.animates = document.querySelectorAll(".the-story .animate");
-    let isactive = false;
+    this.isActive = false;
 
     window.EM.on("tScroll", ind => {
-      this.animates.forEach(el => {
-        if (ind == 1) {
-          isactive = true;
-          el.classList.add("on-up");
-        } else if (isactive) {
-          el.classList.remove("on-up");
-          this.$refs.right2.classList.remove("on-up");
-        }
-      });
+      this.ind = ind;
+      this.checkInd();
+    });
+
+    window.EM.on("inCredits", () => {
+      if (this.isActive) this.leave();
+    });
+    window.EM.on("outCredits", () => {
+      if (this.isActive) this.checkInd();
     });
   },
-  components: {},
-  created() {},
+
   methods: {
+    checkInd: function() {
+      if (this.ind == 1) {
+        this.enter();
+      } else if (this.isActive) {
+        this.isActive = false;
+        this.leave();
+      }
+    },
+    enter: function() {
+      this.animates.forEach(el => {
+        this.isActive = true;
+        el.classList.add("on-up");
+      });
+    },
+    leave: function() {
+      this.animates.forEach(el => {
+        el.classList.remove("on-up");
+        this.$refs.right2.classList.remove("on-up");
+      });
+    },
+
     onClickRight: function() {
       Scene1.inFace();
       this.animates.forEach(el => {

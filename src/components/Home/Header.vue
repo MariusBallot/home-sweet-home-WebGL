@@ -1,11 +1,14 @@
 <template>
   <div ref="container" class="header animate">
     <div class="top">
-      <img src="ui/logo.svg" alt />
-      <h1>Home sweet home.</h1>
+      <img src="ui/logo.svg" class="logo" alt />
+      <img src="ui/title.png" alt class="title" />
     </div>
     <div class="bot">
-      <button>Credits</button>
+      <div class="credit-nav">
+        <button v-on:click="onCredits" class="credit on">Credits</button>
+        <button v-on:click="onBack" class="back">Back</button>
+      </div>
       <button>Start the experience</button>
     </div>
   </div>
@@ -15,21 +18,47 @@
 export default {
   name: "Header",
   data() {
-    return {};
+    return {
+      animates: null,
+      credButt: null,
+      backButt: null
+    };
   },
   mounted() {
-    let animates = document.querySelectorAll(".header.animate");
+    this.animates = document.querySelectorAll(".header.animate");
+    let isActive = false;
+
+    this.credButt = document.querySelector(".credit");
+    this.backButt = document.querySelector(".back");
 
     window.EM.on("tScroll", ind => {
-      animates.forEach(el => {
-        if (ind == 0) el.classList.remove("on-up");
-        if (ind == 1) el.classList.add("on-up");
+      this.animates.forEach(el => {
+        if (ind >= 1) {
+          el.classList.add("on-up");
+          isActive = true;
+        } else if (isActive) {
+          isActive = false;
+          el.classList.remove("on-up");
+        }
       });
     });
+
+    window.EM.on("inCredits", () => {});
   },
   components: {},
   created() {},
-  methods: {}
+  methods: {
+    onCredits: function() {
+      window.EM.emit("inCredits");
+      this.credButt.classList.remove("on");
+      this.backButt.classList.add("on");
+    },
+    onBack: function() {
+      window.EM.emit("outCredits");
+      this.credButt.classList.add("on");
+      this.backButt.classList.remove("on");
+    }
+  }
 };
 </script>
  <style lang="stylus" scoped>
@@ -46,6 +75,7 @@ export default {
    &.on-up {
      transform: translate3d(0, 0, 0);
      opacity: 1;
+     pointer-events: all;
    }
 
    .top {
@@ -62,7 +92,12 @@ export default {
        font-weight: 400;
      }
 
-     img {
+     .logo {
+       height: 100%;
+       width: auto;
+     }
+
+     .title {
        height: 100%;
        width: auto;
      }
@@ -74,6 +109,41 @@ export default {
      justify-content: space-between;
      align-items: center;
      margin-top: 10px;
+
+     .credit-nav {
+       position: relative;
+
+       .credit {
+         off(0s);
+
+         &.on {
+           opacity: 1;
+           transform: translate3d(0, 0, 0);
+           pointer-events: all;
+         }
+       }
+
+       .back {
+         position: absolute;
+         top: 0;
+         left: 0;
+         off(0s);
+
+         &.on {
+           opacity: 1;
+           transform: translate3d(0, 0, 0);
+           pointer-events: all;
+         }
+       }
+     }
+
+     button {
+       cursor: pointer;
+
+       &:focus {
+         outline: none;
+       }
+     }
    }
 
    button {

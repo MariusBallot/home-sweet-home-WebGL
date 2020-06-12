@@ -1,3 +1,5 @@
+import LoadingController from './LoadingController'
+
 class ScrollController {
     constructor() {
         this.bind()
@@ -5,14 +7,18 @@ class ScrollController {
         this.wheelFlag = true
         this.scrollIndex = 0
         this.maxIndex = 4
+        this.active = false
     }
 
     init() {
         window.addEventListener('wheel', this.onWheel)
-
+        window.EM.on("inCredits", () => { this.active = false });
+        window.EM.on("outCredits", () => { this.active = true });
     }
 
     onWheel(e) {
+        if (!this.active)
+            return
         if (this.timer !== null) {
             clearTimeout(this.timer);
         }
@@ -37,6 +43,10 @@ class ScrollController {
     bind() {
         this.onWheel = this.onWheel.bind(this)
         this.init = this.init.bind(this)
+
+        LoadingController.addOnLoad('whellOnLoad', () => { this.active = true })
+
+
     }
 }
 

@@ -43,25 +43,32 @@ class Scene2 {
 
         this.isActive = false
         window.EM.on('tScroll', (ind) => {
-            if (ind == 2) {
-                console.log("yeah")
-                this.toBooks()
-                this.isActive = true
-            }
-            if (ind == 3) {
-                this.toTable()
-                this.isActive = true
-            }
-            if (this.isActive && ind == 1) {
-                this.isActive = false
-                this.toOrigin()
-            }
-            if (this.isActive && ind == 4) {
-                this.isActive = false
-                this.leave()
-            }
-
+            this.ind = ind
+            this.checkInd()
         })
+        window.EM.on("inCredits", () => { if (this.isActive) this.toOrigin() });
+        window.EM.on("outCredits", () => {
+            if (this.isActive) {
+                this.scene.add(this.room)
+                this.checkInd()
+            }
+        });
+    }
+
+    checkInd() {
+        if (this.ind == 2) {
+            this.toBooks()
+            this.isActive = true
+        } else if (this.ind == 3) {
+            this.toTable()
+            this.isActive = true
+        } else if (this.isActive && this.ind == 1) {
+            this.isActive = false
+            this.toOrigin()
+        } else if (this.isActive && this.ind == 4) {
+            this.isActive = false
+            this.leave()
+        }
 
     }
 
@@ -179,6 +186,7 @@ class Scene2 {
         this.toBooks = this.toBooks.bind(this)
         this.toTable = this.toTable.bind(this)
         this.leave = this.leave.bind(this)
+        this.checkInd = this.checkInd.bind(this)
 
     }
 }

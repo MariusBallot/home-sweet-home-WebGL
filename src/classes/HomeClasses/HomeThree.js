@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import Scene0 from './SceneClasses/Scene0'
 import Scene1 from './SceneClasses/Scene1'
 import Scene2 from './SceneClasses/Scene2'
+import Credits from './SceneClasses/Credits'
 import CamParallax from './CamParallax'
 
 class HomeThree {
@@ -40,6 +41,7 @@ class HomeThree {
         Scene0.start()
         Scene1.start()
         Scene2.start()
+        Credits.start()
 
         RAF.subscribe("HomeThreeUpdate", this.update)
     }

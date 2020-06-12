@@ -6,7 +6,7 @@ export default class CameraController {
         this.camera = camera
         this.cursor = [0, 0]
         this.ease = 0.05
-        this.sensitivity = 0.001
+        this.sensitivity = 0.0005
         this.enabled = true
 
         RAF.subscribe('cameraControllerUpdate', this.update)

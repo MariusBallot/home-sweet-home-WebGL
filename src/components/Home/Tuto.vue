@@ -11,27 +11,49 @@
 export default {
   name: "Tuto",
   data() {
-    return {};
+    return {
+      ind: null,
+      animates: null,
+      isActive: null
+    };
   },
   mounted() {
-    let animates = document.querySelectorAll(".tuto .animate,.tuto.animate");
-    let isActive = false;
+    this.animates = document.querySelectorAll(".tuto .animate,.tuto.animate");
+    this.isActive = false;
 
     window.EM.on("tScroll", ind => {
-      animates.forEach(el => {
-        if (ind == 3) {
-          el.classList.add("on-up");
-          isActive = true;
-        } else if (isActive) {
-          isActive = false;
-          el.classList.remove("on-up");
-        }
-      });
+      this.ind = ind;
+      this.checkInd();
+    });
+
+    window.EM.on("inCredits", () => {
+      if (this.isActive) this.leave();
+    });
+    window.EM.on("outCredits", () => {
+      if (this.isActive) this.checkInd();
     });
   },
-  components: {},
-  created() {},
-  methods: {}
+  methods: {
+    checkInd: function() {
+      if (this.ind == 3) {
+        this.enter();
+      } else if (this.isActive) {
+        this.isActive = false;
+        this.leave();
+      }
+    },
+    enter: function() {
+      this.animates.forEach(el => {
+        el.classList.add("on-up");
+      });
+      this.isActive = true;
+    },
+    leave: function() {
+      this.animates.forEach(el => {
+        el.classList.remove("on-up");
+      });
+    }
+  }
 };
 </script>
  <style lang="stylus" scoped>

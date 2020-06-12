@@ -2,7 +2,7 @@
   <div class="title">
     <div class="content">
       <img src="ui/logo.svg" class="logo animate" alt />
-      <h1 class="animate">Home sweet home.</h1>
+      <img src="ui/title.png" alt class="title animate" />
       <div class="animate bottom-title">
         <div class="scroll-more">
           <img src="ui/arrowUp.svg" alt />
@@ -53,6 +53,8 @@ export default {
    position: relative;
 
    .logo {
+     width: 40px;
+     height: auto;
      off(0.2s);
 
      &.on-up {
@@ -61,8 +63,10 @@ export default {
      }
    }
 
-   h1 {
-     font-size: 7em;
+   .title {
+     margin: 20px 0;
+     width: 800px;
+     height: auto;
      off(0s);
 
      &.on-up {

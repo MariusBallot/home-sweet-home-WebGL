@@ -8,6 +8,7 @@
     <Trailer />
     <Tuto />
     <TryNow />
+    <Credits />
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import TheStory from "@/components/Home/TheStory";
 import Trailer from "@/components/Home/Trailer";
 import Tuto from "@/components/Home/Tuto";
 import TryNow from "@/components/Home/TryNow";
+import Credits from "@/components/Home/Credits";
 
 export default {
   name: "Home",
@@ -36,7 +38,8 @@ export default {
     Loader,
     Trailer,
     Tuto,
-    TryNow
+    TryNow,
+    Credits
   },
   created() {
     ScrollController.init();

@@ -24,17 +24,25 @@ class Scene1 {
 
         this.isActive = false
         window.EM.on('tScroll', (ind) => {
-            if (ind == 1) {
-                this.enter()
-                this.isActive = true
-            }
-            else if (this.isActive) {
-                this.isActive = false
-                this.leave()
-            }
+            this.ind = ind
+            this.checkInd()
         })
 
+        window.EM.on("inCredits", () => { if (this.isActive) this.leave() });
+        window.EM.on("outCredits", () => { if (this.isActive) this.checkInd() });
     }
+
+    checkInd() {
+        if (this.ind == 1) {
+            this.enter()
+            this.isActive = true
+        }
+        else if (this.isActive) {
+            this.isActive = false
+            this.leave()
+        }
+    }
+
     initAnims() {
         this.inFaceAnim = new TimelineMax({
             paused: true
@@ -109,6 +117,7 @@ class Scene1 {
         this.inFace = this.inFace.bind(this)
         this.outFace = this.outFace.bind(this)
         this.initAnims = this.initAnims.bind(this)
+        this.checkInd = this.checkInd.bind(this)
 
     }
 }

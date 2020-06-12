@@ -30,10 +30,16 @@ class Scene0 {
         this.initAnims()
         this.enter()
 
+        this.isActive = true
+
         window.EM.on('tScroll', (ind) => {
             if (ind == 0) this.enter()
-            if (ind == 1) this.leave()
+            else if (this.isActive) {
+                this.isActive = false
+                this.leave()
+            }
         })
+
     }
 
     initAnims() {
