@@ -3,6 +3,7 @@ import RAF from "../../utils/raf"
 import SceneSwitcher from '../../controllers/SceneSwitcher'
 import BlackTrans from "../BlackTrans"
 import MainScene from '../MainScene'
+import PostProcess from '../PostProcess'
 
 class Scene5 {
     constructor() {
@@ -15,14 +16,13 @@ class Scene5 {
 	
     start({ camera, scene }) {
         this.camera = camera
-        this.camera
         this.scene = scene
 
         MainScene.scene.background = new THREE.Color(0x000000);
 
         RAF.subscribe("scene5", this.update)
         
-        window.addEventListener('touchstart', this.onTStart)
+        this.addEventListeners()
     }
 
     stop() {
@@ -38,10 +38,40 @@ class Scene5 {
         const newClickTime = new Date();
         console.log(newClickTime)
         if(newClickTime.getSeconds() === this.clickTime.getSeconds()){
-            this.loadNextScene();
+            this.endScene();
         }else{
             this.clickTime = newClickTime;
         }
+    }
+
+    endScene() {        
+        if (this.finished) return
+        this.finished = true
+        console.log("switching")
+        SceneSwitcher.hideScene(this.sceneId)
+        // BlackTrans.in()
+        PostProcess.fade("in")
+        window.removeEventListener('touchstart', this.onTStart)
+    }
+
+    loadNextScene() {
+        // BlackTrans.out()
+        PostProcess.fade("out")
+        // SceneSwitcher.showScene(this.sceneId+1)
+        // Scene4.start({camera: this.camera, scene: this.camera})
+        this.stop()
+    }
+
+    addEventListeners(){
+        // const onReadyForNextScene = (message) => {
+        //     console.log(JSON.parse(message));
+        //     if(this.finished){
+        //         window.EM.off('readyForNextScene', onReadyForNextScene)
+        //         this.loadNextScene()
+        //     }
+        // }
+        window.addEventListener('touchstart', this.onTStart)
+        // window.EM.on('readyForNextScene', onReadyForNextScene)
     }
 
     loadNextScene(){

@@ -43,7 +43,7 @@ class MainScene {
             scene: this.scene
         })
 
-        this.scene.background = new THREE.Color(0x000000)
+        this.scene.background = new THREE.Color(0xB8C6D1)
         this.scene.add(new THREE.AmbientLight())
         let pL = new THREE.PointLight()
         pL.position.set(1, 3, 1)
@@ -60,7 +60,7 @@ class MainScene {
         PhysicsEngine.start()
         
         this.addEventListeners()
-        this.loadNextScene()
+        if(config.devModeSkipIntro) this.loadNextScene()
     }
 
 
@@ -83,7 +83,7 @@ class MainScene {
     }
 
     loadNextScene(){
-        this.scene.background = new THREE.Color(0xB8C6D1)
+        PostProcess.fade("out")
 
         if(config.devMode) { 
             const sceneClasses = [Scene0, Scene1, Scene2, Scene3, Scene4, Scene5]
@@ -114,11 +114,12 @@ class MainScene {
     addEventListeners() {
         window.addEventListener('resize', this.onWindowResize)
         const onReadyForNextScene = (message) => {
+            window.EM.off('readyForNextScene', onReadyForNextScene)
             console.log(JSON.parse(message));
             this.loadNextScene()
-            window.EM.off('readyForNextScene', onReadyForNextScene)
         }
         window.EM.on('readyForNextScene', onReadyForNextScene)
+        window.EM.on('hasSlidUp', ()=>{PostProcess.fade("toWhite")})
     }
 
     bind() {

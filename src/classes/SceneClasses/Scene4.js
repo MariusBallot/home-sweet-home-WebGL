@@ -1,8 +1,9 @@
 import * as THREE from "three"
 import RAF from "../../utils/raf"
 import SceneSwitcher from '../../controllers/SceneSwitcher'
-import BlackTrans from "../BlackTrans"
+// import BlackTrans from "../BlackTrans"
 import Scene5 from '../SceneClasses/Scene5'
+import PostProcess from '../PostProcess'
 
 class Scene4 {
     constructor() {
@@ -19,7 +20,7 @@ class Scene4 {
 
         RAF.subscribe("scene4", this.update)
         
-        window.addEventListener('touchstart', this.onTStart)
+        this.addEventListeners()
     }
 
     stop() {
@@ -35,25 +36,40 @@ class Scene4 {
         const newClickTime = new Date();
         console.log(newClickTime)
         if(newClickTime.getSeconds() === this.clickTime.getSeconds()){
-            this.loadNextScene();
+            this.endScene();
         }else{
             this.clickTime = newClickTime;
         }
     }
 
-    loadNextScene(){
+    endScene() {        
         if (this.finished) return
         this.finished = true
         console.log("switching")
         SceneSwitcher.hideScene(this.sceneId)
-        BlackTrans.in()
+        // BlackTrans.in()
+        PostProcess.fade("in")
         window.removeEventListener('touchstart', this.onTStart)
-        setTimeout(() => {
-            BlackTrans.out()
-			SceneSwitcher.showScene(this.sceneId+1)
-			Scene5.start({camera: this.camera, scene: this.scene})
-            this.stop()
-        }, 2000)
+    }
+
+    loadNextScene() {
+        // BlackTrans.out()
+        PostProcess.fade("out")
+        SceneSwitcher.showScene(this.sceneId+1)
+        Scene5.start({camera: this.camera, scene: this.camera})
+        this.stop()
+    }
+
+    addEventListeners(){
+        const onReadyForNextScene = (message) => {
+            console.log(JSON.parse(message));
+            if(this.finished){
+                window.EM.off('readyForNextScene', onReadyForNextScene)
+                this.loadNextScene()
+            }
+        }
+        window.addEventListener('touchstart', this.onTStart)
+        window.EM.on('readyForNextScene', onReadyForNextScene)
     }
 
     bind() {

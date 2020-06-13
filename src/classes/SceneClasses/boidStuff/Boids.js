@@ -19,6 +19,7 @@ let boidParams = {
     boundingForce: 0.001,
     boundingVisibility: false,
     directionVector: false,
+    numberOfBoids: 150
 }
 
 
@@ -43,7 +44,7 @@ class Boids {
 
     init({ scene, mesh }) {
         this.scene = scene
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < boidParams.numberOfBoids; i++) {
             let boidClass = new Boid({
                 mesh: mesh,
                 dirVector: new THREE.Vector3(Math.random() - .5,

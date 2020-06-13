@@ -14,13 +14,13 @@ class SceneSwitcher {
     hideScene(sceneId) {
         SocketServer.sendToServer('changeScene', { from: this.currentSceneId, to: (this.currentSceneId + 1) % Scenes.length })
 
-        Scenes[sceneId].scene.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-                if (child._shader != undefined)
-                    child._shader.out()
-            }
-        })
-        setTimeout(() => { this.scene.remove(Scenes[sceneId].scene) }, 1000)
+        // Scenes[sceneId].scene.traverse(child => {
+        //     if (child instanceof THREE.Mesh) {
+        //         if (child._shader != undefined)
+        //             child._shader.out()
+        //     }
+        // })
+        setTimeout(() => { this.scene.remove(Scenes[sceneId].scene) }, 999)
     }
 
     showScene(sceneId) {
