@@ -13,9 +13,15 @@ class GUIManager {
         prop,
         fromTo = [null, null],
         step = null,
-        name = null
+        name = null,
+        listen = null
     }) {
-        !name ? this.gui.add(object, prop, fromTo[0], fromTo[1], step) : this.gui.add(object, prop, fromTo[0], fromTo[1], step).name(name)
+        if(!listen){
+            !name ? this.gui.add(object, prop, fromTo[0], fromTo[1], step) : this.gui.add(object, prop, fromTo[0], fromTo[1], step).name(name)
+        }else{
+            !name ? this.gui.add(object, prop, fromTo[0], fromTo[1], step) : this.gui.add(object, prop, fromTo[0], fromTo[1], step).name(name).listen()
+        }
+
     }
 
     bind() {
