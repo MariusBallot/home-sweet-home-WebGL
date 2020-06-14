@@ -96,13 +96,9 @@ class Scene5 {
         this.parameters.jumping.timeline.thirdJump = gsap.timeline({onStart: this.parameters.jumping.onStart, onComplete: this.parameters.jumping.onComplete})
         this.parameters.jumping.timeline.thirdJump.to(this.parameters.camera.position, {
             y : this.parameters.jumping.height.thirdJump, 
-            duration: this.parameters.jumping.speed * 2.2, 
+            duration: this.parameters.jumping.speed * 5.2, 
             ease: "power3.out"
         })
-        this.parameters.jumping.timeline.thirdJump.pause()
-
-        this.parameters.jumping.timeline.firstJump.pause()
-        this.parameters.jumping.timeline.secondJump.pause()
         this.parameters.jumping.timeline.thirdJump.pause()
 
         this.parameters.camera.position.x = this.camera.position.x
@@ -202,13 +198,13 @@ class Scene5 {
 
                     this.parameters.jumping.timeline.thirdJump.resume()
 
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 3, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
+                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 3, duration: this.parameters.jumping.speed * 4, ease: "run"});
 
-                    setTimeout(() => {
-                        window.EM.emit("end")
-                    }, 2500);
+                    //temporary
+                    window.addEventListener("keydown", e=>{
+                        if(e.key==="ArrowLeft") window.EM.emit("end")
+                    })
                     break;
-
             
                 default:
                     break;

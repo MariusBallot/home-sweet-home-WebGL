@@ -11,12 +11,12 @@
       </div>
     </div>
     <div class="body">
-      <div class="sliderContainer hide d-none">
+      <div class="sliderContainer hide">
           <div class="slider">
             <div ref="ball" class="ball"></div>
           </div>
       </div>
-      <div class="creditsContainer hide d-none">
+      <div class="creditsContainer hide">
           <div class="post">
             <img src="ui/credits/compressed/1_SOUND_DESIGN.jpg" alt="credits 1" />
           </div>
@@ -77,14 +77,22 @@ export default {
       SocketServer.sendToServer("end", {
         ending: true,
       })
-      ui.classList.add('bg-white')
-      ui.addEventListener("transitionend", ()=>{
-        window.EM.emit("toggleMessage", {text: "His memories", mode: "fill"})        
-        credits.classList.remove("hide");
-        credits.classList.add("show")
+      ui.classList.add('bg-black')
+      window.addEventListener("keydown", e=>{
+        if(e.key==="ArrowRight") {
+          ui.classList.add('bg-white')
+          ui.classList.add('bg-white')
+
+          ui.addEventListener("transitionend", ()=>{
+            window.EM.emit("toggleMessage", {text: "His memories", mode: "fill"})        
+            credits.classList.remove("hide");
+            credits.classList.add("show")
+          })
+        }
       })
     }
     const onRemoveDisplayNoneSlider = (message) => {
+      console.log("hi")
       slider.classList.remove("d-none");
     }
     const onRemoveDisplayNoneCredits = (message) => {
@@ -153,7 +161,6 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: 13vh 1fr;
   height: 100vh;
-  transition: all 4.3s ease-in-out;
 
   &.grey{
     .text{
@@ -162,7 +169,12 @@ export default {
   }
 
   &.bg-white{
-    background: #fff;
+    transition: all 4.3s ease-in-out;
+    background: #fff!important;
+  }
+
+  &.bg-black{
+    background: #000;
   }
 
   .head {
@@ -226,24 +238,19 @@ export default {
     .sliderContainer{
       width: 50px;
       height: 100%;
-      transition: all 1.5s ease-in-out;
+      transition: opacity 1.5s ease-in-out;
 
       &.show{
         opacity: 1;
         visibility: visible;
+        width: 100vw;
       }
 
       &.hide{
         opacity: 0;
         visibility: hidden;
-      }
-
-      &.d-none{
-        display: none;
-      }
-
-      &.d-block{
-        display: block;
+        height: 0;
+        width: 0;
       }
      
       .slider {
@@ -261,13 +268,15 @@ export default {
           background: #fff;
           cursor: pointer;
           border-radius: 100%;
+          left: 50%;
+          transform: translate(-50%, 0);
         }
       }
     }
 
     .creditsContainer{
       width: 100vw;
-      transition: all 1.7s ease-in-out;
+      transition: opacity 1.7s ease-in-out;
       background: #EAEBEE;
 
       &.show{
@@ -278,6 +287,8 @@ export default {
       &.hide{
         opacity: 0;
         visibility: hidden;
+        height: 0;
+        width: 0;
       }
 
       .post{
