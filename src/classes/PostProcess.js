@@ -17,7 +17,7 @@ class PostProcess {
         this.updateUniforms = config.devModeShowGUI
         this.parameters = {
             vignetteIntensity: 8.0,
-            vignetteColorMode: -1.0
+            vignetteColorMode: config.devMode && config.devModeWhiteVignette ? 1.0 : -1.0
         }
     }
 

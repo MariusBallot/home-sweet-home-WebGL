@@ -50,6 +50,12 @@ class SocketServer {
                     case 'readyToSwipe':
                         window.EM.emit('readyToSwipe', JSON.stringify(message));
                         break;
+                    case 'isDead':
+                        window.EM.emit('end')
+                        break;
+                    case 'showCredits':
+                        window.EM.emit('showCredits')
+                        break;
                     default:
                         break;
                 }
@@ -91,15 +97,6 @@ class SocketServer {
         }
 
         return data
-    }
-
-
-    handleOrientation(event) {
-        sendToServer('orientation', {
-            alpha: alphaValue,
-            beta: betaValue,
-            gamma: gammaValue,
-        })
     }
 
     bind() {

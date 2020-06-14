@@ -74,21 +74,15 @@ export default {
       slider.classList.add("show")
     }
     const onEnd = (message) => {
-      SocketServer.sendToServer("end", {
-        ending: true,
-      })
       ui.classList.add('bg-black')
-      window.addEventListener("keydown", e=>{
-        if(e.key==="ArrowRight") {
-          ui.classList.add('bg-white')
-          ui.classList.add('bg-white')
+    }
+    const onShowCredits = (message) => {
+      ui.classList.add('bg-white')
 
-          ui.addEventListener("transitionend", ()=>{
-            window.EM.emit("toggleMessage", {text: "His memories", mode: "fill"})        
-            credits.classList.remove("hide");
-            credits.classList.add("show")
-          })
-        }
+      ui.addEventListener("transitionend", ()=>{
+        window.EM.emit("toggleMessage", {text: "His memories", mode: "fill"})        
+        credits.classList.remove("hide");
+        credits.classList.add("show")
       })
     }
     const onRemoveDisplayNoneSlider = (message) => {
@@ -126,11 +120,12 @@ export default {
     window.EM.on('removeDisplayNoneSlider', onRemoveDisplayNoneSlider)
     window.EM.on('removeDisplayNoneCredits', onRemoveDisplayNoneCredits)
     window.EM.on('toggleMessage', onToggleMessage)
+    window.EM.on('showCredits', onShowCredits)
   },
   methods: {
     onTouchMove: e=>{
       const touchY = e.changedTouches[0].clientY
-      const mappedY = map(touchY, 0, window.innerHeight, 60, 13)
+      const mappedY = map(touchY, 0, window.innerHeight * 0.6, 60, 13)
       const clampedY = clamp(mappedY, 13, 60)
       const ball = document.querySelector('.overlay-ui .ball')
       const slider = document.querySelector('.overlay-ui .sliderContainer')
