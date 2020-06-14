@@ -140,6 +140,8 @@ class Scene0 {
         RAF.subscribe("scene0", this.update)
 
         this.addEventListeners()
+
+        window.EM.emit("removeDisplayNoneSlider")
     }
 
     runDogToggle() {

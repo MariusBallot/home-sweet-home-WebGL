@@ -21,7 +21,7 @@
         "interaction": "object scene interactionIndex",
         "dropPhone": "null",
         "liftPhone": "null",
-        "jump": "float, total jumps",
+        "jump": "int, total jumps",
         "startCredit": "null",
         "sound": "Object soundName"
     }

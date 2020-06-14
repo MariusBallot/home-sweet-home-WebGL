@@ -7,6 +7,7 @@ import PostProcess from '../PostProcess'
 import MYGUI from '../../controllers/GUIManager'
 import CustomEase from 'gsap/CustomEase'
 import gsap from "gsap"
+import SocketServer from '../../SocketServer'
 
 class Scene5 {
     constructor() {
@@ -47,7 +48,7 @@ class Scene5 {
                     this.parameters.jumping.timeline.firstJump.pause()
                     this.parameters.jumping.timeline.secondJump.pause()
                     this.parameters.jumping.timeline.thirdJump.pause()
-                }
+                },
             },
             running: {
                 distance: 5,
@@ -156,7 +157,10 @@ class Scene5 {
         MainScene.scene.background = new THREE.Color(0x000000)
 
         RAF.subscribe("scene5", this.update)
+
         this.addEventListeners()
+
+        window.EM.emit("removeDisplayNoneCredits")
     }
 
     stop() {
@@ -170,20 +174,41 @@ class Scene5 {
 
             switch (this.parameters.jumping.currentJump) {
                 case 1:
+                    SocketServer.sendToServer("jump", {
+                        totalJumps: 1,
+                    })
+
                     this.parameters.jumping.timeline.firstJump.resume()
 
                     gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance, duration: this.parameters.jumping.speed*2 - 2, ease: "run"});
+
                     break;
 
                 case 2:
+                    SocketServer.sendToServer("jump", {
+                        totalJumps: 2,
+                    })
+
                     this.parameters.jumping.timeline.secondJump.resume()
+
                     gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 2, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
+
                     break;
 
                 case 3:
+                    SocketServer.sendToServer("jump", {
+                        totalJumps: 3,
+                    })
+
                     this.parameters.jumping.timeline.thirdJump.resume()
+
                     gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 3, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
+
+                    setTimeout(() => {
+                        window.EM.emit("end")
+                    }, 2500);
                     break;
+
             
                 default:
                     break;
