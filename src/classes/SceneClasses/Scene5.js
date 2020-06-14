@@ -28,9 +28,9 @@ class Scene5 {
                 ready: false,
                 isJumping: false,
                 height: {
-                    firstJump: 3,
-                    secondJump: 5,
-                    thirdJump: 30
+                    firstJump: 4.25,
+                    secondJump: 8.5,
+                    thirdJump: 50
                 },
                 speed: 4.5,
                 timeline: {
@@ -40,7 +40,6 @@ class Scene5 {
                 },
                 onStart: () => {
                     this.parameters.jumping.isJumping = true
-                    console.log("starting")
                 },
                 onComplete: () => {
                     this.parameters.jumping.ready = false
@@ -48,7 +47,6 @@ class Scene5 {
                     this.parameters.jumping.timeline.firstJump.pause()
                     this.parameters.jumping.timeline.secondJump.pause()
                     this.parameters.jumping.timeline.thirdJump.pause()
-                    console.log("completed")
                 }
             },
             running: {
@@ -62,8 +60,8 @@ class Scene5 {
         this.scene = scene
 
         gsap.registerPlugin(CustomEase)
-        CustomEase.create("jumpUp", "M0,0 C0.376,0 0.379,0.002 0.382,0.014 0.488,0.484 0.54,0.728 0.664,0.852 0.796,0.984 0.988,1 1,1 ")
-        CustomEase.create("run", "M0,0 C0,0 0.202,0.044 0.244,0.098 0.274,0.246 1,1 1,1")
+        CustomEase.create("jumpUp", "M0,0,C0,0.204,0.474,0.918,1,1")
+        CustomEase.create("run", "M0,0 C0.068,0.204 0.552,0.73 1,1 ")
 
         //jump 1
         this.parameters.jumping.timeline.firstJump = gsap.timeline({onStart: this.parameters.jumping.onStart, onComplete: this.parameters.jumping.onComplete})
@@ -168,23 +166,23 @@ class Scene5 {
     update() {
         if(this.parameters.jumping.ready && !this.parameters.jumping.isJumping){
             this.parameters.jumping.isJumping = true
-
             this.parameters.jumping.currentJump += 1;
 
             switch (this.parameters.jumping.currentJump) {
                 case 1:
                     this.parameters.jumping.timeline.firstJump.resume()
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
+
+                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance, duration: this.parameters.jumping.speed*2 - 2, ease: "run"});
                     break;
 
                 case 2:
                     this.parameters.jumping.timeline.secondJump.resume()
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
+                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 2, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
                     break;
 
                 case 3:
                     this.parameters.jumping.timeline.thirdJump.resume()
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance, duration: this.parameters.jumping.speed * 2 - 2, ease: "none"});
+                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 3, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
                     break;
             
                 default:
