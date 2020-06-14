@@ -2,11 +2,11 @@ const config = {
     allowDesktop: true,
     orCam: eval(localStorage.getItem("camType") || true),
     testScene: false,
-    devMode: true,
-    devModeScene: 5,
-    devModeSkipIntro: true,
-    devModeLocalSocketServer: false,
-    devModeShowGUI: false
+    devMode: true,                      //disables all other devMode settings
+    devModeScene: 5,                    //skip to scene
+    devModeSkipIntro: true,             //dont wait for unity
+    devModeLocalSocketServer: false,    //connect to locahost:1234
+    devModeShowGUI: false               //show dat.gui
 }
 
 
