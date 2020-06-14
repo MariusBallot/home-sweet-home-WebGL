@@ -1,4 +1,5 @@
 import SoundController from "./controllers/SoundController"
+import config from './config'
 
 class SocketServer {
     constructor() {
@@ -6,11 +7,10 @@ class SocketServer {
 
         this.WEBSOCKET
         this.connected
-        this.DEBUG_MODE = true;
     }
 
     start() {
-        const url = this.DEBUG_MODE ? "ws://localhost:1234" : "wss://home-sweet-home--ws.herokuapp.com/"
+        const url = config.devMode && config.devModeLocalSocketServer ? "ws://localhost:1234" : "wss://home-sweet-home--ws.herokuapp.com/"
 
         this.WEBSOCKET = new WebSocket(url)
 
@@ -39,7 +39,7 @@ class SocketServer {
             event.data.text().then(text => {
                 data = this.getWebSocketDataFromBlobText(text) //{id:..., type:...,message:{...}}
                 message = JSON.parse(data.message)
-                // if(this.DEBUG_MODE) console.log(data.id, data.type, message)
+                if(config.devModeLocalSocketServer) console.log(data.id, data.type, message)
                 switch (data.type) {
                     case 'sound':
                         SoundController.onNotif();
@@ -47,7 +47,6 @@ class SocketServer {
                     case 'readyForNextScene':
                         window.EM.emit('readyForNextScene', JSON.stringify(message));
                         break;
-
                     default:
                         break;
                 }

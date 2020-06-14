@@ -7,6 +7,10 @@ import PhysicsEngine from './PhysicsEngine'
 import SceneSwitcher from '../controllers/SceneSwitcher'
 import Scene0 from './SceneClasses/Scene0'
 import Scene1 from './SceneClasses/Scene1'
+import Scene2 from './SceneClasses/Scene2'
+import Scene3 from './SceneClasses/Scene3'
+import Scene4 from './SceneClasses/Scene4'
+import Scene5 from './SceneClasses/Scene5'
 import config from '../config'
 import BlackTrans from './BlackTrans'
 import PostProcess from './PostProcess'
@@ -39,21 +43,7 @@ class MainScene {
             scene: this.scene
         })
 
-        if(config.devMode) { 
-            SceneSwitcher.showScene(1) 
-            Scene1.start({
-                camera: this.orCamera,
-                scene: this.scene
-            })
-        }else{
-            SceneSwitcher.showScene(0)
-            Scene0.start({
-                camera: this.orCamera,
-                scene: this.scene
-            })
-        }
-
-        this.scene.background = new THREE.Color(0xB8C6D1)
+        this.scene.background = new THREE.Color(0x000000)
         this.scene.add(new THREE.AmbientLight())
         let pL = new THREE.PointLight()
         pL.position.set(1, 3, 1)
@@ -69,7 +59,8 @@ class MainScene {
         BlackTrans.init({ renderer: this.renderer })
         PhysicsEngine.start()
         
-        this.initEventListeners();
+        this.addEventListeners()
+        this.loadNextScene()
     }
 
 
@@ -91,6 +82,25 @@ class MainScene {
             SocketServer.sendToServer('orientation', this.orCamera.rotation)
     }
 
+    loadNextScene(){
+        this.scene.background = new THREE.Color(0xB8C6D1)
+
+        if(config.devMode) { 
+            const sceneClasses = [Scene0, Scene1, Scene2, Scene3, Scene4, Scene5]
+            SceneSwitcher.showScene(config.devModeScene) 
+            sceneClasses[config.devModeScene].start({
+                camera: this.orCamera,
+                scene: this.scene
+            })
+        }else{
+            SceneSwitcher.showScene(0)
+            Scene0.start({
+                camera: this.orCamera,
+                scene: this.scene
+            })
+        }
+    }
+
     onWindowResize() {
         this.orCamera.aspect = window.innerWidth / window.innerHeight;
         this.orCamera.updateProjectionMatrix();
@@ -100,14 +110,15 @@ class MainScene {
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
-    onReadyForNextScene(message) {
-        console.log(message); //'{"from":"0","to":"0"}'
-    }
-
-    initEventListeners(){
+    
+    addEventListeners() {
         window.addEventListener('resize', this.onWindowResize)
-        window.EM.on('readyForNextScene', this.onReadyForNextScene)
+        const onReadyForNextScene = (message) => {
+            console.log(JSON.parse(message));
+            this.loadNextScene()
+            window.EM.off('readyForNextScene', onReadyForNextScene)
+        }
+        window.EM.on('readyForNextScene', onReadyForNextScene)
     }
 
     bind() {
@@ -115,8 +126,7 @@ class MainScene {
         this.start = this.start.bind(this)
         this.destroy = this.destroy.bind(this)
         this.onWindowResize = this.onWindowResize.bind(this)
-        this.onReadyForNextScene = this.onReadyForNextScene.bind(this)
-        // this.switchScene = this.switchScene.bind(this)
+        this.addEventListeners = this.addEventListeners.bind(this)
     }
 }
 
