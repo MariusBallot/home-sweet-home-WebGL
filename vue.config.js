@@ -1,7 +1,17 @@
+var path = require('path');
+
 module.exports = {
     devServer: { https: true },
-    chainWebpack: config => {
 
+    css: {
+        loaderOptions: {
+            stylus: {
+                import: [path.resolve(__dirname, "src/utils/mixins.styl")]
+            }
+        }
+    },
+
+    chainWebpack: config => {
         // GraphQL Loader
         config.module
             .rule('glslify')
