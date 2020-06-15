@@ -119,6 +119,7 @@ class PostProcess {
             this.shaderPass.material.uniforms.u_vignetteIntensity.value = this.parameters.vignetteIntensity
             this.shaderPass.material.uniforms.u_vignetteColorMode.value = this.parameters.vignetteColorMode
         }
+        // this.shaderPass.material.uniforms.u_vignetteIntensity.value -= .01
     }
 
     bind() {

@@ -58,7 +58,7 @@ class MainScene {
         RAF.subscribe("mainSceneUpdate", this.update)
         BlackTrans.init({ renderer: this.renderer })
         PhysicsEngine.start()
-        
+
         this.addEventListeners()
         if(config.devMode && config.devModeSkipIntro) this.loadNextScene()
     }
@@ -69,12 +69,12 @@ class MainScene {
     }
 
     update() {
-        let currCam = this.debugCamera
-        if (config.orCam)
-            currCam = this.orCamera
         this.renderer.autoClear = false
-        // this.renderer.render(this.scene, currCam)
-        PostProcess.composer.render(RAF.dt * 0.001)
+
+        if (config.orCam)
+            this.renderer.render(this.scene, this.debugCamera)
+        else
+            PostProcess.composer.render(RAF.dt * 0.001)
         this.orControls.update();
         this.debugControls.update()
 
@@ -82,17 +82,19 @@ class MainScene {
             SocketServer.sendToServer('orientation', this.orCamera.rotation)
     }
 
+
     loadNextScene(){
         PostProcess.fade("out")
+        this.scene.background = new THREE.Color(0xB8C6D1)
 
-        if(config.devMode) { 
+        if (config.devMode) {
             const sceneClasses = [Scene0, Scene1, Scene2, Scene3, Scene4, Scene5]
-            SceneSwitcher.showScene(config.devModeScene) 
+            SceneSwitcher.showScene(config.devModeScene)
             sceneClasses[config.devModeScene].start({
                 camera: this.orCamera,
                 scene: this.scene
             })
-        }else{
+        } else {
             SceneSwitcher.showScene(0)
             Scene0.start({
                 camera: this.orCamera,
@@ -110,7 +112,7 @@ class MainScene {
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
-    
+
     addEventListeners() {
         window.addEventListener('resize', this.onWindowResize)
         const onReadyForNextScene = (message) => {
