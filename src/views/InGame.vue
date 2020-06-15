@@ -17,6 +17,7 @@ import SocketServer from "../SocketServer";
 
 import MainScene from "@/classes/MainScene";
 import LoadingController from "@/controllers/LoadingController";
+import MicController from "../controllers/MicController";
 
 export default {
   name: "Ingame",
@@ -32,6 +33,7 @@ export default {
   },
   created() {
     LoadingController.addOnLoad("loadingFinished", this.onLoad);
+    MicController.init();
   },
   methods: {
     onClick() {

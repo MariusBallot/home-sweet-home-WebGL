@@ -4,6 +4,7 @@ import Boids from './boidStuff/Boids'
 import SceneSwitcher from '../../controllers/SceneSwitcher'
 import BlackTrans from "../BlackTrans"
 import Scene2 from '../SceneClasses/Scene2'
+import Characters from '../../controllers/CharactersManager'
 
 class Scene1 {
     constructor() {
@@ -18,11 +19,29 @@ class Scene1 {
         this.camera = camera
         this.scene = scene
 
+        Characters.forEach(char => {
+            if (char.name == "birdHand")
+                this.birdHand = char
+        });
+        console.log(this.birdHand)
+
+        this.BHModel = this.birdHand.model.scene
+        this.BHAnims = this.birdHand.actions
+
+        this.BHAnims.forEach(anim => {
+            anim.loop = THREE.LoopOnce
+            anim.clampWhenFinished = true
+            anim.play()
+            anim.paused = true
+        });
+
+        this.scene.add(this.BHModel)
+
         Boids.init({
             scene: this.scene,
         })
         RAF.subscribe("scene1", this.update)
-        
+
         window.addEventListener('touchstart', this.onTStart)
     }
 
@@ -31,21 +50,29 @@ class Scene1 {
     }
 
     update() {
-
+        this.BHModel.position.copy(this.camera.position)
+        this.BHModel.quaternion.copy(this.camera.quaternion)
     }
 
-    onTStart(){
+    onTStart() {
+        console.log('hey')
+
+        this.BHAnims.forEach(anim => {
+            anim.play()
+            anim.paused = false
+
+        });
         //touch twice in a second to load next scene
         const newClickTime = new Date();
         console.log(newClickTime)
-        if(newClickTime.getSeconds() === this.clickTime.getSeconds()){
+        if (newClickTime.getSeconds() === this.clickTime.getSeconds()) {
             this.loadNextScene();
-        }else{
+        } else {
             this.clickTime = newClickTime;
         }
     }
 
-    loadNextScene(){
+    loadNextScene() {
         if (this.finished) return
         this.finished = true
         console.log("switching")
@@ -55,8 +82,8 @@ class Scene1 {
         Boids.stop();
         setTimeout(() => {
             BlackTrans.out()
-            SceneSwitcher.showScene(this.sceneId+1)
-            Scene2.start({camera: this.camera, scene: this.camera})
+            SceneSwitcher.showScene(this.sceneId + 1)
+            Scene2.start({ camera: this.camera, scene: this.camera })
             this.stop()
         }, 2000)
     }

@@ -3,20 +3,22 @@ import * as THREE from "three"
 import RAF from "../../../utils/raf"
 import { Vector3 } from 'three'
 import MYGUI from '../../../controllers/GUIManager'
+import Characters from '../../../controllers/CharactersManager'
+import MicController from '../../../controllers/MicController'
 
 
 let boidParams = {
     speed: .045,
-    visioDistance: .4,
+    visioDistance: .6,
     visioMesh: false,
     visioAngle: Math.PI * 0.8,
-    repellForce: 0.003,
+    repellForce: 0.006,
     followingForce: 0.001,
     centeringForce: .002,
-    targetVecor: new THREE.Vector3(0, 0, 0),
+    targetVecor: new THREE.Vector3(10, 10, 0),
     targetCenterForce: 0.0002,
     bounddingRad: 10,
-    boundingForce: 0.001,
+    boundingForce: 0.005,
     boundingVisibility: false,
     directionVector: false,
 }
@@ -29,6 +31,7 @@ class Boids {
         this.bind()
         this.group = new THREE.Group()
         this.boidClasses = []
+        this.blowed = false
 
         MYGUI.addParam({ object: boidParams, prop: "speed", fromTo: [0.001, .1], step: .001 })
         MYGUI.addParam({ object: boidParams, prop: "visioDistance", fromTo: [0.001, 1], step: .001 })
@@ -41,20 +44,27 @@ class Boids {
         MYGUI.addParam({ object: boidParams, prop: "visioMesh" })
     }
 
-    init({ scene, mesh }) {
+    init({ scene }) {
         this.scene = scene
-        for (let i = 0; i < 500; i++) {
+
+        Characters.forEach(char => {
+            if (char.name == "boidBird")
+                this.birdBoid = char
+        });
+
+        for (let i = 0; i < 20; i++) {
             let boidClass = new Boid({
-                mesh: mesh,
+                mesh: this.birdBoid,
                 dirVector: new THREE.Vector3(Math.random() - .5,
                     Math.random() - .5,
                     Math.random() - .5
                 )
             })
-            boidClass.mesh.position.set((Math.random() - 0.5) * 4, -boidParams.bounddingRad, (Math.random() - 0.5) * 4)
+            boidClass.mesh.position.set(Math.random() * 8 + 8, 0.2, (Math.random() - 0.5) * 8)
             this.group.add(boidClass.mesh)
             this.boidClasses.push(boidClass)
         }
+        console.log(this.group)
         this.scene.add(this.group)
 
         this.boundingSphere = new THREE.Mesh(
@@ -62,7 +72,6 @@ class Boids {
             new THREE.MeshBasicMaterial({ wireframe: true }))
         this.boundingSphere.scale.multiplyScalar(boidParams.bounddingRad)
         this.group.add(this.boundingSphere)
-        this.group.position.set(6, boidParams.bounddingRad, 0)
 
 
         RAF.subscribe('boidsUpdate', this.update)
@@ -136,10 +145,10 @@ class Boids {
     }
 
     checkBounding(currentBoid) {
-        let d = currentBoid.mesh.position.distanceTo(this.scene.position)
+        let d = currentBoid.mesh.position.distanceTo(boidParams.targetVecor)
         let force = new Vector3()
-        if (d >= boidParams.bounddingRad - boidParams.visioDistance) {
-            force = force.subVectors(this.scene.position, currentBoid.mesh.position).normalize().multiplyScalar(boidParams.boundingForce)
+        if (d >= boidParams.bounddingRad - boidParams.visioDistance || currentBoid.mesh.position.y <= 0.5 + boidParams.visioDistance) {
+            force = force.subVectors(boidParams.targetVecor, currentBoid.mesh.position).normalize().multiplyScalar(boidParams.boundingForce)
             currentBoid.dirVector.add(force)
         }
     }
@@ -151,6 +160,10 @@ class Boids {
 
 
     update() {
+        if (MicController.volume >= 30)
+            this.blowed = true
+        if (!this.blowed)
+            return
         this.boidClasses.forEach((boidClass, i) => {
             this.repell(boidClass)
             this.align(boidClass)
@@ -162,25 +175,14 @@ class Boids {
 
             boidClass.dirVector.normalize()
             boidClass.dirVector.multiplyScalar(boidParams.speed)
-            let goingTo = new THREE.Vector3(0, 0, 0)
+            let goingTo = new THREE.Vector3()
             goingTo.addVectors(boidClass.mesh.position, boidClass.dirVector)
             boidClass.mesh.lookAt(goingTo);
             boidClass.mesh.position.add(boidClass.dirVector)
 
+
             boidClass.mixer.update(RAF.dt * 0.001)
 
-            boidClass.mesh.traverse(child => {
-                if (child.name == "dirVec")
-                    child.visible = boidParams.directionVector
-                if (child.name == "visioMesh") {
-                    child.visible = boidParams.visioMesh
-                    child.scale.set(1 / boidClass.mesh.scale.x, 1 / boidClass.mesh.scale.x, 1 / boidClass.mesh.scale.x)
-                    child.scale.multiplyScalar(boidParams.visioDistance)
-                }
-            })
-
-            // if (i == 0)
-            //     console.log(boidClass.dirVector)
         });
 
 

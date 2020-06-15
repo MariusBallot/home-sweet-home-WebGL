@@ -50,7 +50,7 @@ class PostProcess {
     }
 
     update() {
-        this.shaderPass.material.uniforms.u_vignetteIntensity.value -= .01
+        // this.shaderPass.material.uniforms.u_vignetteIntensity.value -= .01
     }
 
     bind() {
