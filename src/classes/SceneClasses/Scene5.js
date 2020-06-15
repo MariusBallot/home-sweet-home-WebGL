@@ -176,7 +176,12 @@ class Scene5 {
 
                     this.parameters.jumping.timeline.firstJump.resume()
 
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance, duration: this.parameters.jumping.speed*2 - 2, ease: "run"});
+                    gsap.to(this.parameters.camera.position, {
+                        z: this.camera.position.x + this.parameters.running.distance - 1.5, 
+                        x: this.camera.position.x + this.parameters.running.distance, 
+                        duration: this.parameters.jumping.speed*2 - 2, 
+                        ease: "run"
+                    });
 
                     break;
 
@@ -187,7 +192,12 @@ class Scene5 {
 
                     this.parameters.jumping.timeline.secondJump.resume()
 
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 2, duration: this.parameters.jumping.speed * 2 - 2, ease: "run"});
+                    gsap.to(this.parameters.camera.position, {
+                        z: (this.camera.position.x + this.parameters.running.distance - 1.5) * 2, 
+                        x: this.camera.position.x + this.parameters.running.distance * 2, 
+                        duration: this.parameters.jumping.speed * 2 - 2, 
+                        ease: "run"
+                    });
 
                     break;
 
@@ -198,7 +208,12 @@ class Scene5 {
 
                     this.parameters.jumping.timeline.thirdJump.resume()
 
-                    gsap.to(this.parameters.camera.position, {x: this.camera.position.x + this.parameters.running.distance * 3, duration: this.parameters.jumping.speed * 4, ease: "run"});
+                    gsap.to(this.parameters.camera.position, {
+                        z: (this.camera.position.x + this.parameters.running.distance - 1.5) * 3, 
+                        x: this.camera.position.x + this.parameters.running.distance * 3, 
+                        duration: this.parameters.jumping.speed * 4, 
+                        ease: "run"
+                    });
 
                     //temporary
                     window.addEventListener("keydown", e=>{
