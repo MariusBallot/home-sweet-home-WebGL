@@ -11,21 +11,21 @@
     "EventEmitter": "^1.0.0",
     "browser-detect": "^0.2.28",
     "cannon": "^0.6.2",
-    "core-js": "^3.6.4",
+    "core-js": "^3.6.5",
     "dat.gui": "^0.7.7",
     "glsl-noise": "0.0.0",
     "glslify-loader": "^2.0.0",
     "gsap": "file:src/utils/gsap-member/npm-install-this/gsap-bonus.tgz",
-    "raw-loader": "^4.0.0",
+    "raw-loader": "^4.0.1",
     "three": "^0.113.2",
     "three-shader-fxaa": "^5.1.1",
     "vue": "^2.6.11",
-    "vue-router": "^3.1.5"
+    "vue-router": "^3.3.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.2.0",
-    "@vue/cli-plugin-router": "~4.2.0",
-    "@vue/cli-service": "~4.2.0",
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-router": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11"
