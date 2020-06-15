@@ -15,7 +15,7 @@
     "dat.gui": "^0.7.7",
     "glsl-noise": "0.0.0",
     "glslify-loader": "^2.0.0",
-    "gsap": "^3.2.6",
+    "gsap": "file:src/utils/gsap-member/npm-install-this/gsap-bonus.tgz",
     "raw-loader": "^4.0.0",
     "three": "^0.113.2",
     "three-shader-fxaa": "^5.1.1",

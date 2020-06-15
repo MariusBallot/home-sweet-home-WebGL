@@ -13,15 +13,19 @@
     all messages:
 {
     "messages": {
+        "readyToSwipe": "object from to",
+        "hasSlidUp": " "
+        "readyForNextScene": "object from to",
         "orientation": "objVector3",
         "changeScene": "object from to",
-        "readyForNextScene": "object from to",
         "interaction": "object scene interactionIndex",
         "dropPhone": "null",
         "liftPhone": "null",
-        "jump": "float, total jumps",
-        "startCredit": "null",
+        "jump": "int, total jumps",
+        "isDead": "null",
+        "showCredits": "null",
         "sound": "Object soundName"
+        "tapSheep": "null"
     }
 }
 */

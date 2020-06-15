@@ -3,8 +3,9 @@ import RAF from "../../utils/raf"
 import PhysicsEngine from '../PhysicsEngine'
 import Characters from '../../controllers/CharactersManager'
 import SceneSwitcher from '../../controllers/SceneSwitcher'
-import BlackTrans from "../BlackTrans"
+// import BlackTrans from "../BlackTrans"
 import Scene1 from '../SceneClasses/Scene1'
+import PostProcess from '../PostProcess'
 
 class Scene0 {
     constructor() {
@@ -120,7 +121,7 @@ class Scene0 {
         this.scene0Mods.add(this.dog)
         this.dog.position.y = .2
         this.dog.position.z = 0
-        this.dog.position.x = 1.5
+        this.dog.position.x = 2.7
         this.dog.rotateY(-Math.PI/2)
 
         //starts dog Idle
@@ -194,6 +195,7 @@ class Scene0 {
         this.touchPos.x = e.touches[0].clientX
         this.touchPos.y = e.touches[0].clientY
     }
+    
     onTEnd(e) {
         let d = this.touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY))
         if (d >= 200 && this.touchPos.y > e.changedTouches[0].clientY) {
@@ -242,13 +244,15 @@ class Scene0 {
         if (this.finished) return
         this.finished = true
         SceneSwitcher.hideScene(this.sceneId)
-        BlackTrans.in()
+        // BlackTrans.in()
+        PostProcess.fade("in")
         window.removeEventListener('touchstart', this.onTStart)
         window.removeEventListener('touchend', this.onTEnd)
     }
 
     loadNextScene() {
-        BlackTrans.out()
+        // BlackTrans.out()
+        PostProcess.fade("out")
         this.scene.remove(this.scene0Mods)
         SceneSwitcher.showScene(this.sceneId+1)
         Scene1.start({camera: this.camera, scene: this.scene})
@@ -288,8 +292,8 @@ class Scene0 {
         const onReadyForNextScene = (message) => {
             console.log(JSON.parse(message));
             if(this.finished){
-                this.loadNextScene()
                 window.EM.off('readyForNextScene', onReadyForNextScene)
+                this.loadNextScene()
             }
         }
         window.addEventListener('touchstart', this.onTStart)
