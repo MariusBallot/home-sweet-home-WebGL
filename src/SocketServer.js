@@ -38,36 +38,41 @@ class SocketServer {
     onServerMessage(event) {
         let data
         let message
+        const accessKey = sessionStorage.getItem('accessKey') ? sessionStorage.getItem('accessKey') : "";
+        
         if (event.data instanceof Blob) {
             event.data.text().then(text => {
                 data = this.getWebSocketDataFromBlobText(text) //{id:..., type:...,message:{...}}
                 message = JSON.parse(data.message)
+                
                 if(config.devMode) console.log(data.id, data.type, message)
-                switch (data.type) {
-                    case 'sound':
-                        SoundController.onNotif();
-                        break;
-                    case 'readyForNextScene':
-                        window.EM.emit('readyForNextScene', JSON.stringify(message));
-                        break;
-                    case 'readyToSwipe':
-                        window.EM.emit('readyToSwipe', JSON.stringify(message));
-                        break;
-                    case 'isDead':
-                        window.EM.emit('end')
-                        break;
-                    case 'showCredits':
-                        window.EM.emit('showCredits')
-                        break;
-                    case 'dropPhone':
-                        console.log("dropPhone")
-                        window.EM.emit('dropPhone')
-                        break;
-                    case 'liftPhone':
-                        window.EM.emit('liftPhone')
-                        break;
-                    default:
-                        break;
+                
+                if(accessKey && accessKey === data.id){
+                    switch (data.type) {
+                        case 'sound':
+                            SoundController.onNotif();
+                            break;
+                        case 'readyForNextScene':
+                            window.EM.emit('readyForNextScene', JSON.stringify(message));
+                            break;
+                        case 'readyToSwipe':
+                            window.EM.emit('readyToSwipe', JSON.stringify(message));
+                            break;
+                        case 'isDead':
+                            window.EM.emit('end')
+                            break;
+                        case 'showCredits':
+                            window.EM.emit('showCredits')
+                            break;
+                        case 'dropPhone':
+                            window.EM.emit('dropPhone')
+                            break;
+                        case 'liftPhone':
+                            window.EM.emit('liftPhone')
+                            break;
+                        default:
+                            break;
+                    }
                 }
             })
         }
