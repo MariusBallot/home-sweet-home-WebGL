@@ -25,11 +25,14 @@ class SocketServer {
         const message = { id: id, type: typeString, message: JSON.stringify(value) }
         const string = JSON.stringify(message)
 
+        if (config.devModeConsoleLogMessage.enabled && config.devModeConsoleLogMessage.type === typeString) console.log(string)
+
         this.WEBSOCKET.send(string)
     }
 
     onServerOpen() {
         this.connected = true
+        console.log("connected")
     }
 
     onServerMessage(event) {
@@ -55,6 +58,13 @@ class SocketServer {
                         break;
                     case 'showCredits':
                         window.EM.emit('showCredits')
+                        break;
+                    case 'dropPhone':
+                        console.log("dropPhone")
+                        window.EM.emit('dropPhone')
+                        break;
+                    case 'liftPhone':
+                        window.EM.emit('liftPhone')
                         break;
                     default:
                         break;

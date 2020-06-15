@@ -22,8 +22,10 @@
         "dropPhone": "null",
         "liftPhone": "null",
         "jump": "int, total jumps",
-        "startCredit": "null",
+        "isDead": "null",
+        "showCredits": "null",
         "sound": "Object soundName"
+        "tapSheep": "null"
     }
 }
 */

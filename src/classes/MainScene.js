@@ -60,7 +60,7 @@ class MainScene {
         PhysicsEngine.start()
         
         this.addEventListeners()
-        if(config.devModeSkipIntro) this.loadNextScene()
+        if(config.devMode && config.devModeSkipIntro) this.loadNextScene()
     }
 
 

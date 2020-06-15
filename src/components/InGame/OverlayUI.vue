@@ -115,12 +115,14 @@ export default {
         greyEmptyScreen.classList.add("show")
       }
     }
+
     window.EM.on('readyToSwipe', onReadyToSwipe)
     window.EM.on('end', onEnd)
     window.EM.on('removeDisplayNoneSlider', onRemoveDisplayNoneSlider)
     window.EM.on('removeDisplayNoneCredits', onRemoveDisplayNoneCredits)
     window.EM.on('toggleMessage', onToggleMessage)
     window.EM.on('showCredits', onShowCredits)
+
   },
   methods: {
     onTouchMove: e=>{
