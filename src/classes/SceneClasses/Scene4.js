@@ -20,6 +20,9 @@ class Scene4 {
         this.camera = camera
         this.scene = scene
 
+        this.camera.position.x = 0
+        this.camera.position.z = 0
+
         // MainScene.orControls.alphaOffset = -Math.PI
 
         RAF.subscribe("scene4", this.update)
