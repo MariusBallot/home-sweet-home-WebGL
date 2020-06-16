@@ -44,9 +44,14 @@ class Scene1 {
         RAF.subscribe("scene1", this.update)
 
         this.addEventListeners()
-
-//         window.addEventListener('touchstart', this.onTStart)
     }
+
+	onTEnd(e) {
+		let d = this.touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY));
+		if (d >= 200 && this.touchPos.y > e.changedTouches[0].clientY) {
+			this.throw();
+		}
+	}
 
     stop() {
         Boids.stop()
@@ -59,21 +64,30 @@ class Scene1 {
         this.BHModel.quaternion.copy(this.camera.quaternion)
     }
 
-    onTStart() {
-        //console.log('hey')
-        this.BHAnims.forEach(anim => {
-            anim.play()
-            anim.paused = false
-        });
+    onTStart(e) {
+        this.touchPos.x = e.touches[0].clientX;
+        this.touchPos.y = e.touches[0].clientY;
 
-        //touch twice in a second to load next scene
+        //touch twice to lift arm
         const newClickTime = new Date();
-        console.log(newClickTime)
         if(newClickTime.getSeconds() === this.clickTime.getSeconds()){
-            this.endScene();
+            this.BHAnims.forEach(anim => {
+                anim.play()
+                anim.paused = false
+            });
+            setTimeout(() => {
+                this.endScene()
+            }, 5000);
         }else{
             this.clickTime = newClickTime;
         }
+    }
+
+    onTEnd(e) {
+        let d = this.touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY));
+		if (d >= 150 && this.touchPos.y > e.changedTouches[0].clientY) {
+			Boids.blowed = true
+		}
     }
 
     endScene() {        
@@ -84,6 +98,7 @@ class Scene1 {
         // BlackTrans.in()
         PostProcess.fade("in")
         window.removeEventListener('touchstart', this.onTStart)
+        window.removeEventListener('touchend', this.onTEnd);
         Boids.stop();
     }
 
@@ -104,6 +119,7 @@ class Scene1 {
             }
         }
         window.addEventListener('touchstart', this.onTStart)
+        window.addEventListener('touchend', this.onTEnd);
         window.EM.on('readyForNextScene', onReadyForNextScene)
     }
 
@@ -113,6 +129,7 @@ class Scene1 {
         this.update = this.update.bind(this)
         this.loadNextScene = this.loadNextScene.bind(this)
         this.onTStart = this.onTStart.bind(this)
+        this.onTEnd = this.onTEnd.bind(this);
     }
 }
 

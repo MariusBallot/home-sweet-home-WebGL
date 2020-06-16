@@ -197,7 +197,7 @@ class Scene0 {
 
 	onTEnd(e) {
 		let d = this.touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY));
-		if (d >= 200 && this.touchPos.y > e.changedTouches[0].clientY) {
+		if (d >= 150 && this.touchPos.y > e.changedTouches[0].clientY) {
 			this.throw();
 		}
 	}

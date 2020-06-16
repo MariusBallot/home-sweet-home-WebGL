@@ -28,7 +28,8 @@ class Scene3 {
     }
 
     update() {
-		
+        this.camera.position.x += 0.04
+        this.camera.position.z += 0.005
     }
 
     onTStart(){
