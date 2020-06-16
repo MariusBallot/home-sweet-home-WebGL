@@ -15,14 +15,9 @@
     "dat.gui": "^0.7.7",
     "glsl-noise": "0.0.0",
     "glslify-loader": "^2.0.0",
-<<<<<<< HEAD
-    "gsap": "^3.2.6",
-    "raw-loader": "^4.0.0",
-    "rupture": "^0.7.1",
-=======
     "gsap": "file:src/utils/gsap-member/npm-install-this/gsap-bonus.tgz",
     "raw-loader": "^4.0.1",
->>>>>>> cf662fb42c94e8db24c9e5a9b8daf0a33010ad76
+    "rupture": "^0.7.1",
     "three": "^0.113.2",
     "three-shader-fxaa": "^5.1.1",
     "vue": "^2.6.11",

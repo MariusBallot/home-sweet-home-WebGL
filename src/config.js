@@ -2,12 +2,6 @@ const config = {
     allowDesktop: true,
     orCam: false,
     testScene: false,
-<<<<<<< HEAD
-    devMode: false,
-    devModeScene: 1,
-    devModeLocalSocketServer: false,
-    devModeShowGUI: false
-=======
     devMode: false, //disables all other devMode settings
     devModeScene: 0, //skip to scene
     devModeSkipIntro: false, //dont wait for unity
@@ -18,7 +12,6 @@ const config = {
         enabled: false,  //log sent messages to server
         type: "tapSheep" //only this type
     },
->>>>>>> cf662fb42c94e8db24c9e5a9b8daf0a33010ad76
 }
 
 
