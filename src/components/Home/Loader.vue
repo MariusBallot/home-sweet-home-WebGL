@@ -1,7 +1,7 @@
 <template>
   <div ref="container" class="loader">
     <div class="content">
-      <img class="logo" src="ui/logo.svg" />
+      <img class="logo" src="ui/white/white-logo.svg" />
       <div class="right">
         <p>The Home sweet home website is loading</p>
         <div class="bar-cont">
