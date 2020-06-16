@@ -9,7 +9,9 @@
         <button v-on:click="onCredits" class="credit on">Credits</button>
         <button v-on:click="onBack" class="back">Back</button>
       </div>
-      <button>Start the experience</button>
+      <button>
+        <router-link to="/connection">Start the experience</router-link>
+      </button>
     </div>
   </div>
 </template>

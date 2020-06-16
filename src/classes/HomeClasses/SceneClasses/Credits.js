@@ -19,8 +19,6 @@ class Credits {
         this.zoo.position.set(.3, -5, 4)
         this.zoo.rotation.set(0, -1, 0)
 
-        this.scene.add(this.zoo)
-
         this.initAnims()
 
         window.EM.on("inCredits", () => {
@@ -50,7 +48,10 @@ class Credits {
         })
         this.leaveAnim.to(this.zoo.position, this.animTime, {
             y: -5,
-            ease: Power3.easeInOut
+            ease: Power3.easeInOut,
+            onComplete: () => {
+                this.scene.remove(this.zoo)
+            }
         }, 0)
         this.leaveAnim.to(HomeThree.camParallax, this.animTime, {
             sensitivity: 0.0005
@@ -58,6 +59,7 @@ class Credits {
     }
 
     enter() {
+        this.scene.add(this.zoo)
         this.enterAnim.invalidate().progress(0).pause();
         this.leaveAnim.invalidate().progress(0).pause();
         this.enterAnim.play()
