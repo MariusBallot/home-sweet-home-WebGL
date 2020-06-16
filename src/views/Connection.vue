@@ -13,6 +13,7 @@
 
         <button class="btn-connect" type="submit">Connect</button>
       </form>
+      <button class="fs" v-on:click="toggleFS">Toggle FS</button>
     </div>
   </div>
 </template>
@@ -29,7 +30,36 @@ export default {
     onSubmit: e => {
       e.preventDefault();
       router.push("/InGame");
-    }
+    },
+    toggleFS: function() {
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          /* Firefox */
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          /* Chrome, Safari and Opera */
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          /* IE/Edge */
+          document.documentElement.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          /* Chrome, Safari and Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          /* IE/Edge */
+          document.msExitFullscreen();
+        }
+      }
+    },
   },
   mounted() {
     if (typeof DeviceOrientationEvent.requestPermission === "function") {
@@ -110,6 +140,18 @@ export default {
       padding-bottom: 10px;
       border-radius: 2px;
       border: 0;
+    }
+
+    .fs {
+          font-size: 1em;
+    background: white;
+    color: white;
+    border: none;
+    font-weight: 900;
+    background: none;
+    padding: 20px;
+    border: solid white 1px;
+    margin-top: 40px;
     }
   }
 
