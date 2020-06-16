@@ -5,10 +5,10 @@
     <ThreeBackground />
     <Title />
     <TheStory />
-    <Trailer />
-    <Tuto />
-    <TryNow />
-    <Credits />
+    <!-- <Trailer /> -->
+    <!-- <Tuto /> -->
+    <!-- <TryNow /> -->
+    <!-- <Credits /> -->
   </div>
 </template>
 

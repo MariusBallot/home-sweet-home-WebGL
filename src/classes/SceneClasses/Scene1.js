@@ -46,6 +46,8 @@ class Scene1 {
     }
 
     stop() {
+        Boids.stop()
+        this.scene.remove(this.BHModel)
         RAF.unsubscribe("scene1")
     }
 

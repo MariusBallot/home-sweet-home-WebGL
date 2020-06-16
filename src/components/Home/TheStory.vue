@@ -113,6 +113,11 @@ export default {
      flex-direction: column;
      justify-content: center;
 
+     +below(600px) {
+       width: 100%;
+       padding: 20px;
+     }
+
      .title {
        off(0s);
 
@@ -125,8 +130,12 @@ export default {
      h2 {
        font-size: 9em;
 
+       +below(600px) {
+         font-size: 4em;
+       }
+
        &.story {
-         margin-top: -70px;
+         margin-top: -10px;
        }
      }
 
@@ -176,6 +185,11 @@ export default {
      opacity: 0;
      pointer-events: none;
 
+     +below(600px) {
+       width: 100%;
+       padding: 20px;
+     }
+
      &.on-up {
        transform: translate3d(0, 0, 0);
        opacity: 1;
@@ -188,6 +202,10 @@ export default {
        font-weight: bold;
        font-size: 1.5em;
        line-height: 25px;
+
+       +below(600px) {
+         font-size: inherit;
+       }
      }
 
      .nav {

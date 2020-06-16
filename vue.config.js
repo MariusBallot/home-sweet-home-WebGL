@@ -6,6 +6,8 @@ module.exports = {
     css: {
         loaderOptions: {
             stylus: {
+                use: [require('rupture')()],
+                import: ['~rupture/rupture/index.styl'],
                 import: [path.resolve(__dirname, "src/utils/mixins.styl")]
             }
         }

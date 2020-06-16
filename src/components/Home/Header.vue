@@ -87,9 +87,9 @@ export default {
      height: 50px;
      padding-bottom: 20px;
 
-     h1 {
-       font-size: 1.2em;
-       font-weight: 400;
+     +below(600px) {
+       height: 30px;
+       padding-bottom: 10px;
      }
 
      .logo {
@@ -149,7 +149,6 @@ export default {
    button {
      background: none;
      border: none;
-     font-size: inherit;
      color: inherit;
      font-weight: bold;
      font-size: 1.2em;

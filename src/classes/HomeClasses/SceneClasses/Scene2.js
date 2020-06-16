@@ -7,6 +7,9 @@ class Scene2 {
     constructor() {
         this.bind()
         this.tweens = []
+    }
+
+    start() {
 
         this.positions = {
             origin: {
@@ -18,7 +21,7 @@ class Scene2 {
                 rot: new THREE.Vector3(0, 0, 0)
             },
             table: {
-                pos: new THREE.Vector3(-2, -10, -50),
+                pos: window.browser.mobile ? new THREE.Vector3(-3.5, -10, -50) : new THREE.Vector3(-2, -10, -50),
                 rot: new THREE.Vector3(0, -1, 0)
             },
             leave: {
@@ -26,9 +29,7 @@ class Scene2 {
                 rot: new THREE.Vector3(0, -1, 0)
             },
         }
-    }
 
-    start() {
         this.camera = HomeThree.homeCamera
         this.scene = HomeThree.scene
 

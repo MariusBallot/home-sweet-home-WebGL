@@ -52,6 +52,10 @@ export default {
    justify-content: center;
    position: relative;
 
+   +below(600px) {
+     padding: 20px;
+   }
+
    .logo {
      width: 40px;
      height: auto;
@@ -69,6 +73,11 @@ export default {
      height: auto;
      off(0s);
 
+     +below(600px) {
+       width: 100%;
+       padding: 0;
+     }
+
      &.on-up {
        transform: translate3d(0, 0, 0);
        opacity: 1;
@@ -83,6 +92,10 @@ export default {
      font-size: 1.4em;
      off(0.1s);
 
+     +below(600px) {
+       font-size: 1em;
+     }
+
      &.on-up {
        transform: translate3d(0, 0, 0);
        opacity: 1;
@@ -92,6 +105,10 @@ export default {
    .scroll-more {
      display: flex;
      align-items: center;
+
+     +below(600px) {
+       display: none;
+     }
 
      img {
        margin-right: 10px;

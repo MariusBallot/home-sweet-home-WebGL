@@ -64,7 +64,7 @@ class Scene1 {
             paused: true
         })
         this.enterAnim.to(this.street.position, this.animTime, {
-            x: 0,
+            x: window.browser.mobile ? .5 : 0,
             ease: Power3.easeInOut,
         }, 0)
         this.enterAnim.to(this.street.rotation, this.animTime, {

@@ -66,6 +66,26 @@ export default {
      width: 30%;
      align-items: center;
 
+     +below(600px) {
+       align-items: center;
+       justify-content: center;
+       flex-direction: column;
+       width: 100%;
+       padding: 0 20px;
+
+       img {
+         margin-bottom: 20px;
+       }
+
+       .bar-cont {
+         margin: 20px 0;
+       }
+
+       .percentage {
+         position: static !important;
+       }
+     }
+
      img {
        width: 30px;
        height: auto;
