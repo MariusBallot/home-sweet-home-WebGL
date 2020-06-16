@@ -59,6 +59,7 @@ import * as THREE from "three"
 // const clamp = (num, min, max) => Math.max(Math.min(num, Math.max(min, max)), Math.min(min, max));
 let hasSlidUp = false;
 let touchPos = new THREE.Vector2()
+let isSlideEnabled = false;
 
 export default {
   name: "OverlayUI",
@@ -73,6 +74,7 @@ export default {
     
 
     const onReadyToSwipe = (message) => {
+      isSlideEnabled = true;
       slider.classList.remove("hide");
       slider.classList.add("show")
     }
@@ -153,7 +155,7 @@ export default {
       console.log(ball, slider)
 
       let d = touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY))
-      if (d >= 150 && touchPos.y > e.changedTouches[0].clientY && !hasSlidUp) {
+      if (d >= 150 && touchPos.y > e.changedTouches[0].clientY && !hasSlidUp && isSlideEnabled) {
         hasSlidUp = true;
 
         TweenLite.to(ball, 0.5, {
