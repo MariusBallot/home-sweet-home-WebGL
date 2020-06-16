@@ -1,5 +1,5 @@
 <template>
-  <div v-on:touchmove="onTouchMove" class="overlay-ui grey">
+  <div v-on:touchstart="onTouchStart" v-on:touchend="onTouchEnd" class="overlay-ui grey">
     <div class="head">
       <div class="left">
         <img src="ui/grey/grey-logo.svg" class="logo grey-logo" alt="ui-logo" />
@@ -53,10 +53,12 @@
 import gsap from 'gsap'
 import { TweenLite } from 'gsap/gsap-core';
 import SocketServer from '../../SocketServer'
+import * as THREE from "three"
 
-const map = (value, in_min, in_max, out_min, out_max) => (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-const clamp = (num, min, max) => Math.max(Math.min(num, Math.max(min, max)), Math.min(min, max));
+// const map = (value, in_min, in_max, out_min, out_max) => (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+// const clamp = (num, min, max) => Math.max(Math.min(num, Math.max(min, max)), Math.min(min, max));
 let hasSlidUp = false;
+let touchPos = new THREE.Vector2()
 
 export default {
   name: "OverlayUI",
@@ -68,6 +70,7 @@ export default {
     const text = document.querySelector('.overlay-ui .head .right .text')
     const greyFilledScreen = document.querySelector('.overlay-ui .grey-filled-screen')
     const greyEmptyScreen = document.querySelector('.overlay-ui .grey-empty-screen')
+    
 
     const onReadyToSwipe = (message) => {
       slider.classList.remove("hide");
@@ -86,7 +89,6 @@ export default {
       })
     }
     const onRemoveDisplayNoneSlider = (message) => {
-      console.log("hi")
       slider.classList.remove("d-none");
     }
     const onRemoveDisplayNoneCredits = (message) => {
@@ -125,25 +127,47 @@ export default {
 
   },
   methods: {
-    onTouchMove: e=>{
-      const touchY = e.changedTouches[0].clientY
-      const mappedY = map(touchY, 0, window.innerHeight * 0.6, 60, 13)
-      const clampedY = clamp(mappedY, 13, 60)
+    // onTouchMove: e=>{
+    //   const touchY = e.changedTouches[0].clientY
+    //   const mappedY = map(touchY, 0, window.innerHeight * 0.6, 60, 13)
+    //   const clampedY = clamp(mappedY, 13, 60)
+    //   const ball = document.querySelector('.overlay-ui .ball')
+    //   const slider = document.querySelector('.overlay-ui .sliderContainer')
+
+    //   if(clampedY < 60 && !hasSlidUp){
+    //     TweenLite.to(ball, 0.5, {
+    //       bottom: clampedY+"%",
+    //     })
+    //   }
+    // },
+    
+    onTouchStart(e) {
+      touchPos.x = e.touches[0].clientX
+      touchPos.y = e.touches[0].clientY
+    },
+    
+    onTouchEnd(e) {
       const ball = document.querySelector('.overlay-ui .ball')
       const slider = document.querySelector('.overlay-ui .sliderContainer')
 
-      if(clampedY < 60 && !hasSlidUp){
-        TweenLite.to(ball, 0.5, {
-          bottom: clampedY+"%",
-        })
-      }else if(slider.classList.contains("show")){
+      console.log(ball, slider)
+
+      let d = touchPos.distanceTo(new THREE.Vector2(e.changedTouches[0].clientX, e.changedTouches[0].clientY))
+      if (d >= 150 && touchPos.y > e.changedTouches[0].clientY && !hasSlidUp) {
         hasSlidUp = true;
-        slider.classList.remove("show");
-        slider.classList.add("hide")
-        window.EM.emit("hasSlidUp")
-        SocketServer.sendToServer("hasSlidUp", "true")
+
+        TweenLite.to(ball, 0.5, {
+          bottom: "60%",
+        })
+
+        setTimeout(() => {
+          slider.classList.remove("show");
+          slider.classList.add("hide")
+          window.EM.emit("hasSlidUp")
+          SocketServer.sendToServer("hasSlidUp", "true")
+        }, 500);
       }
-    },
+    }
   },
   destroyed() {}
 };
