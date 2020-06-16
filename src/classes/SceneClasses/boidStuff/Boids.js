@@ -161,7 +161,7 @@ class Boids {
 
 
     update() {
-        if (MicController.volume >= 30)
+        if (MicController.volume >= 10)
             this.blowed = true
         if (!this.blowed)
             return
