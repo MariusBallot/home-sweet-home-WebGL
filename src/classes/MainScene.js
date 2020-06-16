@@ -37,7 +37,7 @@ class MainScene {
         this.orCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
         this.orCamera.position.set(0, 2, 0)
         this.orControls = new DeviceOrientationControls(this.orCamera);
-        this.orControls.alphaOffset = -Math.PI/2
+        // this.orControls.alphaOffset = -Math.PI/2
         this.orControls.update();
 
         SceneSwitcher.init({

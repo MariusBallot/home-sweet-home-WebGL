@@ -20,7 +20,7 @@ class Scene4 {
         this.camera = camera
         this.scene = scene
 
-        MainScene.orControls.alphaOffset = -Math.PI
+        // MainScene.orControls.alphaOffset = -Math.PI
 
         RAF.subscribe("scene4", this.update)
         
@@ -69,7 +69,7 @@ class Scene4 {
     }
 
     loadNextScene() {
-        MainScene.orControls.alphaOffset = -Math.PI/2
+        // MainScene.orControls.alphaOffset = -Math.PI/2
         // BlackTrans.out()
         PostProcess.fade("out")
         SceneSwitcher.showScene(this.sceneId+1)

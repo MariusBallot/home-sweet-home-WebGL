@@ -161,10 +161,13 @@ class Boids {
 
 
     update() {
-        if (MicController.volume >= 10)
+        this.boundingSphere.visible = boidParams.boundingVisibility
+
+        if (MicController.volume >= 25 )
             this.blowed = true
         if (!this.blowed)
             return
+            
         this.boidClasses.forEach((boidClass, i) => {
             this.repell(boidClass)
             this.align(boidClass)
@@ -187,9 +190,7 @@ class Boids {
         });
 
 
-        this.boundingSphere.visible = boidParams.boundingVisibility
         this.boundingSphere.scale.set(boidParams.bounddingRad, boidParams.bounddingRad, boidParams.bounddingRad)
-
     }
 
     bind() {
