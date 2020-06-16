@@ -3,7 +3,10 @@ import RAF from "../../utils/raf"
 import SceneSwitcher from '../../controllers/SceneSwitcher'
 import BlackTrans from "../BlackTrans"
 import Scene5 from '../SceneClasses/Scene5'
-
+import PostProcess from '../PostProcess'
+import SocketServer from '../../SocketServer'
+import MainScene from '../MainScene'
+ 
 class Scene4 {
     constructor() {
         this.bind()
@@ -17,9 +20,11 @@ class Scene4 {
         this.camera = camera
         this.scene = scene
 
+        MainScene.orControls.alphaOffset = -Math.PI
+
         RAF.subscribe("scene4", this.update)
         
-        window.addEventListener('touchstart', this.onTStart)
+        this.addEventListeners()
     }
 
     stop() {
@@ -31,29 +36,60 @@ class Scene4 {
     }
 
     onTStart(){
-        //touch twice in a second to load next scene
-        const newClickTime = new Date();
-        console.log(newClickTime)
-        if(newClickTime.getSeconds() === this.clickTime.getSeconds()){
-            this.loadNextScene();
-        }else{
-            this.clickTime = newClickTime;
-        }
+        SocketServer.sendToServer("tapSheep", "tapped");
     }
 
-    loadNextScene(){
+    disappear(){
+        MainScene.scene.background = new THREE.Color(0x000000)
+        SceneSwitcher.disappear(this.sceneId)
+        setTimeout(() => {
+            BlackTrans.in();
+        }, 300);
+    }
+
+    appear(){
+        this.scene.background = new THREE.Color(0xB8C6D1)
+        BlackTrans.out();
+        setTimeout(() => {
+            SceneSwitcher.appear(this.sceneId)
+        }, 300);
+        setTimeout(() => {
+            this.endScene()
+        }, 5000);
+    }
+
+    endScene() {        
         if (this.finished) return
         this.finished = true
         console.log("switching")
         SceneSwitcher.hideScene(this.sceneId)
-        BlackTrans.in()
+        // BlackTrans.in()
+        PostProcess.fade("in")
         window.removeEventListener('touchstart', this.onTStart)
-        setTimeout(() => {
-            BlackTrans.out()
-			SceneSwitcher.showScene(this.sceneId+1)
-			Scene5.start({camera: this.camera, scene: this.scene})
-            this.stop()
-        }, 2000)
+    }
+
+    loadNextScene() {
+        MainScene.orControls.alphaOffset = -Math.PI/2
+        // BlackTrans.out()
+        PostProcess.fade("out")
+        SceneSwitcher.showScene(this.sceneId+1)
+        Scene5.start({camera: this.camera, scene: this.camera})
+        this.stop()
+    }
+
+    onReadyForNextScene(message) {
+        console.log(JSON.parse(message));
+        if(this.finished){
+            window.EM.off('readyForNextScene', this.onReadyForNextScene)
+            this.loadNextScene()
+        }
+    }
+
+    addEventListeners(){
+        window.addEventListener('touchstart', this.onTStart)
+        window.EM.on('readyForNextScene', this.onReadyForNextScene)
+        window.EM.on('dropPhone', ()=>{this.disappear()})
+        window.EM.on('liftPhone', ()=>{this.appear()})
     }
 
     bind() {
@@ -62,6 +98,8 @@ class Scene4 {
         this.update = this.update.bind(this)
         this.loadNextScene = this.loadNextScene.bind(this)
         this.onTStart = this.onTStart.bind(this)
+        this.addEventListeners = this.addEventListeners.bind(this)
+        this.onReadyForNextScene = this.onReadyForNextScene.bind(this)
     }
 }
 

@@ -21,6 +21,7 @@ let boidParams = {
     boundingForce: 0.005,
     boundingVisibility: false,
     directionVector: false,
+    numberOfBoids: 150
 }
 
 
