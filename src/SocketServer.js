@@ -50,8 +50,36 @@ class SocketServer {
 				message = JSON.parse(data.message);
 
 				if (config.devMode) console.log(data.id, data.type, message);
+				
+				if(config.devModeDisableWebsocketFiltering){
+					switch (data.type) {
+						case 'sound':
+							SoundController.onNotif();
+							break;
+						case 'readyForNextScene':
+							window.EM.emit('readyForNextScene', JSON.stringify(message));
+							break;
+						case 'readyToSwipe':
+							window.EM.emit('readyToSwipe');
+							break;
+						case 'isDead':
+							window.EM.emit('end');
+							break;
+						case 'showCredits':
+							window.EM.emit('showCredits');
+							break;
+						case 'dropPhone':
+							window.EM.emit('dropPhone');
+							break;
+						case 'liftPhone':
+							window.EM.emit('liftPhone');
+							break;
+						default:
+							break;
+					}
+				}
 
-				if (accessKey && accessKey === data.id) {
+				if(!config.devModeDisableWebsocketFiltering && accessKey && accessKey === data.id){
 					switch (data.type) {
 						case 'sound':
 							SoundController.onNotif();
