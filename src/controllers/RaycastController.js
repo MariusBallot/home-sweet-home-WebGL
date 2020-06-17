@@ -22,20 +22,18 @@ class RaycastController {
     }
 
     shoot(event) {
-        this.shootingPoint.x = (event.clientX / window.innerWidth) * 2 - 1;
-        this.shootingPoint.y = - (event.clientY / window.innerHeight) * 2 + 1;
+        this.shootingPoint.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
+        this.shootingPoint.y = - (event.touches[0].clientY / window.innerHeight) * 2 + 1;
+        console.log(this.shootingPoint)
 
         this.raycaster.setFromCamera(this.shootingPoint, this.targetCamera);
 
         // calculate objects intersecting the picking ray
-        var intersects = this.raycaster.intersectObjects(this.targetScene.children);
-
+        var intersects = this.raycaster.intersectObjects(this.targetScene.children, true);
         for (var i = 0; i < intersects.length; i++) {
             this.onShoots.forEach(onShoot => {
                 onShoot.callback(intersects[i])
             });
-            intersects[i].object.material.color.set(0xff0000);
-
         }
     }
 
@@ -44,7 +42,7 @@ class RaycastController {
         this.shoot = this.shoot.bind(this)
         this.addOnShoots = this.addOnShoots.bind(this)
 
-        // window.addEventListener('click', this.shoot)
+        window.addEventListener('touchstart', this.shoot)
     }
 }
 

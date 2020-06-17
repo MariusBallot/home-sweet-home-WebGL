@@ -3,8 +3,8 @@ const config = {
     orCam: false,
     testScene: false,
     devMode: false, //disables all other devMode settings
-    devModeScene: 0, //skip to scene
-    devModeSkipIntro: false, //dont wait for unity
+    devModeScene: 4, //skip to scene
+    devModeSkipIntro: true, //dont wait for unity
     devModeLocalSocketServer: false, //connect to locahost:1234
     devModeShowGUI: false, //show dat.gui
     devModeWhiteVignette: false, //start with a white vignette instead of a black one

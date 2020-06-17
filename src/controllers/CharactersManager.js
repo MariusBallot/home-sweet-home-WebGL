@@ -39,6 +39,46 @@ const characters = [
         actions: null,
         scale: 0.03,
     },
+    {
+        name: "sheep_hater",
+        url: "/models/Characters/sheep_hater.glb",
+        model: null,
+        mixer: null,
+        actions: null,
+        scale: 0.01,
+    },
+    {
+        name: "sheep_door",
+        url: "/models/Characters/sheep_door.glb",
+        model: null,
+        mixer: null,
+        actions: null,
+        scale: 0.01,
+    },
+    {
+        name: "sheep_hill",
+        url: "/models/Characters/sheep_hill.glb",
+        model: null,
+        mixer: null,
+        actions: null,
+        scale: 0.01,
+    },
+    {
+        name: "sheep_rock",
+        url: "/models/Characters/sheep_rock.glb",
+        model: null,
+        mixer: null,
+        actions: null,
+        scale: 0.01,
+    },
+    {
+        name: "sheep_house",
+        url: "/models/Characters/sheep_house.glb",
+        model: null,
+        mixer: null,
+        actions: null,
+        scale: 0.01,
+    },
 
 ]
 
