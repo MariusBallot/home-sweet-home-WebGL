@@ -3,7 +3,7 @@ const config = {
     orCam: false,
     testScene: false,
     devMode: false, //disables all other devMode settings
-    devModeScene: 4, //skip to scene
+    devModeScene: 2, //skip to scene
     devModeSkipIntro: true, //dont wait for unity
     devModeLocalSocketServer: false, //connect to locahost:1234
     devModeShowGUI: false, //show dat.gui

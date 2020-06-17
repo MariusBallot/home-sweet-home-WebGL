@@ -11,17 +11,54 @@ class Scene2 {
         this.bind()
         this.touchPos = new THREE.Vector2()
         this.clickTime = new Date();
-		this.finished = false;
-		this.sceneId = 2
-	}
-	
+        this.finished = false;
+        this.sceneId = 2
+    }
+
     start({ camera, scene }) {
         this.camera = camera
-		this.scene = scene
+        this.scene = scene
 
-		// MainScene.scene.background = new THREE.Color(0xCCA770);
+        this.weirdShit = new THREE.Group()
+        this.stars = new THREE.Group()
+        this.globe = new THREE.Mesh(new THREE.SphereGeometry(10, 30, 30), new THREE.MeshBasicMaterial({
+            wireframe: true,
+            color: 0x000000
+        }))
+        this.scene.add(this.weirdShit)
+        this.scene.add(this.stars)
+        this.scene.add(this.globe)
+
+        PostProcess.shaderPass.material.uniforms.u_inte.value = 0.1
+        PostProcess.updateUniforms = true
+
+        let steps = 20
+        for (let i = 0; i < Math.PI * 2; i += Math.PI * 2 / steps) {
+            let r = 10
+            let x = Math.cos(i) * r
+            let z = Math.sin(i) * r
+            let sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 20, 20), new THREE.MeshLambertMaterial({
+                color: new THREE.Color(Math.random(), Math.random(), Math.random())
+            }))
+            sphere.position.set(x, 0, z)
+            this.weirdShit.add(sphere)
+        }
+
+        this.randSpace = 5
+        for (let i = 0; i < 100; i++) {
+            let x = (Math.random() - 0.5) * this.randSpace
+            let y = (Math.random() - 0.5) * this.randSpace
+            let z = (Math.random() - 0.5) * this.randSpace
+            let sphere = new THREE.Mesh(new THREE.SphereGeometry(0.03), new THREE.MeshBasicMaterial({
+                color: new THREE.Color(Math.random(), Math.random(), Math.random())
+            }))
+            sphere.position.set(x, y, z)
+            this.stars.add(sphere)
+        }
+
+        // MainScene.scene.background = new THREE.Color(0xCCA770);
         RAF.subscribe("scene2", this.update)
-        
+
         // window.addEventListener('touchstart', this.onTStart)
         this.addEventListeners()
     }
@@ -31,25 +68,49 @@ class Scene2 {
     }
 
     update() {
-		
+        this.weirdShit.rotateX(0.01)
+        this.weirdShit.rotateY(0.02)
+
+        this.globe.rotateX(-0.004)
+        this.globe.rotateY(-0.005)
+
+        this.weirdShit.children.forEach((child, i) => {
+            child.position.y = Math.sin((child.position.x + child.position.z) * 0.1 + Date.now() * 0.005) * 3
+            let s = Math.cos((child.position.x + child.position.z) + Date.now() * 0.003) + 2
+            child.scale.set(s, s, s)
+        });
+
+        this.stars.children.forEach((child, i) => {
+            child.position.y += 0.1
+            if (child.position.y >= this.randSpace) {
+                child.position.y = -this.randSpace
+            }
+        });
     }
 
-    onTStart(){
+    onTStart() {
         //touch twice in a second to load next scene
         const newClickTime = new Date();
         console.log(newClickTime)
-        if(newClickTime.getSeconds() === this.clickTime.getSeconds()){
+        if (newClickTime.getSeconds() === this.clickTime.getSeconds()) {
             this.endScene();
-        }else{
+        } else {
             this.clickTime = newClickTime;
         }
     }
 
-    endScene() {        
+    endScene() {
         if (this.finished) return
         this.finished = true
         console.log("switching")
+        this.scene.remove(this.weirdShit)
+        this.scene.remove(this.stars)
+        this.scene.remove(this.globe)
+
         SceneSwitcher.hideScene(this.sceneId)
+        PostProcess.shaderPass.material.uniforms.u_inte.value = 0
+        PostProcess.updateUniforms = false
+
         // BlackTrans.in()
         PostProcess.fade("in")
         window.removeEventListener('touchstart', this.onTStart)
@@ -58,15 +119,15 @@ class Scene2 {
     loadNextScene() {
         // BlackTrans.out()
         PostProcess.fade("out")
-        SceneSwitcher.showScene(this.sceneId+1)
-        Scene3.start({camera: this.camera, scene: this.camera})
+        SceneSwitcher.showScene(this.sceneId + 1)
+        Scene3.start({ camera: this.camera, scene: this.camera })
         this.stop()
     }
 
-    addEventListeners(){
+    addEventListeners() {
         const onReadyForNextScene = (message) => {
             console.log(JSON.parse(message));
-            if(this.finished){
+            if (this.finished) {
                 window.EM.off('readyForNextScene', onReadyForNextScene)
                 this.loadNextScene()
             }
