@@ -263,8 +263,6 @@ class Scene0 {
 	update() {
 		if (this.finished) return;
 
-		this.camera.rotateY(-Math.PI / 2);
-
 		this.handModel.position.copy(this.camera.position);
 		this.handModel.quaternion.copy(this.camera.quaternion);
 
