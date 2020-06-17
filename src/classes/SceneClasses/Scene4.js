@@ -37,6 +37,7 @@ class Scene4 {
                 this.scene.add(char.model.scene)
             }
         })
+        console.log(this.scene)
         console.log(this.sheeps)
 
         this.sheeps.forEach(sheep => {
@@ -51,8 +52,11 @@ class Scene4 {
         // MainScene.orControls.alphaOffset = -Math.PI
 
         RAF.subscribe("scene4", this.update)
+        RaycastController.addEventListener();
         RaycastController.setTarget({ camera: this.camera, scene: this.scene })
         RaycastController.addOnShoots({ name: 'sheepOnShoot', callback: this.onShoot })
+
+        console.log(this.scene)
 
         this.addEventListeners()
     }
@@ -63,6 +67,7 @@ class Scene4 {
         // else if (e.object.parent.parent.name.includes("mouton"))
         console.log(e.object)
     }
+
     touchedHater() {
         console.log("heyyy")
         if (!this.haterFlag)
@@ -104,7 +109,7 @@ class Scene4 {
     }
 
     update() {
-
+        console.log(1)
     }
 
     onTStart() {
@@ -145,7 +150,7 @@ class Scene4 {
         // BlackTrans.out()
         PostProcess.fade("out")
         SceneSwitcher.showScene(this.sceneId + 1)
-        Scene5.start({ camera: this.camera, scene: this.camera })
+        Scene5.start({ camera: this.camera, scene: this.scene })
         this.stop()
     }
 

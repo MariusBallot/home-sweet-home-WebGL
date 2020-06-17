@@ -12,6 +12,10 @@ class RaycastController {
         this.targetScene
     }
 
+    addEventListener(){
+        window.addEventListener('touchstart', this.shoot)
+    }
+
     addOnShoots({ name, callback }) {
         this.onShoots.push({ name: name, callback: callback })
     }
@@ -41,8 +45,7 @@ class RaycastController {
     bind() {
         this.shoot = this.shoot.bind(this)
         this.addOnShoots = this.addOnShoots.bind(this)
-
-        window.addEventListener('touchstart', this.shoot)
+        this.addEventListener = this.addEventListener.bind(this)
     }
 }
 

@@ -57,7 +57,7 @@ class Scene3 {
         // BlackTrans.out()
         PostProcess.fade("out")
         SceneSwitcher.showScene(this.sceneId+1)
-        Scene4.start({camera: this.camera, scene: this.camera})
+        Scene4.start({camera: this.camera, scene: this.scene})
         this.stop()
     }
 
