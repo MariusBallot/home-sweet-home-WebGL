@@ -2,7 +2,7 @@ const config = {
     allowDesktop: true,
     orCam: false,
     testScene: false,
-    devMode: true, //disables all other devMode settings except websocketfiltering
+    devMode: false, //disables all other devMode settings except websocketfiltering
     devModeScene: 0, //skip to scene
     devModeSkipIntro: true, //dont wait for unity
     devModeLocalSocketServer: false, //connect to locahost:1234
