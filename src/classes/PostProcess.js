@@ -33,7 +33,10 @@ class PostProcess {
             uniforms: {
                 tDiffuse: { value: null },
                 u_vignetteIntensity: { value: this.parameters.vignetteIntensity }, //float : 0.1 = default, 8.0 = max
-                u_vignetteColorMode: { value: this.parameters.vignetteColorMode } //float : 1 = white, -1 = black
+                u_vignetteColorMode: { value: this.parameters.vignetteColorMode }, //float : 1 = white, -1 = black
+                u_time: { value: 0 },
+                u_inte: { value: 0 }, //handles the intensity of the wave deformation for tapkeu
+
             },
             vertexShader: postShaderVert,
             fragmentShader: postShaderFrag,
@@ -115,7 +118,8 @@ class PostProcess {
     }
 
     update() {
-        if(this.updateUniforms) {
+        if (this.updateUniforms) {
+            this.shaderPass.material.uniforms.u_time.value++
             this.shaderPass.material.uniforms.u_vignetteIntensity.value = this.parameters.vignetteIntensity
             this.shaderPass.material.uniforms.u_vignetteColorMode.value = this.parameters.vignetteColorMode
         }
