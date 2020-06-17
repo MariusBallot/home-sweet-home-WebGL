@@ -79,9 +79,9 @@ class MainScene {
         this.orControls.update();
         this.debugControls.update()
 
-        if (SocketServer.connected && this.orCamera && this.orCamera.rotation)
-            SocketServer.sendToServer('orientation', this.orCamera.rotation)
-    }
+        // if (SocketServer.connected && this.orCamera && this.orCamera.rotation)
+            // SocketServer.sendToServer('orientation', this.orCamera.rotation)
+    }8
 
 
     loadNextScene(){
@@ -115,14 +115,50 @@ class MainScene {
     }
 
     addEventListeners() {
-        window.addEventListener('resize', this.onWindowResize)
         const onReadyForNextScene = (message) => {
             window.EM.off('readyForNextScene', onReadyForNextScene)
             console.log(JSON.parse(message));
             this.loadNextScene()
         }
+        const onOrientation = event => {
+            let message = {
+                _x: 0,
+                _y: 0,
+                _z: 0,
+                _order: "xyz"
+            }
+            /*
+                Alpha: represents the motion of the device around the z axis.
+                Represented in degrees with values ranging from 0 to 360.
+            */
+
+            message._x = event.alpha
+
+            /*
+                Beta: represents the motion of the device around the x axis.
+                Represented in degrees with values ranging from -180 to 180.
+                This represents a front to back motion of the device.
+            */
+
+            message._z = event.beta
+
+            /*
+            Gamma: represents the motion of the device around the y axis.
+            Represented in degrees with values ranging from -90 to 90.
+            This represents a left to right motion of the device.
+        */
+
+            message._y = event.gamma
+
+            console.log(message);
+
+            if (SocketServer.connected) SocketServer.sendToServer('orientation', message)
+        }
+
+        window.addEventListener('deviceorientation', onOrientation, true)
         window.EM.on('readyForNextScene', onReadyForNextScene)
         window.EM.on('hasSlidUp', ()=>{PostProcess.fade("toWhite")})
+        window.addEventListener('resize', this.onWindowResize)
     }
 
     bind() {
