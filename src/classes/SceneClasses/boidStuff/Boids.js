@@ -163,7 +163,7 @@ class Boids {
     update() {
         this.boundingSphere.visible = boidParams.boundingVisibility
 
-        if (MicController.volume >= 25 )
+        if (MicController.volume >= 35 )
             this.blowed = true
         if (!this.blowed)
             return
