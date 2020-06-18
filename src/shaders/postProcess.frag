@@ -6,7 +6,7 @@ uniform float u_inte;
 varying vec2 vUv;
 void main() {
   vec2 nUv = vUv;
-  nUv.y+=sin(nUv.x*10.+u_time*0.001)*u_inte;
+  nUv.y+=sin(nUv.x*10.+u_time*0.0005)*u_inte;
   vec4 rTex = texture2D(tDiffuse, nUv);
 
   float d = distance(vec2(.5), vUv);

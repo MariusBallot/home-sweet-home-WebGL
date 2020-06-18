@@ -32,13 +32,22 @@ class Scene2 {
         PostProcess.shaderPass.material.uniforms.u_inte.value = 0.1
         PostProcess.updateUniforms = true
 
+        let colorPool = [
+            new THREE.Color(0x2E2E2E),
+            new THREE.Color(0x503C1E),
+            new THREE.Color(0x4E6D86),
+            new THREE.Color(0xCCA770),
+            new THREE.Color(0x000000),
+            new THREE.Color(0x879199),
+        ]
+
         let steps = 20
         for (let i = 0; i < Math.PI * 2; i += Math.PI * 2 / steps) {
             let r = 10
             let x = Math.cos(i) * r
             let z = Math.sin(i) * r
             let sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 20, 20), new THREE.MeshLambertMaterial({
-                color: new THREE.Color(Math.random(), Math.random(), Math.random())
+                color: colorPool[Math.round(Math.random() * colorPool.length)]
             }))
             sphere.position.set(x, 0, z)
             this.weirdShit.add(sphere)
@@ -50,7 +59,7 @@ class Scene2 {
             let y = (Math.random() - 0.5) * this.randSpace
             let z = (Math.random() - 0.5) * this.randSpace
             let sphere = new THREE.Mesh(new THREE.SphereGeometry(0.03), new THREE.MeshBasicMaterial({
-                color: new THREE.Color(Math.random(), Math.random(), Math.random())
+                color: colorPool[Math.round(Math.random() * colorPool.length)]
             }))
             sphere.position.set(x, y, z)
             this.stars.add(sphere)
@@ -68,15 +77,15 @@ class Scene2 {
     }
 
     update() {
-        this.weirdShit.rotateX(0.01)
-        this.weirdShit.rotateY(0.02)
+        this.weirdShit.rotateX(0.005)
+        this.weirdShit.rotateY(0.01)
 
-        this.globe.rotateX(-0.004)
-        this.globe.rotateY(-0.005)
+        this.globe.rotateX(-0.0004)
+        this.globe.rotateY(-0.0005)
 
         this.weirdShit.children.forEach((child, i) => {
-            child.position.y = Math.sin((child.position.x + child.position.z) * 0.1 + Date.now() * 0.005) * 3
-            let s = Math.cos((child.position.x + child.position.z) + Date.now() * 0.003) + 2
+            child.position.y = Math.sin((child.position.x + child.position.z) * 0.1 + Date.now() * 0.001) * 3
+            let s = Math.cos((child.position.x + child.position.z) + Date.now() * 0.001) + 2
             child.scale.set(s, s, s)
         });
 
@@ -119,8 +128,8 @@ class Scene2 {
     loadNextScene() {
         // BlackTrans.out()
         PostProcess.fade("out")
-        SceneSwitcher.showScene(this.sceneId+1)
-        Scene3.start({camera: this.camera, scene: this.scene})
+        SceneSwitcher.showScene(this.sceneId + 1)
+        Scene3.start({ camera: this.camera, scene: this.scene })
         this.stop()
     }
 
