@@ -105,15 +105,14 @@ class Scene4 {
     }
 
     stop() {
+        this.sheeps.forEach(sheep=>{
+            sheep.visible = false;
+        })
         RAF.unsubscribe("scene4")
     }
 
     update() {
         console.log(1)
-    }
-
-    onTStart() {
-        SocketServer.sendToServer("tapSheep", "tapped");
     }
 
     disappear() {
@@ -142,7 +141,6 @@ class Scene4 {
         SceneSwitcher.hideScene(this.sceneId)
         // BlackTrans.in()
         PostProcess.fade("in")
-        // window.removeEventListener('touchstart', this.onTStart)
     }
 
     loadNextScene() {
@@ -163,7 +161,6 @@ class Scene4 {
     }
 
     addEventListeners() {
-        // window.addEventListener('touchstart', this.onTStart)
         window.EM.on('readyForNextScene', this.onReadyForNextScene)
         window.EM.on('dropPhone', () => { this.disappear() })
         window.EM.on('liftPhone', () => { this.appear() })
