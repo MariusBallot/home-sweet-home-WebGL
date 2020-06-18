@@ -106,7 +106,8 @@ class Scene4 {
 
     stop() {
         this.sheeps.forEach(sheep=>{
-            sheep.visible = false;
+            sheep.model.visible = false;
+            sheep.model.scene.position.y = -10;
         })
         RAF.unsubscribe("scene4")
     }
