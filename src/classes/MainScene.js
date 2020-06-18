@@ -81,8 +81,7 @@ class MainScene {
 
         if (SocketServer.connected && this.orCamera && this.orCamera.rotation){
             SocketServer.sendToServer('orientation', this.orCamera.rotation)
-            console.log(this.orCamera.rotation.x * (Math.PI / 180))
-            console.log(this.orCamera.rotation.x)
+            // console.log(orControls.deviceOrientation)
         }
     }8
 
