@@ -171,7 +171,6 @@ class Scene4 {
         this.stop = this.stop.bind(this)
         this.update = this.update.bind(this)
         this.loadNextScene = this.loadNextScene.bind(this)
-        this.onTStart = this.onTStart.bind(this)
         this.addEventListeners = this.addEventListeners.bind(this)
         this.onReadyForNextScene = this.onReadyForNextScene.bind(this)
         this.onShoot = this.onShoot.bind(this)
