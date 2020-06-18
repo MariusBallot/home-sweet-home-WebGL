@@ -1,7 +1,7 @@
 <template>
   <div ref="container" class="header animate">
     <div class="top">
-      <img src="ui/logo.svg" class="logo" alt />
+      <img src="ui/white/white-logo.svg" class="logo" alt />
       <img src="ui/title.png" alt class="title" />
     </div>
     <div class="bot">
